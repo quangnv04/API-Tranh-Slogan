@@ -1,0 +1,66 @@
+ .table img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 10px;
+    padding: .25rem;
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+}
+.table td, .table th {
+    white-space: normal;
+}
+
+.quantity-control{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
+.mobile-price{
+    display: none;
+}
+
+.next-options{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.breadcrumb-bar{
+    margin-top: 5rem;
+}
+
+.voucher-code{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.voucher-code p{
+    border: 1px solid #f99e49;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+@media screen and (max-width: 992px) {
+    .breadcrumb-bar{
+        margin-top: 0;
+    }
+    
+}
+
+@media screen and (max-width: 576px) {
+    .mobile-price{
+        display: block;
+    }
+    .product-price, .subtotal{
+        display: none;
+    }
+}

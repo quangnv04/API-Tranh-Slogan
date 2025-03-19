@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Tranh Slogan (tranhslogan.vn) | Chuyên Các Loại Tranh, Khung Ảnh, Lịch Tết Giá Tốt
+{% endblock %}
+
+{% block meta %}
+    <link rel="canonical" href="https://tranhslogan.vn/sets"/>
+    <link rel="alternate" href="https://tranhslogan.vn/sets" hreflang="vi"/>
+    <link rel="alternate" href="https://tranhslogan.vn/sets" hreflang="x-default"/>
+
+    <!--Primary Meta Tags-->
+    <meta name="title" content="Tranh Slogan | Xưởng in tranh theo yêu cầu, tranh động lực, canvas"/>
+    <meta name="description"
+          content="Tại Tranh Slogan, chúng tôi chuyên cung cấp các loại tranh nghệ thuật độc đáo, khung ảnh tinh tế và lịch Tết phong cách với giá cạnh tranh. Mang đến không gian sống và làm việc thêm phần ấn tượng, hiện đại."/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="vi"/>
+    <meta property="og:url" content="https://tranhslogan.vn/sets"/>
+    <meta property="og:title" content="Tranh Slogan | Xưởng in tranh theo yêu cầu, tranh động lực, canvas"/>
+    <meta property="og:description"
+          content="Tại Tranh Slogan, chúng tôi chuyên cung cấp các loại tranh nghệ thuật độc đáo, khung ảnh tinh tế và lịch Tết phong cách với giá cạnh tranh. Mang đến không gian sống và làm việc thêm phần ấn tượng, hiện đại."/>
+    <meta property="og:image" content="/assets/img/thumbnail.jpeg"/>
+
+    <!-- X.com -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://tranhslogan.vn/sets"/>
+    <meta property="twitter:title" content="Tranh Slogan | Xưởng in tranh theo yêu cầu, tranh động lực, canvas"/>
+    <meta property="twitter:description"
+          content="Tại Tranh Slogan, chúng tôi chuyên cung cấp các loại tranh nghệ thuật độc đáo, khung ảnh tinh tế và lịch Tết phong cách với giá cạnh tranh. Mang đến không gian sống và làm việc thêm phần ấn tượng, hiện đại."/>
+    <meta property="twitter:image" content="/assets/img/thumbnail.jpeg"/>
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+{% endblock %}
+
+{% block content %}
+    <section class="section new-course">
+        <div class="container">
+            <div class="swiper banner-slide">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-1.jpeg" alt="Banner Tranh Slogan 1"></div>
+                    <div class="swiper-slide"><img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-3.jpeg" alt="Banner Tranh Slogan 2"></div>
+                    <div class="swiper-slide"><img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-7.jpeg" alt="Banner Tranh Slogan 3"></div>
+                    <div class="swiper-slide"><img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-6.jpeg" alt="Banner Tranh Slogan 4"></div>
+                </div>
+
+                <!-- Nút điều hướng -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+                <!-- Thanh hiển thị tiến trình -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <template id="card-template">
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <div class="product-box d-flex">
+                        <div class="product">
+                            <div class="product-img">
+                                <div class="card__body">
+                                    <div class="card__body body__img">
+                                        <img class="skeleton" alt="" id="cover-img"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="card__header">
+                                    <h3 class="card__header header__title" id="card-title">
+                                        <div class="skeleton skeleton-text"></div>
+                                        <div class="skeleton skeleton-text"></div>
+                                    </h3>
+                                </div>
+                                <div class="product-info align-items-center">
+                                    <div class="card__body body__text" id="card-details">
+                                        <div class="skeleton skeleton-text skeleton-text__body"></div>
+                                        <div class="skeleton skeleton-text skeleton-text__body"></div>
+                                    </div>
+                                </div>
+                                <div class="price" style="${isShowPrice}">
+                                    <div class="skeleton skeleton-text skeleton-footer"></div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="skeleton skeleton-text skeleton-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <div class="course-feature">
+                <div class="row" id="products-container">
+                </div>
+                <div class="pagination-container text-center mt-4">
+                    <nav aria-label="Product pagination">
+                        <ul class="pagination lms-page justify-content-center"></ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="/assets/js/swiper-bundle.min.js"></script>
+    <script src="/assets/js/pages/sets.js?v={{ time }}"></script>
+    <script src="/assets/js/header-filter.js?v={{ time }}"></script>
+{% endblock %}

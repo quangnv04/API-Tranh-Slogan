@@ -1,0 +1,501 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ product.title }} - Tranh Slogan
+{% endblock %}
+
+{% block meta %}
+    {% set first_canvas_price = product.canvas_price[0] %}
+
+    <link rel="canonical" href="https://tranhslogan.vn/product/{{ product.slug }}"/>
+    <link rel="alternate" href="https://tranhslogan.vn/product/{{ product.slug }}" hreflang="vi"/>
+    <link rel="alternate" href="https://tranhslogan.vn/product/{{ product.slug }}" hreflang="x-default"/>
+    <!--Primary Meta Tags-->
+    <meta name="title" content="{{ product.title }} - Tranh Slogan"/>
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/default-skin/default-skin.css">
+    <link rel="stylesheet" href="/assets/css/photoswipe.css">
+    <link rel="stylesheet" href="/assets/css/product-detail.css?v={{ time }}">
+{% endblock %}
+
+{% block content %}
+    <div class="inner-banner">
+        <div class="container">
+            <div class="product-info row">
+                <div class="swiper-container swiper col-sm-12 col-md-6 col-lg-5 mb-4">
+                    <div class="swiper-wrapper"></div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="product-details  col-md-6 col-lg-7" id="product-form">
+                    <h1>{{ product.title }}</h1>
+                    <p class="price">Giá: <span id="price"></span></p>
+
+                    <div class="size-options">
+                        <p>Kích Thước</p>
+                        <div class="value">
+                            <input type="radio" id="size-30x40" name="size" value="30x40" checked>
+                            <label for="size-30x40">30x40cm</label>
+                            <input type="radio" id="size-40x60" name="size" value="40x60">
+                            <label for="size-40x60">40x60cm</label>
+                            <input type="radio" id="size-50x70" name="size" value="50x70">
+                            <label for="size-50x70">50x70cm</label>
+                            <input type="radio" id="size-60x90" name="size" value="60x90">
+                            <label for="size-60x90">60x90cm</label>
+                        </div>
+                    </div>
+
+                    <div class="frame-options">
+                        <p>Khung</p>
+                        <div class="value">
+                            <input type="radio" id="frame-composite" name="frame" value="Composite" checked>
+                            <label for="frame-composite">Khung Composite</label>
+                            <input type="radio" id="full-frame" name="frame" value="fullframe">
+                            <label for="full-frame">Tràn viền - Căng khung</label>
+                        </div>
+                    </div>
+
+                    <div class="material-options">
+                        <p>Chất Liệu</p>
+                        <input type="radio" id="material-canvas" name="material" value="Canvas" checked>
+                        <label for="material-canvas">Canvas</label>
+                        <input type="radio" id="material-mica" name="material" value="Mica">
+                        <label for="material-mica">Mica</label>
+                    </div>
+
+                    <div class="quantity-container">
+                        <p>Số Lượng</p>
+                        <button id="decrease-btn">-</button>
+                        <input type="text" id="quantity" value="1" name="quantity">
+                        <button id="increase-btn">+</button>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="button add-to-cart">Thêm vào giỏ hàng</button>
+                        <button class="button buy-now" onclick="window.location.href='/cart';">Mua Ngay</button>
+                    </div>
+
+                    <div class="highlights">
+                        <div class="return-policy">
+                            <img src="https://cdn.tranhslogan.vn/product-details/icon-2.png" alt="Chính sách hoàn trả - Tranhslogan.vn">
+                            <p class="text-content"><strong>Chính sách hoàn trả</strong></p>
+                        </div>
+
+                        <div class="delivery-policy">
+                            <img src="https://cdn.tranhslogan.vn/product-details/icon-1.png" alt="Chính sách giao hàng - Tranhslogan.vn">
+                            <p class="text-content"><strong>Giao hàng toàn quốc</strong></p>
+                        </div>
+
+                        <div class="warranty-policy">
+                            <img src="https://cdn.tranhslogan.vn/product-details/icon-3.png" alt="Chính sách bảo hành - Tranhslogan.vn">
+                            <p class="text-content"><strong>Bảo hành 6 tháng</strong></p>
+                        </div>
+
+                        <div class="bank-card">
+                            <div class="logo-bank">
+                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/02/Logo-TPBank-Name.png" alt="TPBank Logo">
+                            </div>
+                            <div class="info">
+                                <h6>Ngô Văn Quang</h6>
+                                <p>00000842495</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 p-3" style="z-index: 11">
+            <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <strong class="me-auto">Thông báo</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+              </div>
+            </div>
+          </div>
+    </div>
+    <section class="page-content product-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <div class="row product-detail-basic-information">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active stamped-tab" id="description-tab" data-bs-toggle="tab"
+                                            data-bs-target="#description" type="button" role="tab" aria-controls="description"
+                                            aria-selected="true">Mô tả
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link stamped-tab" id="information-tab" data-bs-toggle="tab"
+                                            data-bs-target="#information" type="button" role="tab" aria-controls="information"
+                                            aria-selected="false">Thông tin chi tiết
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link stamped-tab" id="policy-tab" data-bs-toggle="tab" data-bs-target="#policy"
+                                            type="button" role="tab" aria-controls="policy" aria-selected="false">Chính sách ưu
+                                        đãi
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active mt-3" id="description" role="tabpanel"
+                                     aria-labelledby="description-tab">
+                                    <div class="section">
+                                        <h2>{{ product.title }}</h2>
+                                        <p class="p-2 text-content">Bạn đã bao giờ bước vào một không gian làm việc hay học tập và cảm nhận
+                                            ngay được nguồn năng lượng tích cực từ những bức tranh slogan treo tường? Những câu
+                                            khẩu hiệu
+                                            ngắn gọn nhưng đầy ý nghĩa, kết hợp cùng thiết kế tinh tế, đã trở thành xu hướng
+                                            trang trí không thể thiếu trong nhiều không gian sống hiện đại. Hãy cùng khám phá sự
+                                            hấp dẫn và lợi ích mà <strong>{{ product.title }}</strong> mang lại, cũng như cách
+                                            lựa chọn và ứng dụng chúng sao cho phù hợp nhất với không gian của
+                                            bạn.</p>
+                                        <div class="image-container">
+                                            <img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-2.jpeg" alt="tranh-slogan-banner">
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <h4>✨ Tại sao nên chọn {{ product.title }} để trang trí?</h4>
+                                    <p class="p-1 text-content">Bạn có bao giờ tự hỏi tại sao <strong>tranh slogan</strong> lại trở thành
+                                        xu hướng trang trí được ưa chuộng đến vậy? </p>
+                                    <p class="p-1 text-content">Đầu tiên, chúng mang lại <strong>giá trị thẩm mỹ
+                                        cao</strong>, giúp không gian trở nên sống động và hiện đại hơn. Với thiết kế đa
+                                        dạng, từ phong cách tối giản đến phức tạp, tranh slogan dễ dàng hòa nhập với bất kỳ
+                                        kiểu nội thất nào.</p>
+                                    <p class="p-1 text-content">Thứ hai, <strong>{{ product.title }}</strong> giúp <strong>khơi dậy tinh
+                                        thần</strong> và tạo cảm hứng cho người xem. Những câu khẩu hiệu như
+                                        <em>"{{ product.name }}"</em> không chỉ là lời nhắc nhở mà còn là nguồn động viên
+                                        quý giá trong cuộc sống và công việc.
+                                    </p>
+                                    <p class="p-1 text-content">Thứ ba, việc lắp đặt <strong>tranh slogan</strong> vô cùng <strong>dễ
+                                        dàng</strong>. Chỉ cần một vài chiếc đinh hoặc móc treo, bạn đã có thể biến tấu
+                                        không
+                                        gian của mình
+                                        một cách nhanh chóng. Điều này đặc biệt hữu ích cho những người muốn thay đổi môi
+                                        trường sống mà không cần tốn quá nhiều công sức hay chi phí.</p>
+                                    <p class="p-1 text-content">Cuối cùng, <strong>tranh slogan</strong> còn là cách thể hiện <strong>cá
+                                        tính</strong> và <strong>gu thẩm mỹ</strong> của bạn. Bằng cách lựa chọn những
+                                        câu slogan phù hợp, bạn có thể truyền tải thông điệp cá nhân và tạo dấu ấn riêng cho không gian
+                                        sống của mình.</p>
+                                    </div>
+                                    <div class="read-more-content">
+                                        <div class="image-container">
+                                            <img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-4.jpeg" alt="tranh-slogan-banner">
+                                        </div>
+                                        <div class="section">
+                                            <h4>💡 Những lợi ích của việc sử dụng tranh slogan tạo động lực</h4>
+                                        <p class="p-1"><strong>Tranh slogan tạo động lực</strong> không chỉ là vật trang trí mà còn mang lại nhiều lợi ích thiết thực:</p>
+                                        <ul class="text-content">
+                                            <li>
+                                                <p><span class="highlight">- Tăng cường tinh thần làm việc và học tập</span>: Những câu khẩu hiệu tích cực giúp khích lệ tinh thần, thúc đẩy sự tập
+                                                    trung và quyết tâm trong công việc cũng như học tập.</p>
+                                            </li>
+                                            <li>
+                                                <p><span class="highlight">- Giảm căng thẳng</span>: Khi cảm thấy mệt mỏi, một cái nhìn thoáng qua <strong>tranh động lực</strong> có thể mang lại cảm
+                                                    giác thoải mái, giúp bạn lấy lại năng lượng.</p>
+                                            </li>
+                                            <li>
+                                                <p><span class="highlight">- Xây dựng văn hóa doanh nghiệp</span>: Đối với các công ty, <strong>tranh slogan</strong> giúp thể hiện giá trị cốt lõi và
+                                                    tầm nhìn, tạo nên môi trường làm việc chuyên nghiệp và đoàn kết.</p>
+                                            </li>
+                                            <li>
+                                                <p><span class="highlight">- Thể hiện phong cách cá nhân</span>: Bạn có thể lựa chọn những <strong>tranh slogan</strong> phản ánh sở thích, quan điểm
+                                                    sống của mình, tạo nên không gian mang dấu ấn riêng.</p>
+                                            </li>
+                                            <li>
+                                                <p><span class="highlight">- Dễ dàng thay đổi và cập nhật</span>: So với việc sơn lại tường hay thay đổi nội thất, việc thêm hoặc thay thế <strong>tranh
+                                                    slogan</strong> đơn giản và tiết kiệm hơn nhiều.</p>
+                                            </li>
+                                        </ul>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary read-more-btn">Đọc thêm...</button>
+                                </div>
+                                <div class="tab-pane fade" id="information" role="tabpanel" aria-labelledby="information-tab">
+                                    <div class="section">
+                                        <h4 class="section-title">🖼 Chất liệu Canvas Chất Lượng Cao</h4>
+                                        <p class="text-content">
+                                            <span class="highlight">Canvas</span> là một trong những chất liệu phổ biến nhất cho <strong>tranh slogan tạo động lực</strong>. Với đặc tính <span
+                                                class="highlight">bền bỉ</span>, <span class="highlight">nhẹ</span> và <span class="highlight">dễ treo</span>, canvas mang lại nhiều ưu điểm vượt trội.
+                                        </p>
+                                        <ul class="text-content">
+                                            <li><p><span class="highlight">Độ bền cao:</span> Chống ẩm mốc, giữ màu sắc tươi mới trong thời gian dài.</p></li>
+                                            <li><p><span class="highlight">Màu sắc sống động:</span> Công nghệ in UV tái hiện màu sắc chân thực, độ sắc nét cao.</p></li>
+                                            <li><p><span class="highlight">Thân thiện với môi trường:</span> Chất liệu tự nhiên, an toàn cho sức khỏe.</p></li>
+                                            <li><p><span class="highlight">Dễ bảo quản:</span> Lau sạch bụi bẩn bằng khăn ẩm một cách dễ dàng.</p></li>
+                                        </ul>
+                                    </div>
+                                    <div class="section">
+                                        <h4 class="section-title">📌 Chất liệu Mica Chất Lượng Cao</h4>
+                                        <p class="text-content">
+                                            <span class="highlight">Mica</span> là một chất liệu hiện đại, với bề mặt <span class="highlight">bóng loáng</span> và <span
+                                                class="highlight">trong suốt</span>, mang lại vẻ đẹp <span class="highlight">sang trọng</span> cho không gian.
+                                        </p>
+                                        <ul class="text-content">
+                                            <li><p><span class="highlight">Độ bền cao:</span> Không phai màu, chịu được tác động môi trường.</p></li>
+                                            <li><p><span class="highlight">Trọng lượng nhẹ:</span> Dễ dàng treo và lắp đặt.</p></li>
+                                            <li><p><span class="highlight">An toàn:</span> Không dễ vỡ như kính, giảm nguy cơ chấn thương.</p></li>
+                                            <li><p><span class="highlight">Hiệu ứng thị giác độc đáo:</span> Tạo hiệu ứng 3D làm nổi bật hình ảnh.</p></li>
+                                        </ul>
+                                    </div>
+                                    <div class="section">
+                                        <p><strong>Một số kích thước phổ biến:</strong></p>
+                                        <div class="image-container">
+                                            <img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-9.jpeg" alt="tranh-slogan-banner">
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <h4 class="section-title">📏 So Sánh Canvas và Mica</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Đặc điểm</th>
+                                                    <th>Canvas</th>
+                                                    <th>Mica</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Độ bền</td>
+                                                    <td>Cao</td>
+                                                    <td>Rất cao</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Trọng lượng</td>
+                                                    <td>Nhẹ</td>
+                                                    <td>Rất nhẹ</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Hiệu ứng thị giác</td>
+                                                    <td>Màu sắc chân thực</td>
+                                                    <td>Bóng loáng, hiện đại</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Giá thành</td>
+                                                    <td>Trung bình</td>
+                                                    <td>Cao hơn Canvas</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="read-more-content">
+                                        <div class="section">
+                                            <h4 class="section-title">🛠 Thiết Kế Chịu Lực, Độ Bền Cao</h4>
+                                            <p class="text-content">Khung tranh đóng vai trò quan trọng trong việc bảo vệ và tăng tính thẩm mỹ cho sản phẩm.</p>
+                                            <ul class="text-content">
+                                                <li><p><span class="highlight">Khung gỗ tự nhiên:</span> Chống mối mọt, cong vênh, mang lại vẻ đẹp ấm cúng.</p></li>
+                                                <li><p><span class="highlight">Khung nhôm cao cấp:</span> Nhẹ, bền, không bị oxi hóa.</p></li>
+                                                <li><p><span class="highlight">Kết cấu vững chắc:</span> Được gia cố để chịu lực tốt.</p></li>
+                                                <li><p><span class="highlight">Bảo vệ tranh:</span> Một số thiết kế có lớp kính hoặc mica bảo vệ tranh khỏi bụi bẩn.</p></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="section">
+                                            <h4 class="section-title">🎨 Công Nghệ In Ấn Hiện Đại</h4>
+                                            <p class="text-content">Công nghệ in ảnh hưởng trực tiếp đến chất lượng và độ bền của tranh.</p>
+                                            <ul class="text-content">
+                                                <li><p><span class="highlight">In UV:</span> Màu sắc tươi sáng, độ chi tiết cao, khả năng
+                                                    chống trầy xước và chịu được ánh sáng mạnh mà không phai màu, thích hợp</strong> cho cả chất liệu canvas và mica.</p></li>
+                                                <li><p><span class="highlight">In Giclée:</span> Độ phân giải cao, màu sắc chân thực, thường
+                                                    được sử dụng trong in nghệ thuật cao cấp, phù hợp</strong> với chất liệu canvas</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary read-more-btn">Đọc Thêm...</button>
+                                </div>
+
+                                <div class="tab-pane fade" id="policy" role="tabpanel" aria-labelledby="policy-tab">
+                                    <div class="section">
+                                        <h4 class="section-title">⚙ Chính sách đổi trả</h4>
+                                        <p class="text-content">
+                                            <span class="highlight">Đổi trả miễn phí:</span> Trong vòng <strong>7 ngày</strong> nếu sản phẩm có lỗi do nhà sản xuất.
+                                        </p>
+                                        <p class="text-content">
+                                            <span class="highlight">Bảo hành 6 tháng:</span> Đổi 1-1 nếu lỗi như <em>mờ mực, trầy xước, cong vênh</em>. Sau 7 ngày, hỗ trợ bảo hành với <strong>phụ phí
+                                            30%</strong> giá trị tranh.
+                                        </p>
+                                    </div>
+
+                                    <div class="section">
+                                        <h4 class="section-title">🎉 Ưu đãi đặc biệt</h4>
+                                        <ul class="text-content">
+                                            <li><span class="highlight">- Giảm 5%:</span> Hóa đơn trên <strong>1.000.000đ</strong>.</li>
+                                            <li><span class="highlight">- Giảm 8%:</span> Hóa đơn trên <strong>2.000.000đ</strong>.</li>
+                                            <li><span class="highlight">- Quà tặng:</span> <strong>Đinh treo tranh 3 chân</strong> cho mỗi đơn hàng.</li>
+                                            <li><span class="highlight">- Miễn phí vận chuyển:</span> Nội thành <strong>Hà Nội</strong> cho đơn từ 500.000 VNĐ.</li>
+                                            <li><span class="highlight">- Ship tỉnh:</span> Đồng giá <strong>35.000đ</strong>.</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="section">
+                                        <h4 class="section-title">📞 Liên hệ hỗ trợ</h4>
+                                        <p class="text-content">Đội ngũ hỗ trợ luôn sẵn sàng giải đáp thắc mắc:</p>
+                                        <ul class="text-content">
+                                            <li><strong>Hotline:</strong> (+84) 369 620 182</li>
+                                            <li><strong>Email:</strong> tranhslogan.official@gmail.com</li>
+                                            <li><strong>Địa chỉ: 219 Nguyễn Ngọc Vũ, Cầu Giấy, Hà Nội </strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card content-sec">
+                        <div class="card-body">
+                            <h5 class="subs-title">Câu hỏi thường gặp (FAQs)</h5>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs1" aria-expanded="false">Tranh
+                                        slogan có thể đặt hàng theo yêu cầu không?</a>
+                                </h6>
+                                <div id="FAQs1" class="card-collapse collapse" style>
+                                    <p class="p-2">Có, chúng tôi cung cấp dịch vụ nhận thiết kế và in tranh theo yêu cầu
+                                        riêng của khách hàng.</p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs2" aria-expanded="false">Làm
+                                        thế nào để bảo quản tranh slogan bền đẹp?</a>
+                                </h6>
+                                <div id="FAQs2" class="card-collapse collapse" style>
+                                    <p class="p-2">Tránh treo tranh ở nơi ẩm ướt, thường xuyên lau chùi bằng khăn mềm, không
+                                        dùng chất tẩy mạnh.</p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs3" aria-expanded="false">Thời
+                                        gian giao hàng mất bao lâu?</a>
+                                </h6>
+                                <div id="FAQs3" class="card-collapse collapse" style>
+                                    <p class="p-2">Thông thường từ 1-5 ngày tùy thuộc vào địa điểm và phương thức vận
+                                        chuyển.</p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs4" aria-expanded="false">Có
+                                        thể đổi trả tranh nếu không ưng ý không?</a>
+                                </h6>
+                                <div id="FAQs4" class="card-collapse collapse" style>
+                                    <p class="p-2">Có, nếu sản phẩm còn nguyên vẹn và trong thời gian quy định theo chính
+                                        sách của cửa hàng.</p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs8" aria-expanded="false">
+                                        Bảo hành tranh bao gồm những gì?
+                                    </a>
+                                </h6>
+                                <div id="FAQs8" class="card-collapse collapse" style>
+                                    <p class="p-2">
+                                        Chính sách bảo hành bao gồm khung tranh, màu mực in và các lỗi như cong vênh, mờ hình do lỗi sản xuất. Chúng tôi hỗ trợ đổi mới trong vòng 7 ngày và bảo hành
+                                        tối đa 6 tháng.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs10" aria-expanded="false">
+                                        Làm thế nào để treo tranh không cần khoan tường?
+                                    </a>
+                                </h6>
+                                <div id="FAQs10" class="card-collapse collapse" style>
+                                    <p class="p-2">
+                                        Chúng tôi đã chuẩn bị đầy đủ bộ đinh treo chuyên dụng 3 chân. Loại đinh này có thể sử dụng trên mọi bề mặt mà không cần khoan tường, rất tiện lợi và đơn giản
+                                        khi lắp đặt.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs5" aria-expanded="false">Giá
+                                        tranh đã bao gồm phí vận chuyển chưa?</a>
+                                </h6>
+                                <div id="FAQs5" class="card-collapse collapse" style>
+                                    <p class="p-2">Giá tranh chưa bao gồm phí vận chuyển, sẽ tuỳ theo giá trị đơn hàng của
+                                        bạn mà bạn có thể được miễn phí vận chuyển. Thông thường, giá giao hàng sẽ
+                                        khoảng 30k.</p>
+                                </div>
+                            </div>
+                            <div class="course-card">
+                                <h6 class="cou-title mb-0">
+                                    <a class="collapsed" data-bs-toggle="collapse" href="#FAQs12" aria-expanded="false">
+                                        Có nhận làm tranh slogan với số lượng lớn cho doanh nghiệp không?
+                                    </a>
+                                </h6>
+                                <div id="FAQs12" class="card-collapse collapse" style>
+                                    <p class="p-2">
+                                        Chúng tôi sẵn sàng nhận đơn đặt hàng số lượng lớn cho các công ty, doanh nghiệp hoặc dự án. Đội ngũ của chúng tôi có thể tạo thiết kế riêng để phù hợp với nhu
+                                        cầu sử dụng hoặc thương hiệu của bạn.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="related-products">
+                        <h5>Sản phẩm liên quan</h5>
+                        <div class="related-product"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="section col-lg-12">
+                <h5 class="section-title text-center">Sản phẩm nổi bật</h5>
+                <div class="suggested-products">
+                    <div class="suggested-product-list"></div>
+
+                </div>
+            </div> -->
+            <div class="section col-lg-12">
+                <h5 class="section-title text-center">Sản phẩm nổi bật</h5>
+                <div class="suggested-products-container">
+                    <button id="prev-btn" class="slider-btn">&#10094;</button>
+                    <div class="suggested-products">
+                        <div class="suggested-product-list"></div>
+                    </div>
+                    <button id="next-btn" class="slider-btn">&#10095;</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script>
+        const productFacilities = "{{ product.product_facilities }}";
+        const regularPrice = "{{ product.regular_price }}";
+        const discountPrice = "{{ product.discount_price }}";
+        const productPrices = "{{ product.per_week_price }}, {{ product.first_hours_price }}, {{ product.per_hour_price }}, {{ product.extra_person_price }}";
+        const productOvernight = "{{ product.overnight_rental_price }}";
+        const productTitle = {{ product.title | tojson }};
+        const productSlug = {{ product.slug | tojson }};
+        const productImages = {{ product.images | tojson }};
+        const deposit = parseInt("{{ product.deposit }}" || 0);
+        const canvasPrice = {{ product.canvas_price | tojson }};
+        const micaPrice = {{ product.mica_price | tojson }};
+    </script>
+    <script src="/assets/js/swiper-bundle.min.js"></script>
+    <script src="/assets/js/photoswipe.min.js"></script>
+    <script src="/assets/js/photoswipe-ui-default.min.js"></script>
+    <script src="/assets/js/pages/product-detail.js?v={{ time }}"></script>
+    <script src="/assets/js/header-filter.js?v={{ time }}"></script>
+{% endblock %}

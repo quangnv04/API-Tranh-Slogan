@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Giỏ hàng - Tranh Slogan
+{% endblock %}
+
+{% block meta %}
+    <link rel="canonical" href="https://tranhslogan.vn/cart"/>
+    <link rel="alternate" href="https://tranhslogan.vn/cart" hreflang="vi"/>
+    <link rel="alternate" href="https://tranhslogan.vn/cart" hreflang="x-default"/>
+    <!--Primary Meta Tags-->
+    <meta name="title" content="Giỏ hàng - Tranh Slogan"/>
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/default-skin/default-skin.css">
+    <link rel="stylesheet" href="/assets/css/photoswipe.css">
+    <link rel="stylesheet" href="/assets/css/cart.css?v={{ time }}">
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="breadcrumb-list">
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                            <li class="breadcrumb-item">Chi tiết sản phẩm</li>
+                            <li class="breadcrumb-item">Giỏ hàng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="product-name" colspan="2">SẢN PHẨM</th>
+                        <th class="product-price">GIÁ</th>
+                        <th class="product-quantity">SỐ LƯỢNG</th>
+                        <th class="subtotal">TẠM TÍNH</th>
+                        <th class="product-remove"></th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items-detail">
+                </tbody>
+            </table>
+
+            <button class="btn btn-outline-secondary mb-3" onclick="window.location.href='/';">← Tiếp tục xem sản phẩm</button>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h5 class="fw-bold">TỔNG CỘNG GIỎ HÀNG</h5>
+                <p>Tạm tính: <span id="total-price"></span></p>
+                <p class="voucher">Phí giao hàng: 35.000đ <i>(Vận chuyển đến Hà Nội)</i></p>
+                <hr>
+                <p><strong>Tổng: <span id="grand-total"></span></strong></p>
+                <button class="btn btn-secondary w-100">Tiến hành thanh toán</button>
+                <hr>
+                <h6>🎟 Mã ưu đãi</h6>
+                <ul>
+                    <li>- Giảm 5%: Hóa đơn trên 1.000.000đ.</li>
+                    <li>- Giảm 8%: Hóa đơn trên 2.000.000đ.</li>
+                    <li>- Freeship đơn nội thành Hà Nội > 500.000đ.</li>
+                </ul>
+                <span class="voucher-code">
+                    <p id="voucher-1">TS001</p>
+                    <p id="voucher-2">TS002</p>
+                    <p id="voucher-3">FREESHIP</p>
+                </span>
+                <input type="text" class="form-control mb-2" id="voucher-input" placeholder="Nhập mã ưu đãi">
+                <button class="btn btn-secondary w-100 add-voucher">Áp dụng</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="/assets/js/pages/cart.js?v={{ time }}"></script>
+    <script src="/assets/js/header-filter.js?v={{ time }}"></script>
+{% endblock %}

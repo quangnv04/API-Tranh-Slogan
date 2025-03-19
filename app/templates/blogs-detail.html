@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+{{ blog.title }} | Tranh Slogan
+{% endblock %}
+
+{% block meta %}
+<link rel="canonical" href="https://tranhslogan.vn/blog/{{ blog.slug }}"/>
+<link rel="alternate" href="https://tranhslogan.vn/blog/{{ blog.slug }}" hreflang="vi"/>
+<link rel="alternate" href="https://tranhslogan.vn/blog/{{ blog.slug }}" hreflang="x-default"/>
+
+<!--Primary Meta Tags-->
+<meta name="title" content="{{ blog.title }} | Tranh Slogan"/>
+<meta name="description" content="{{ blog.short_content }}"/>
+
+<meta property="og:image" content="{{ blog.thumbnail }}"/>
+
+<meta property="twitter:image" content="{{ blog.thumbnail }}"/>
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="/assets/css/blogs.css">
+{% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="breadcrumb-list">
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="/blogs">Blogs</a></li>
+                            <li class="breadcrumb-item">{{ blog.title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="course-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="blog">
+                    <h1 class="blog-title">{{ blog.title }}</h1>
+                    <div class="short-content mb-3"><i>{{ blog.short_content }}</i></div>
+                    <div class="blog-info">
+                        <div class="d-flex align-items-center flex-row justify-content-start">
+                            <div class="post-author-img"><img src="/assets/img/user/avatar-default.jpg" alt="Post Author"></div>
+                            <div class="post-left">
+                                <div>
+                                    <span><u>Tranh Slogan</u></span>
+                                    <div class="post-date">Cập nhật lần cuối: {{ blog.updated_at }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline flex-nowrap justify-content-start">
+                            <div class="d-flex align-items-center mb-2">
+                                <svg viewBox="0 0 576 512"
+                                style="display: block; height: 18px; width: 18px; fill: currentcolor;">
+                                <path d="M352 224l-46.5 0c-45 0-81.5 36.5-81.5 81.5c0 22.3 10.3 34.3 19.2 40.5c6.8 4.7 12.8 12 12.8 20.3c0 9.8-8 17.8-17.8 17.8l-2.5 0c-2.4 0-4.8-.4-7.1-1.4C210.8 374.8 128 333.4 128 240c0-79.5 64.5-144 144-144l80 0 0-61.3C352 15.5 367.5 0 386.7 0c8.6 0 16.8 3.2 23.2 8.9L548.1 133.3c7.6 6.8 11.9 16.5 11.9 26.7s-4.3 19.9-11.9 26.7l-139 125.1c-5.9 5.3-13.5 8.2-21.4 8.2l-3.7 0c-17.7 0-32-14.3-32-32l0-64zM80 96c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-48c0-17.7 14.3-32 32-32s32 14.3 32 32l0 48c0 44.2-35.8 80-80 80L80 512c-44.2 0-80-35.8-80-80L0 112C0 67.8 35.8 32 80 32l48 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L80 96z"/></svg>
+                                <span class="share-label">Share</span>
+                            </div>
+                    
+                            <div class="social-share">
+                                <a href="#" class="facebook" aria-label="Share on Facebook" target="_blank" title="Share on Facebook" id="facebook-share">
+                                    <svg viewBox="0 0 320 512"
+                                    style="display: block; height: 18px; width: 18px; fill: currentcolor; color: #89abfc;">
+                                    <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg>
+                                </a>
+                                <a href="#" class="twitter" aria-label="Share on Twitter" target="_blank" title="Share on Twitter" id="twitter-share">
+                                    <svg viewBox="0 0 512 512"
+                                    style="display: block; height: 18px; width: 18px; fill: currentcolor; color: #00151c;">
+                                    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+                                </a>
+                                <a href="https://www.instagram.com/senstay.homestay/" class="instagram" aria-label="Visit Instagram" target="_blank" title="Visit Instagram">
+                                    <svg viewBox="0 0 448 512"
+                                    style="display: block; height: 18px; width: 18px; fill: currentcolor; color: #D23A66;">
+                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                                </a>
+                                <a href="#" class="email" aria-label="Share via Email" target="_blank" title="Share via Email" id="email-share">
+                                    <svg viewBox="0 0 512 512"
+                                    style="display: block; height: 18px; width: 18px; fill: currentcolor; color: #ff9c38;">
+                                    <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+                                </a>
+                                <a href="javascript:if(window.print)window.print()" class="print" aria-label="Print this page" title="Print this page">
+                                    <svg viewBox="0 0 512 512"
+                                    style="display: block; height: 18px; width: 18px; fill: currentcolor; color: #0f67f6;">
+                                    <path d="M128 0C92.7 0 64 28.7 64 64l0 96 64 0 0-96 226.7 0L384 93.3l0 66.7 64 0 0-66.7c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0L128 0zM384 352l0 32 0 64-256 0 0-64 0-16 0-16 256 0zm64 32l32 0c17.7 0 32-14.3 32-32l0-96c0-35.3-28.7-64-64-64L64 192c-35.3 0-64 28.7-64 64l0 96c0 17.7 14.3 32 32 32l32 0 0 64c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-64zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="blog-image">
+                                <img class="img-fluid" src="{{ blog.thumbnail }}" alt="{{ blog.title }}">
+                            </div>
+                            <div class="blog-content">
+                                {{ blog.content|safe }}
+                            </div>
+                            <hr>
+                            <div class="mt-3">
+                                <img class="svg-fluid" src="/assets/img/icon/icon-23.svg" alt="Img"> <strong>Gắn thẻ</strong>: <i>{{ blog.tags }}</i>
+                            </br>
+                                <img class="svg-fluid mt-2" src="/assets/img/icon/icon-23.svg" alt="Img"> <strong>Chủ đề</strong>: <i>{{ blog.categories }}</i>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 sidebar-right">
+                            <div class="card post-widget blog-widget">
+                                <div class="card-header">
+                                    <h4 class="card-title">Bài viết mới nhất</h4>
+                                </div>
+                                <div class="row" id="blogs-related">
+
+                                </div>
+                                <div class="card-header">
+                                    <h4 class="card-title">Những điểm cần nhớ (Key Takeaways)</h4>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        {% for key_takeaway in blog.key_takeaways %}
+                                        <li>
+                                            <i class="fas fa-check" style="margin-right: 6px;"></i>
+                                            {{ key_takeaway }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="/assets/js/pages/blogs.js?v={{time}}"></script>
+<script src="/assets/js/header-filter.js?v={{time}}"></script>
+{% endblock %}

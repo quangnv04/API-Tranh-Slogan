@@ -1,0 +1,76 @@
+<header class="header header-page">
+    <div class="header-fixed">
+        <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+            <div class="container">
+                <div class="navbar-header">
+                    <a id="mobile_btn" href="javascript:void(0);">
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </a>
+                    <a href="/" class="navbar-brand logo">
+                        <img src="/assets/img/logo/logo.png" class="img-fluid" alt="Logo">
+                    </a>
+                    <li class="nav-item cart-nav">
+                        <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <img src="/assets/img/cart.png" alt="Cart Icon">
+                    </a>
+                    </li>
+                    
+                </div>
+                <div class="main-menu-wrapper">
+                    <div class="menu-header">
+                        <a href="/" class="menu-logo">
+                            <img src="/assets/img/logo/logo.png" class="img-fluid" alt="Logo">
+                        </a>
+                        <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    <ul class="main-nav">
+                        <li class="active">
+                            <a href="/">Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="/about-us">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a href="/">Sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/blogs">Tin tức</a>
+                        </li>
+                        <li>
+                            <a href="/contact-us">Liên hệ</a>
+                        </li>
+                        <li class="nav-item cart-nav">
+                            <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <img src="/assets/img/cart.png" alt="Cart Icon">
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Giỏ hàng</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+            <div class="list-wish-content">
+                <ul id="header-cart-items"></ul>
+                <div class="total-item">
+                    <h5>Tổng tiền: <span id="header-cart-total">0 ₫</span></h5>
+                </div>
+            </div>
+            <div class="wish-header">
+                <a href="/cart">Giỏ hàng</a>
+            </div>
+    </div>
+  </div>

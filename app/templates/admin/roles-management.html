@@ -1,0 +1,285 @@
+{% extends 'layout-admin.html' %}
+
+{% block title %}
+Admin | Roles Management
+{% endblock %}
+
+{% block meta %}
+<link rel="canonical" href="https://tranhslogan.vn/admin/roles-management/" />
+<link rel="alternate" href="https://tranhslogan.vn/admin/roles-management/" hreflang="vi" />
+<link rel="alternate" href="https://tranhslogan.vn/admin/roles-management/" hreflang="x-default" />
+{%endblock%}
+
+{% block content %}
+<nav class="navbar navbar-main navbar-expand-lg  px-0 mx-4 shadow-none border-radius-xl z-index-sticky " id="navbarBlur"
+    data-scroll="false">
+    <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                <li class="breadcrumb-item text-sm">
+                    <a class="text-white" href="javascript:;">
+                        <i class="ni ni-box-2"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white"
+                        href="javascript:;">Pages</a></li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Roles Management</li>
+            </ol>
+            <h6 class="font-weight-bolder mb-0 text-white">Roles Management</h6>
+        </nav>
+        <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+            <a href="javascript:;" class="nav-link p-0">
+                <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                    <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Type here...">
+                </div>
+            </div>
+            <ul class="navbar-nav  justify-content-end">
+                <li class="nav-item d-flex align-items-center">
+                    <a href="../admin/login" class="nav-link text-white font-weight-bold px-0" id="logout-button">
+                        <i class="fa fa-user me-sm-1"></i>
+                        <span class="d-sm-inline d-none">Đăng Xuất</span>
+                    </a>
+                </li>
+                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item d-flex align-items-center ms-2">
+                    <div class="form-check form-switch ps-0 ms-auto my-auto">
+                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
+                            onclick="darkMode(this)">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid py-4">
+    <div class="d-sm-flex justify-content-end">
+        <div class="d-flex ">
+            <a href="javascript:;" class="btn btn-icon btn-outline-white">
+                New Role
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-flush" id="datatable-search">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Role</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="customCheck1">
+                                        </div>
+                                        <p class="text-xs font-weight-bold ms-2 mb-0">1</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger badge-sm">Admin</span>
+                                </td>
+
+                                <td class="font-weight-bold table-cell">
+                                    <span class="my-2 text-xs">Quản trị viên, có toàn quyền trên hệ thống</span>
+                                </td>
+                                <td class="text-sm">
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Preview product">
+                                        <i class="fas fa-eye text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Edit product">
+                                        <i class="fas fa-user-edit text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Delete product">
+                                        <i class="fas fa-trash text-secondary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="customCheck1">
+                                        </div>
+                                        <p class="text-xs font-weight-bold ms-2 mb-0">2</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-gradient-warning badge-sm">host</span>
+                                </td>
+
+                                <td class="font-weight-bold table-cell">
+                                    <span class="my-2 text-xs">Chủ sở hữu căn hộ, có thể quản lý thông tin căn hộ và
+                                        lịch cho thuê</span>
+                                </td>
+                                <td class="text-sm">
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Preview product">
+                                        <i class="fas fa-eye text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Edit product">
+                                        <i class="fas fa-user-edit text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Delete product">
+                                        <i class="fas fa-trash text-secondary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="customCheck1">
+                                        </div>
+                                        <p class="text-xs font-weight-bold ms-2 mb-0">3</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-gradient-info badge-sm">sales_manager</span>
+                                </td>
+
+                                <td class="font-weight-bold table-cell">
+                                    <span class="my-2 text-xs">Quản lý nhân viên bán hàng, theo dõi tiến độ và báo
+                                        cáo</span>
+                                </td>
+                                <td class="text-sm">
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Preview product">
+                                        <i class="fas fa-eye text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Edit product">
+                                        <i class="fas fa-user-edit text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Delete product">
+                                        <i class="fas fa-trash text-secondary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="customCheck1">
+                                        </div>
+                                        <p class="text-xs font-weight-bold ms-2 mb-0">4</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-secondary badge-sm">sales</span>
+                                </td>
+
+                                <td class="font-weight-bold table-cell">
+                                    <span class="my-2 text-xs">Nhân viên bán hàng, hỗ trợ liên hệ và tư vấn khách
+                                        hàng</span>
+                                </td>
+                                <td class="text-sm">
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Preview product">
+                                        <i class="fas fa-eye text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Edit product">
+                                        <i class="fas fa-user-edit text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Delete product">
+                                        <i class="fas fa-trash text-secondary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="customCheck1">
+                                        </div>
+                                        <p class="text-xs font-weight-bold ms-2 mb-0">5</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-gradient-success badge-sm">collaborators</span>
+                                </td>
+
+                                <td class="font-weight-bold table-cell">
+                                    <span class="my-2 text-xs">Cộng tác viên hỗ trợ bán hàng, có quyền hạn hạn
+                                        chế</span>
+                                </td>
+                                <td class="text-sm">
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Preview product">
+                                        <i class="fas fa-eye text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Edit product">
+                                        <i class="fas fa-user-edit text-secondary"></i>
+                                    </a>
+                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                        data-bs-original-title="Delete product">
+                                        <i class="fas fa-trash text-secondary"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/assets_admin/js/plugins/datatables.js"></script>
+<script>
+    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+        searchable: true,
+        fixedHeight: false,
+        perPageSelect: false
+    });
+
+    $(document).ready(function () {
+        $('.table-cell').each(function () {
+            if (this.scrollWidth > this.clientWidth) {
+                $(this).attr('data-bs-toggle', 'popover');
+                $(this).popover({
+                    trigger: 'click',
+                    placement: 'top',
+                    content: $(this).text(),
+                    html: false
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

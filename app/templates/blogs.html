@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Blogs | Tranh Slogan
+{% endblock %}
+
+{% block meta %}
+<link rel="canonical" href="https://tranhslogan.vn/blogs"/>
+<link rel="alternate" href="https://tranhslogan.vn/blogs" hreflang="vi"/>
+<link rel="alternate" href="https://tranhslogan.vn/blogs" hreflang="x-default"/>
+
+<!--Primary Meta Tags-->
+<meta name="title" content="Blogs | Tranh Slogan"/>
+<meta name="description"
+      content="Tại Tranh Slogan, chúng tôi chuyên cung cấp các loại tranh nghệ thuật độc đáo, khung ảnh tinh tế và lịch Tết phong cách với giá cạnh tranh. Mang đến không gian sống và làm việc thêm phần ấn tượng, hiện đại."/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="vi"/>
+<meta property="og:url" content="https://tranhslogan.vn/blogs"/>
+<meta property="og:title" content="Blogs | Tranh Slogan"/>
+<meta property="og:description"
+      content="Tại Tranh Slogan, chúng tôi chuyên cung cấp các loại tranh nghệ thuật độc đáo, khung ảnh tinh tế và lịch Tết phong cách với giá cạnh tranh. Mang đến không gian sống và làm việc thêm phần ấn tượng, hiện đại."/>
+<meta property="og:image" content="/assets/img/thumbnail.jpeg"/>
+
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="/assets/css/blogs.css">
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="breadcrumb-list">
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="course-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <div class="row" id="blogs-container">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination lms-page"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12 sidebar-right">
+                <div class="card post-widget blog-widget">
+                    <div class="card-header">
+                        <h4 class="card-title">Bài viết mới nhất</h4>
+                    </div>
+                    <div class="row" id="blogs-related">
+
+                    </div>
+                </div>
+
+                <div class="card category-widget blog-widget">
+                    <div class="card-header">
+                        <h4 class="card-title">Chủ đề</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="categories">
+                            <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Khám phá </a>
+                            </li>
+                            <li><a href="javascript:void(0);"><i class="fas fa-angle-right"></i> Review </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="/assets/js/pages/blogs.js?v={{time}}"></script>
+<script src="/assets/js/header-filter.js?v={{time}}"></script>
+{% endblock %}
+
