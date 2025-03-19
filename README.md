@@ -1,4 +1,4 @@
-# senhome
+
 
 ## Create a Virtual Environment
 
@@ -7,7 +7,7 @@
 python3 -m venv .venv
 
 # Activate the virtual environment
-source .venv/bin/activate
+.venv/Scripts/activate
 
 # Upgrade pip
 python -m pip install --upgrade pip
