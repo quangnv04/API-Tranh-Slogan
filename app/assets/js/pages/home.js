@@ -113,33 +113,58 @@ $(document).ready(function () {
                 }
             });
         }
-        var swiper = new Swiper(".swiper", {
-            slidesPerView: 1,  // Hiển thị 1 banner mỗi slide
-            spaceBetween: 10,  // Khoảng cách giữa các slide
-            loop: true,        // Lặp vô hạn
-            autoplay: {
-                delay: 3000,    // Tự động chạy sau 3 giây
-                disableOnInteraction: false // Không dừng khi tương tác
+        // var swiper = new Swiper(".swiper", {
+        //     slidesPerView: 1,  // Hiển thị 1 banner mỗi slide
+        //     spaceBetween: 10,  // Khoảng cách giữa các slide
+        //     loop: true,        // Lặp vô hạn
+        //     autoplay: {
+        //         delay: 3000,    // Tự động chạy sau 3 giây
+        //         disableOnInteraction: false // Không dừng khi tương tác
+        //     },
+        //     pagination: {
+        //         el: ".swiper-pagination",
+        //         clickable: true,
+        //     },
+        //     navigation: {
+        //         nextEl: ".swiper-button-next",
+        //         prevEl: ".swiper-button-prev",
+        //     },
+        // });
+
+        const swiper = new Swiper('.swiper', {
+            loop: true,              // Lặp vô hạn
+            spaceBetween: 20,        // Khoảng cách giữa các items
+            slidesPerView: 7,        // Mặc định hiển thị 3 items
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
             pagination: {
-                el: ".swiper-pagination",
+                el: '.swiper-pagination',
                 clickable: true,
             },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+            autoplay: {
+                delay: 3000,         // Tự động chuyển slide sau 3 giây
+                disableOnInteraction: false,
             },
+            breakpoints: { // Responsive: điều chỉnh số item hiển thị tùy kích thước màn hình
+                200: { slidesPerView: 2, spaceBetween: 7 },
+                484: { slidesPerView: 3, spaceBetween: 10 },
+                640: { slidesPerView: 4, spaceBetween: 10 },
+                768: { slidesPerView: 5, spaceBetween: 15 },
+                1024: { slidesPerView: 6, spaceBetween: 20 }
+            }
         });
     }
-    
+
     function createPagination(totalPages, currentPage) {
         const paginationContainer = $('.pagination.lms-page');
         paginationContainer.empty();
-        
+
         if (totalPages <= 1) {
             return;
         }
-    
+
         paginationContainer.append(`
             <li class="page-item prev ${currentPage === 1 ? 'disabled' : ''}">
                 <a class="page-link" href="javascript:void(0)" data-page="${currentPage - 1}">
@@ -147,21 +172,21 @@ $(document).ready(function () {
                 </a>
             </li>
         `);
-        
+
         let startPage = Math.max(1, currentPage - 2);
         let endPage = Math.min(totalPages, startPage + 4);
-        
+
         if (endPage - startPage < 4) {
             startPage = Math.max(1, endPage - 4);
         }
-        
+
         if (startPage > 1) {
             paginationContainer.append(`
                 <li class="page-item">
                     <a class="page-link" href="javascript:void(0)" data-page="1">1</a>
                 </li>
             `);
-            
+
             if (startPage > 2) {
                 paginationContainer.append(`
                     <li class="page-item disabled">
@@ -170,7 +195,7 @@ $(document).ready(function () {
                 `);
             }
         }
-        
+
         for (let i = startPage; i <= endPage; i++) {
             paginationContainer.append(`
                 <li class="page-item ${i === currentPage ? 'active' : ''}">
@@ -178,7 +203,7 @@ $(document).ready(function () {
                 </li>
             `);
         }
-        
+
         if (endPage < totalPages) {
             if (endPage < totalPages - 1) {
                 paginationContainer.append(`
@@ -187,14 +212,14 @@ $(document).ready(function () {
                     </li>
                 `);
             }
-            
+
             paginationContainer.append(`
                 <li class="page-item">
                     <a class="page-link" href="javascript:void(0)" data-page="${totalPages}">${totalPages}</a>
                 </li>
             `);
         }
-    
+
         paginationContainer.append(`
             <li class="page-item next ${currentPage === totalPages ? 'disabled' : ''}">
                 <a class="page-link" href="javascript:void(0)" data-page="${currentPage + 1}">
@@ -202,13 +227,13 @@ $(document).ready(function () {
                 </a>
             </li>
         `);
-        
+
         paginationContainer.off('click', 'a.page-link');
-    
-        paginationContainer.on('click', 'a.page-link', function(event) {
-            event.preventDefault(); 
-            const newPage = parseInt($(this).data('page')); 
-            
+
+        paginationContainer.on('click', 'a.page-link', function (event) {
+            event.preventDefault();
+            const newPage = parseInt($(this).data('page'));
+
             if (!isNaN(newPage) && newPage > 0 && newPage <= totalPages && newPage !== currentPage) {
                 window.scrollTo(0, 0);
                 fetchProducts(newPage);
