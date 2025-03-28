@@ -11,6 +11,7 @@ from app.routers.admin.permissionsManagement import router as permissions_manage
 from app.routers.tokenManager import TokenManager
 
 from app.routers.home import router as home_router
+from app.routers.menu import router as menu_router
 from app.routers.products import router as products_router
 from app.routers.policy import router as policy_router
 from app.routers.about import router as about_router
@@ -38,6 +39,7 @@ app.include_router(users_management_router)
 app.include_router(roles_management_router)
 app.include_router(permissions_management_router)
 app.include_router(home_router)
+app.include_router(menu_router)
 app.include_router(products_router)
 app.include_router(policy_router)
 app.include_router(about_router)

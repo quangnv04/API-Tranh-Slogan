@@ -16,7 +16,7 @@ async def register(request: Request, db=Depends(get_db_for_new_thread)):
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
-    role = data.get("role", "collaborators")
+    role = data.get("role", "user")
 
     if not username or not email or not password:
         raise HTTPException(status_code=400, detail="Missing information")
