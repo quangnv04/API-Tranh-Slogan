@@ -17,7 +17,46 @@ $(document).ready(function () {
             fetchProducts();
         }
     });
+    const endTimeString = $('.countdown').attr('data-end');
+    const formattedTime = convertToISOFormat(endTimeString);
+    const saleEndTime = new Date(formattedTime).getTime();
+    startCountdown(saleEndTime);
 
+    function convertToISOFormat(dateString) {
+        const parts = dateString.split(' '); // Tách ngày và giờ
+        const dateParts = parts[0].split('-'); // Tách DD-MM-YYYY
+        return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${parts[1]}`; // YYYY/MM/DD HH:MM:SS
+    }
+    function startCountdown(endTime) {
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = endTime - now;
+            if (timeLeft <= 0) {
+                $('.countdown').html("<h2>Flash Sale Ended!</h2>");
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            $('#days').text(String(days).padStart(2, '0'));
+            $('#hours').text(String(hours).padStart(2, '0'));
+            $('#minutes').text(String(minutes).padStart(2, '0'));
+            $('#seconds').text(String(seconds).padStart(2, '0'));
+
+            $('.countdown span').addClass('animate');
+            setTimeout(() => $('.countdown span').removeClass('animate'), 200);
+
+            if (timeLeft <= 60000) {
+                $('.countdown').addClass('flash');
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
     function nearBottom() {
         return $(window).scrollTop() > $(document).height() * 0.8 - $(window).height();
     }
@@ -130,30 +169,32 @@ $(document).ready(function () {
         //         prevEl: ".swiper-button-prev",
         //     },
         // });
+        $(".swiper").each(function () {
+            const swiperEl = this; // Lưu phần tử DOM của Swiper
+            const $swiper = $(swiperEl); // Chuyển thành jQuery object
 
-        const swiper = new Swiper('.swiper', {
-            loop: true,              // Lặp vô hạn
-            spaceBetween: 20,        // Khoảng cách giữa các items
-            slidesPerView: 7,        // Mặc định hiển thị 3 items
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 3000,         // Tự động chuyển slide sau 3 giây
-                disableOnInteraction: false,
-            },
-            breakpoints: { // Responsive: điều chỉnh số item hiển thị tùy kích thước màn hình
-                200: { slidesPerView: 2, spaceBetween: 7 },
-                484: { slidesPerView: 3, spaceBetween: 10 },
-                640: { slidesPerView: 4, spaceBetween: 10 },
-                768: { slidesPerView: 5, spaceBetween: 15 },
-                1024: { slidesPerView: 6, spaceBetween: 20 }
-            }
+            let slides = $(this).data("slides") || 4; // Số lượng slide mặc định là 4
+            let breakpointsAttr = $(this).attr("data-breakpoints");
+            let breakpoints = breakpointsAttr ? JSON.parse(breakpointsAttr) : {}; // Kiểm tra nếu có breakpoints thì parse JSON, nếu không thì để trống {}
+
+            new Swiper(this, {
+                loop: true,              // Lặp vô hạn
+                slidesPerView: slides,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: $swiper.find(".swiper-button-next")[0],
+                    prevEl: $swiper.find(".swiper-button-prev")[0],
+                },
+                pagination: {
+                    el: $swiper.find('.swiper-pagination')[0],
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 3000,         // Tự động chuyển slide sau 3 giây
+                    disableOnInteraction: false,
+                },
+                breakpoints: Object.keys(breakpoints).length ? breakpoints : undefined, // Chỉ thêm breakpoints nếu có dữ liệu
+            });
         });
     }
 

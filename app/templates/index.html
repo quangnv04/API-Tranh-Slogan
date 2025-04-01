@@ -30,7 +30,16 @@ Tranh Slogan (tranhslogan.vn) | Chuyên Các Loại Tranh, Khung Ảnh, Lịch T
 {% block content %}
 <section class="section new-course">
     <div class="container">
-        <!-- <div class="swiper banner-slide">
+        <div class="group-support-right">
+            <a href="https://www.facebook.com/quangvan.corn" target="_blank" class="icon icon-zalo">
+                <img src="/assets/img/logo-zalo-150.png" alt="Zalo">
+            </a>
+
+            <a href="https://www.facebook.com/quangvan.corn" target="_blank" class="icon icon-messenger">
+                <img src="/assets/img/messenger-icon-150.png" alt="Messenger">
+            </a>
+        </div>
+        <div class="swiper banner-slide" data-slides="1">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="https://sen-2.s3.ap-southeast-1.amazonaws.com/banner/banner-1.jpeg"
                         alt="Banner Tranh Slogan 1"></div>
@@ -46,7 +55,7 @@ Tranh Slogan (tranhslogan.vn) | Chuyên Các Loại Tranh, Khung Ảnh, Lịch T
             <div class="swiper-button-prev"></div>
 
             <div class="swiper-pagination"></div>
-        </div> -->
+        </div>
         <template id="card-template">
             <div class="col-lg-3 col-md-6 d-flex">
                 <div class="product-box d-flex">
@@ -95,18 +104,28 @@ Tranh Slogan (tranhslogan.vn) | Chuyên Các Loại Tranh, Khung Ảnh, Lịch T
 </section>
 <section class="home-flash-sale p-3 border shadow container ">
     <div class="title-flash mb-3 d-flex justify-content-between align-items-center">
-        <div class="item-left-flash">
+        <div class="item-left-flash d-flex align-items-center gap-3">
             <div class="img-left-sale">
                 <img width="150px" class="mw-100" src="/assets/img/flash_sale.png" alt="logo" />
             </div>
-            <div class="countdown">
-
-
+            <div class="countdown-item">
+                <div class="countdown" data-end="29-04-2025 00:00:00">
+                    <span id="days">00</span> :
+                    <span id="hours">00</span> :
+                    <span id="minutes">00</span> :
+                    <span id="seconds">00</span>
+                </div>
             </div>
         </div>
         <div><a class="link-body-emphasis link-underline link-underline-opacity-0" href="#">Xem tất cả ></a></div>
     </div>
-    <div class="flash-sale-items mt-3 swiper">
+    <div class="flash-sale-items mt-3 swiper" data-slides="7" data-breakpoints='{
+            "200": { "slidesPerView": 2, "spaceBetween": 7 },
+            "484": { "slidesPerView": 3, "spaceBetween": 10 },
+            "640": { "slidesPerView": 4, "spaceBetween": 10 },
+            "768": { "slidesPerView": 5, "spaceBetween": 15 },
+            "1024": { "slidesPerView": 6, "spaceBetween": 20 }
+        }'>
         <div class="swiper-wrapper ">
             <div class="swiper-slide rounded-1 card ">
                 <div class="discount  position-absolute">-40%</div>
@@ -341,512 +360,1268 @@ Tranh Slogan (tranhslogan.vn) | Chuyên Các Loại Tranh, Khung Ảnh, Lịch T
                             data-src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg" alt="Tranh treo tường"
                             class="lazyload"></a></div>
             </div>
-            <div class="course-feature">
-                <div class="row" id="products-container">
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
+            <div class="home-product-top mt-3 mb-3 mx-3">
+                <div class="home-product-items swiper" data-slides="4" data-breakpoints='{
+                    "200": { "slidesPerView": 2, "spaceBetween": 7 },
+                    "484": { "slidesPerView": 3, "spaceBetween": 10 },
+                    "640": { "slidesPerView": 4, "spaceBetween": 10 }
+                }'>
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận chuyển</span></div>
                                     </div>
                                 </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
                                     </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
+                                    <div class="price-group text-center "><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
                                     </div>
                                 </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class=" swiper-button-next"></div>
+                    <div class=" swiper-button-prev"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="right-home-product  px-3 border shadow">
+                <h6 class="my-3">Sản phẩm bán chạy</h6>
+                <div class="hot-product-items mb-3">
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span> <span class="badge">-20%</span></div>
+                        </div>
+
+                    </div>
+                    <hr class="my-3" />
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
-                                    </div>
-                                </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
-                                    </div>
-                                </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
-                                    </div>
-                                </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="group-home-product mt-3 p-3  container">
+    <div class="row ">
+        <div class="col-md-9">
+            <div class="home-product-left border shadow">
+                <div class="global-group-title">
+                    <span class="group-icon">
+                        <i class="fa fa-book"></i>
+                    </span>
+                    <a href="#" class="group-title link-underline link-underline-opacity-0">
+                        <h2>Tranh treo tường</h2>
+                    </a>
+                    <ul class="group-category-menu">
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Phòng Khách</h2>
+                            </a></li>
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Phòng Ngủ</h2>
+                            </a></li>
+                        <li><a class="link-underline link-underline-opacity-0" href="#">
+                                <h2 class="fw-normal">Tranh Phòng Ăn &amp; Bếp</h2>
+                            </a></li>
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Nghệ Thuật</h2>
+                            </a></li>
+                        <li class="total">
+                            <a class="link-underline link-underline-opacity-0 lh-sm" href="#">Toàn bộ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="home-product-banner"><a href="/tranh-treo-tuong">
+                        <img class="w-100" src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg"
+                            data-src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg" alt="Tranh treo tường"
+                            class="lazyload"></a></div>
+            </div>
+            <div class="home-product-top mt-3 mb-3 mx-3">
+                <div class="home-product-items swiper" data-slides="4" data-breakpoints='{
+                    "200": { "slidesPerView": 2, "spaceBetween": 7 },
+                    "484": { "slidesPerView": 3, "spaceBetween": 10 },
+                    "640": { "slidesPerView": 4, "spaceBetween": 10 }
+                }'>
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận chuyển</span></div>
                                     </div>
                                 </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
                                     </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
+                                    <div class="price-group text-center "><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
                                     </div>
                                 </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class=" swiper-button-next"></div>
+                    <div class=" swiper-button-prev"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="right-home-product  px-3 border shadow">
+                <h6 class="my-3">Sản phẩm bán chạy</h6>
+                <div class="hot-product-items mb-3">
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span> <span class="badge">-20%</span></div>
+                        </div>
+
+                    </div>
+                    <hr class="my-3" />
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
-                                    </div>
-                                </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
-                                    </div>
-                                </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="product-box d-flex">
-                            <div class="product">
-                                <div class="product-img">
-                                    <div class="swiper-wrapper">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">
-                                            <img class="img-fluid" alt="Img"
-                                                src="https://sen-2.s3.ap-southeast-1.amazonaws.com/TS045/7cb51afae0c39cfcad50bcee4376a8ce.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title instructor-text">
-                                        <a
-                                            href="/product/tranh-dong-luc-TS045-hanh-trinh-van-dam-bat-dau-bang-1-buoc-chan">Tranh
-                                            Động Lực
-                                            TS045 hành trình vạn dặm bắt đầu bằng 1 bước chân</a>
-                                    </h3>
-                                    <div class="product-info align-items-center">
-                                        <div class="rating-img d-flex align-items-center mb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                                                aria-hidden="true" role="presentation" focusable="false">
-                                                <path fill-rule="evenodd"
-                                                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="price" style="">
-                                        <h3>
-                                            199,000 ₫ - 459,000 ₫
-                                            <span></span>
-                                        </h3>
-                                    </div>
-                                </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
                             </div>
                         </div>
+
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="group-home-product mt-3 p-3  container">
+    <div class="row ">
+        <div class="col-md-9">
+            <div class="home-product-left border shadow">
+                <div class="global-group-title">
+                    <span class="group-icon">
+                        <i class="fa fa-book"></i>
+                    </span>
+                    <a href="#" class="group-title link-underline link-underline-opacity-0">
+                        <h2>Tranh treo tường</h2>
+                    </a>
+                    <ul class="group-category-menu">
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Phòng Khách</h2>
+                            </a></li>
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Phòng Ngủ</h2>
+                            </a></li>
+                        <li><a class="link-underline link-underline-opacity-0" href="#">
+                                <h2 class="fw-normal">Tranh Phòng Ăn &amp; Bếp</h2>
+                            </a></li>
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Nghệ Thuật</h2>
+                            </a></li>
+                        <li class="total">
+                            <a class="link-underline link-underline-opacity-0 lh-sm" href="#">Toàn bộ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="home-product-banner"><a href="/tranh-treo-tuong">
+                        <img class="w-100" src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg"
+                            data-src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg" alt="Tranh treo tường"
+                            class="lazyload"></a></div>
+            </div>
+            <div class="home-product-top mt-3 mb-3 mx-3">
+                <div class="home-product-items swiper" data-slides="4" data-breakpoints='{
+                    "200": { "slidesPerView": 2, "spaceBetween": 7 },
+                    "484": { "slidesPerView": 3, "spaceBetween": 10 },
+                    "640": { "slidesPerView": 4, "spaceBetween": 10 }
+                }'>
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center "><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class=" swiper-button-next"></div>
+                    <div class=" swiper-button-prev"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="right-home-product  px-3 border shadow">
+                <h6 class="my-3">Sản phẩm bán chạy</h6>
+                <div class="hot-product-items mb-3">
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span> <span class="badge">-20%</span></div>
+                        </div>
+
+                    </div>
+                    <hr class="my-3" />
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="my-3" />
+
+                    <div class="row items">
+                        <div class="col-4">
+                            <img class="w-100"
+                                src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                alt="Tranh" />
+                        </div>
+                        <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">Tranh Treo Tường Tinh Hoa Phật Giáo</h6>
+                            <div class="price-group"><del class="old-price">590.000đ</del> <span
+                                    class="price sale-price">470.000đ</span>
+                                <span class="badge">-20%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="group-home-product mt-3 p-3  container">
+    <div class="row ">
+        <div class="col-md-9">
+            <div class="home-product-left border shadow">
+                <div class="global-group-title">
+                    <span class="group-icon">
+                        <i class="fa fa-book"></i>
+                    </span>
+                    <a href="#" class="group-title link-underline link-underline-opacity-0">
+                        <h2>Tranh treo tường</h2>
+                    </a>
+                    <ul class="group-category-menu">
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Phòng Khách</h2>
+                            </a></li>
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Phòng Ngủ</h2>
+                            </a></li>
+                        <li><a class="link-underline link-underline-opacity-0" href="#">
+                                <h2 class="fw-normal">Tranh Phòng Ăn &amp; Bếp</h2>
+                            </a></li>
+                        <li><a href="#" class="link-underline link-underline-opacity-0">
+                                <h2 class="fw-normal">Tranh Nghệ Thuật</h2>
+                            </a></li>
+                        <li class="total">
+                            <a class="link-underline link-underline-opacity-0 lh-sm" href="#">Toàn bộ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="home-product-banner"><a href="/tranh-treo-tuong">
+                        <img class="w-100" src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg"
+                            data-src="/assets/img/Banner-tranh-treo-tường_850x250-1.jpg" alt="Tranh treo tường"
+                            class="lazyload"></a></div>
+            </div>
+            <div class="home-product-top mt-3 mb-3 mx-3">
+                <div class="home-product-items swiper" data-slides="4" data-breakpoints='{
+                    "200": { "slidesPerView": 2, "spaceBetween": 7 },
+                    "484": { "slidesPerView": 3, "spaceBetween": 10 },
+                    "640": { "slidesPerView": 4, "spaceBetween": 10 }
+                }'>
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center "><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+                                        <div title="Miễn phí vận chuyển"
+                                            class="freeship-inline-box d-flex align-items-center gap-1"><span
+                                                class="freeship-icon"><i class="fa fa-truck"></i></span> <span
+                                                class="freeship-txt">Miễn phí vận
+                                                chuyển</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide card item ">
+                            <a href="#" class="link-underline link-underline-opacity-0">
+                                <div class="card-img-top position-relative">
+                                    <img src="/assets/img/tranh-treo-tuong-neu-ban-khong-lang-nghe-khach-hang-cua-minh-thi-nguoi-khac-se-lam-dieu-do_L.jpg"
+                                        class="w-100" alt="tranh">
+                                    <div class="extend-content position-absolute bottom-0 text-left w-100">
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-2">
+                                    <div class="title">
+                                        <h3 class="text-center my-2">Tranh Treo Tường Chữ Phúc 02</h3>
+                                    </div>
+                                    <div class="price-group text-center"><del class="old-price">495.000đ</del> <span
+                                            class="price sale-price">245.000đ</span> <span class="badge">-51%</span>
+                                    </div>
+                                    <div class="button-group mt-3 mb-2 "><span data-id="65079"
+                                            class="button-buy-now rounded"><i class="fa fa-shopping-cart"></i>
+                                            Mua
+                                            ngay</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class=" swiper-button-next"></div>
+                    <div class=" swiper-button-prev"></div>
+
 
                 </div>
             </div>
