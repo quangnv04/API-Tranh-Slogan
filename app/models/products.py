@@ -49,7 +49,7 @@ class ProductsModel:
             )
         self.db_connection.commit()
 
-    def get_products(self, page, limit, keyword):
+    def get_products(self, page, limit, keyword, type = None):
         offset = (page - 1) * limit
         cursor = self.db_connection.cursor()
         keyword_like_query = ''
@@ -63,8 +63,11 @@ class ProductsModel:
                 keyword_params.extend([f'%{dk.lower()}%', f'%{dk.lower()}%', f'%{dk.lower()}%'])
             keyword_like_query = 'AND (' + ' OR '.join(keyword_conditions) + ')'
         
-        product_types = ["Tranh Động Lực", "Tranh Tiếng Anh"]
-        type_filter = 'AND (type = ? OR type = ?)'
+        # product_types = ["Tranh Động Lực", "Tranh Tiếng Anh"]
+        type_filter = ''
+        if type:
+            type_filter = f'AND type = ?'
+            keyword_params.append(type)
 
         cursor.execute(f'''
         SELECT hash, sku, title, slug, type, canvas_price, mica_price, discount, images, description, publish
@@ -72,7 +75,7 @@ class ProductsModel:
         WHERE publish = TRUE {keyword_like_query} {type_filter}
         ORDER BY id DESC
         LIMIT ? OFFSET ?
-        ''', (*keyword_params, product_types[0], product_types[1], limit, offset))
+        ''', (*keyword_params, limit, offset))
         products = cursor.fetchall()
         return [dict(row) for row in products]
     
@@ -120,9 +123,18 @@ class ProductsModel:
         products = cursor.fetchall()
         return [dict(row) for row in products]
     
-    def count_products(self):
+    # def count_products(self):
+    #     cursor = self.db_connection.cursor()
+    #     cursor.execute("SELECT COUNT(*) FROM products WHERE publish = TRUE")
+    #     result = cursor.fetchone()
+    #     return result[0] if result else 0
+    
+    def count_products(self, type=None):
         cursor = self.db_connection.cursor()
-        cursor.execute("SELECT COUNT(*) FROM products WHERE publish = TRUE")
+        if type:
+            cursor.execute("SELECT COUNT(*) FROM products WHERE publish = TRUE AND type = ?", (type,))
+        else:
+            cursor.execute("SELECT COUNT(*) FROM products WHERE publish = TRUE")
         result = cursor.fetchone()
         return result[0] if result else 0
 

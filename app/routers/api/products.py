@@ -12,9 +12,9 @@ def sync_products(db=Depends(get_db)):
 
 
 @router.get("/api/products")
-def read_products(page: int = 1, limit: int = 16, keyword: str = '', db=Depends(get_db)):
-    products = ProductsModel(db).get_products(page, limit, keyword)
-    total_products = ProductsModel(db).count_products()
+def read_products(page: int = 1, limit: int = 16, keyword: str = '', type: str = '', db=Depends(get_db)):
+    products = ProductsModel(db).get_products(page, limit, keyword, type)
+    total_products = ProductsModel(db).count_products(type)
     total_pages = (total_products + limit - 1) // limit
     for product in products:
         if product.get('images') != '':
