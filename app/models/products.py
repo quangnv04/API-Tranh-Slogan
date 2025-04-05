@@ -118,7 +118,7 @@ class ProductsModel:
         SELECT *
         FROM products
         WHERE publish = TRUE
-        ORDER BY id DESC
+        ORDER BY id ASC
         ''', ())
         products = cursor.fetchall()
         return [dict(row) for row in products]
