@@ -23,6 +23,8 @@ from app.routers.blogs import router as blogs_router
 from app.routers.api.products import router as products_api_router
 from app.routers.api.blogs import router as blogs_api_router
 from app.routers.api.auth import router as auth_api_router
+from app.routers.api.admin.roles import router as roles_admin_api_router
+from app.routers.api.admin.products import router as products_admin_api_router
 
 from app.routers.authMiddleware import AuthMiddleware
 
@@ -51,6 +53,8 @@ app.include_router(blogs_router)
 app.include_router(products_api_router)
 app.include_router(blogs_api_router)
 app.include_router(auth_api_router)
+app.include_router(roles_admin_api_router)
+app.include_router(products_admin_api_router)
 
 app.include_router(admin_router, prefix="/admin", tags=["Admin"])
 

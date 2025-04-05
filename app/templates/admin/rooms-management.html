@@ -1,7 +1,7 @@
 {% extends 'layout-admin.html' %}
 
 {% block title %}
-Admin | Rooms Management
+Admin | Products Management
 {% endblock %}
 
 {% block meta %}
@@ -23,9 +23,9 @@ Admin | Rooms Management
                 </li>
                 <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white"
                         href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Rooms Management</li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Products Management</li>
             </ol>
-            <h6 class="font-weight-bolder mb-0 text-white">Rooms Management</h6>
+            <h6 class="font-weight-bolder mb-0 text-white">Products Management</h6>
         </nav>
         <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
             <a href="javascript:;" class="nav-link p-0">
@@ -79,719 +79,24 @@ Admin | Rooms Management
                             <tr>
                                 <th>ID</th>
                                 <th>Hash</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Address</th>
-                                <th>Regular Price</th>
-                                <th>Weekend Price</th>
+                                <th>SKU</th>
+                                <th>Title</th>
+                                <th>Slug</th>
+                                <th>Type</th>
+                                <th>Canvas Price</th>
+                                <th>Mica Price</th>
                                 <th>Discount</th>
-                                <th>Room Type</th>
-                                <th>Room Facilities</th>
-                                <th>Rules And Policies</th>
-                                <th>Room Area</th>
-                                <th>Bedrooms</th>
-                                <th>Bathrooms</th>
-                                <th>Beds</th>
-                                <th>Standard Number Of People</th>
                                 <th>Images</th>
-                                <th>Google Map</th>
-                                <th>Status</th>
+                                <th>Description</th>
                                 <th>Publish</th>
                                 <th>Create At</th>
                                 <th>Update At</th>
-                                <th>Name Of Room</th>
-                                <th>Kitchen</th>
-                                <th>Living Rooms</th>
-                                <th>View</th>
-                                <th>Deposit</th>
-                                <th>Fist Hours Price</th>
-                                <th>Per Hours Price</th>
-                                <th>Per Week Price</th>
-                                <th>Extra Person Price</th>
-                                <th>Extra Children Price</th>
-                                <th>Maximum Number Of People</th>
-                                <th>Host</th>
-                                <th>Refund Rule</th>
-                                <th>Neighborhood Overview</th>
-                                <th>Information After Checkin</th>
-                                <th>Notes</th>
-                                <th>Overnight Rental Price</th>
-                                <th>Airbnb ID</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MA001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn đẹp view biển</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"> Allegra 401LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2955</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Allegra 401LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-weight-normal table-cell">2953</td>
-                                <td class="text-sm font-weight-normal table-cell">99302f886fb58f847473146c880de306</td>
-                                <td class="text-sm font-weight-normal table-cell">MF001</td>
-                                <td class="text-sm font-weight-normal table-cell">Căn hộ có không gian rộng rãi và đầy
-                                    đủ tiện nghi, mang đến sự thoải mái tối đa cho khách lưu trú. Bao gồm một phòng ngủ
-                                    và một phòng khách riêng biệt, được trang bị bồn tắm ngâm thư giãn, cùng với TV kết
-                                    nối Netflix để giải trí. Phòng khách có ghế sofa, có thể dễ dàng chuyển đổi thành
-                                    giường phụ, giúp tăng thêm sự linh hoạt và tiện lợi cho khách hàng.</td>
-                                <td class="text-sm font-weight-normal table-cell">342 Đường Lạc Long Quân, Xuân La, Quận
-                                    Tây Hồ, Hà Nội</td>
-                                <td class="text-sm font-weight-normal table-cell">583700</td>
-                                <td class="text-sm font-weight-normal table-cell">648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Căn studio</td>
-                                <td class="text-sm font-weight-normal table-cell">Nước lọc, Bồn tắm, Máy sấy tóc, Khăn
-                                    tắm, Dầu gội, Sữa tắm, Bình nóng lạnh, Sen tắm đứng, TV, Netflix, Điều hòa một
-                                    chiều, Dầu xả, Quạt, Wifi, Bàn làm việc, Ổ cắm điện, Bãi để xe có phí, Thang máy,
-                                    Móc treo quần áo, Gối và chăn dự phòng, Máy giặt, Tủ lạnh, Bàn ăn, Đá lạnh, Thuê dọn
-                                    dẹp, Bàn chải & kem đánh răng, Setup sinh nhật/ cầu hôn</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">40</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell">2</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    ['https://cdn.tranhslogan.vn/MF070/5bf62e61a2ad7e9c0a503357cf02acbb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/5b0eff2b9532c2f3d89bf5b56e65b452.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/a0a4ef494ce6750f3a618da62c3ae7cb.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/c47db61fe320a9df09fd756d8cc73190.jpg',
-                                    'https://cdn.tranhslogan.vn/MF070/ebe8d00beeacec08b9b8dca685d92eda.jpg']</td>
-                                <td class="text-sm font-weight-normal table-cell">
-                                    https://maps.app.goo.gl/dwfAo5hvSHVpHekGA</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">1</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Valora 501LLQ</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">Thành phố</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">260000</td>
-                                <td class="text-sm font-weight-normal table-cell">91000</td>
-                                <td class="text-sm font-weight-normal table-cell">583700, 583700, 583700, 583700,
-                                    648700, 648700, 648700</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">130000</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
-                                <td class="text-sm font-weight-normal table-cell">4</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo Home - Đỗ Trọng</td>
-                                <td class="text-sm font-weight-normal table-cell">Hủy phòng trước 48h miễn phí, sau 48h
-                                    không hoàn hủy, nếu hủy tính phí 100%</td>
-                                <td class="text-sm font-weight-normal table-cell">Khu vực gần 2 con Rồng hồ tây Địa điểm
-                                    vui chơi giới trẻ hà thành, tiện đường giao thông, đi lại</td>
-                                <td class="text-sm font-weight-normal table-cell">{'wifi': {'name': 'dodo home',
-                                    'password': 'dodo1234'}, 'door_code': []}</td>
-                                <td class="text-sm font-weight-normal table-cell">Dodo 4 R501 City view/Sofa/Bồn
-                                    tắm/Tv/Netflix</td>
-                                <td class="text-sm font-weight-normal table-cell"></td>
+                                <td colspan="12" class="text-center">Đang tải dữ liệu...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -805,13 +110,12 @@ Admin | Rooms Management
 {% block script %}
 <script src="/assets_admin/js/plugins/datatables.js"></script>
 <script>
-    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-        searchable: true,
-        fixedHeight: true
-    });
-</script>
-<script>
     $(document).ready(function () {
+        let table = new simpleDatatables.DataTable("#datatable-search", {
+            searchable: true,
+            fixedHeight: true
+        });
+
         $('.table-cell').each(function () {
             if (this.scrollWidth > this.clientWidth) {
                 $(this).attr('data-bs-toggle', 'popover');
@@ -821,6 +125,67 @@ Admin | Rooms Management
                     content: $(this).text(),
                     html: false
                 });
+            }
+        });
+
+        table.destroy();
+
+        $.ajax({
+            url: '/api/admin/products',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                const tbody = $('#datatable-search tbody');
+
+                tbody.empty();
+
+                data.forEach(p => {
+                    rowHtml = `
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="customCheck${p.id}">
+                                    </div>
+                                    <p class="text-sm font-weight-normal table-cell ms-2 mb-0">${p.id}</p>
+                                </div>
+                            </td>
+                            <td class="text-sm font-weight-normal table-cell">${p.hash}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.sku}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.title}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.slug}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.type}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.canvas_price}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.mica_price}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.discount}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.images}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.description}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.publish}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.created_at}</td>
+                            <td class="text-sm font-weight-normal table-cell">${p.updated_at}</td>
+                            <td class="text-sm">
+                                <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Preview role">
+                                    <i class="fas fa-eye text-secondary"></i>
+                                </a>
+                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit role">
+                                    <i class="fas fa-user-edit text-secondary"></i>
+                                </a>
+                                <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete role">
+                                    <i class="fas fa-trash text-secondary"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.append(rowHtml);
+                });
+
+                let table = new simpleDatatables.DataTable("#datatable-search", {
+                    searchable: true,
+                    fixedHeight: true
+                });
+            },
+            error: function (error) {
+                console.error("Error fetching products:", error);
             }
         });
     });
