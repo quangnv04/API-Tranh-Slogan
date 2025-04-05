@@ -12,6 +12,7 @@ from app.routers.tokenManager import TokenManager
 
 from app.routers.home import router as home_router
 from app.routers.menu import router as menu_router
+from app.routers.orders import router as orders_router
 from app.routers.products import router as products_router
 from app.routers.policy import router as policy_router
 from app.routers.about import router as about_router
@@ -22,6 +23,7 @@ from app.routers.blogs import router as blogs_router
 
 from app.routers.api.products import router as products_api_router
 from app.routers.api.blogs import router as blogs_api_router
+from app.routers.api.orders import router as orders_api_router
 from app.routers.api.auth import router as auth_api_router
 
 from app.routers.authMiddleware import AuthMiddleware
@@ -40,6 +42,7 @@ app.include_router(roles_management_router)
 app.include_router(permissions_management_router)
 app.include_router(home_router)
 app.include_router(menu_router)
+app.include_router(orders_router)
 app.include_router(products_router)
 app.include_router(policy_router)
 app.include_router(about_router)
@@ -50,6 +53,7 @@ app.include_router(blogs_router)
 
 app.include_router(products_api_router)
 app.include_router(blogs_api_router)
+app.include_router(orders_api_router)
 app.include_router(auth_api_router)
 
 app.include_router(admin_router, prefix="/admin", tags=["Admin"])
