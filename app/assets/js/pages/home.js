@@ -283,7 +283,9 @@ $(document).ready(function () {
                                 <img class="w-100" src="${product.thumbnail[0]}" alt="Tranh" />
                             </div>
                             <div class="ps-0 col-8">
-                                <h6 class="fs-6 fw-light"><a>${product.title}</a></h6>
+                            <h6 class="fs-6 fw-light">
+                            <a href="/product/${product.slug}">${product.title.length > 61 ? product.title.substring(0, 58) + "..." : product.title}</a>
+                            </h6>
                                 <div class="price-group">
                                     <del class="old-price">590.000đ</del>
                                     <span class="price sale-price">470.000đ</span>
