@@ -9,12 +9,13 @@ let page = 1;
 const limit = 20;
 let totalPages = 1;
 
+
 $(document).ready(function () {
     let canFetch = true;
 
-    $(window).scroll(function () {
+    $(window).scroll(async function () {
         if (nearBottom() && canFetch) {
-            fetchProducts();
+            await fetchProducts();
         }
     });
     const endTimeString = $('.countdown').attr('data-end');
@@ -62,25 +63,32 @@ $(document).ready(function () {
     }
 
     function fetchProducts(pageNum = page) {
-        canFetch = false;
-        $.ajax({
-            url: `/api/products?page=${pageNum}&limit=${limit}`,
-            type: 'GET',
-            dataType: 'json',
-            success: data => {
-                if (data && typeof data === 'object' && data.products && data.products.length > 0) {
-                    appendProducts(keysToCamelCase(data.products));
-                    createPagination(data.totalPages, pageNum);
-                    currentPage = pageNum;
-                } else {
-                    createPagination(1, 1);
+        return new Promise((resolve, reject) => {
+
+            canFetch = false;
+            $.ajax({
+                url: `/api/products?page=${pageNum}&limit=${limit}`,
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+                    if (data && typeof data === 'object' && data.products && data.products.length > 0) {
+                        appendProducts(keysToCamelCase(data.products));
+                        createPagination(data.totalPages, pageNum);
+                        currentPage = pageNum;
+                    } else {
+                        createPagination(1, 1);
+                    }
+                    canFetch = data.length === limit;
+                    resolve(); // Báo hoàn thành
+
+                },
+                error: error => {
+                    console.error("Error fetching products:", error);
+                    canFetch = true;
+                    reject(error); // Báo lỗi
+
                 }
-                canFetch = data.length === limit;
-            },
-            error: error => {
-                console.error("Error fetching products:", error);
-                canFetch = true;
-            }
+            });
         });
     }
 
@@ -169,33 +177,7 @@ $(document).ready(function () {
         //         prevEl: ".swiper-button-prev",
         //     },
         // });
-        $(".swiper").each(function () {
-            const swiperEl = this; // Lưu phần tử DOM của Swiper
-            const $swiper = $(swiperEl); // Chuyển thành jQuery object
 
-            let slides = $(this).data("slides") || 4; // Số lượng slide mặc định là 4
-            let breakpointsAttr = $(this).attr("data-breakpoints");
-            let breakpoints = breakpointsAttr ? JSON.parse(breakpointsAttr) : {}; // Kiểm tra nếu có breakpoints thì parse JSON, nếu không thì để trống {}
-
-            new Swiper(this, {
-                loop: true,              // Lặp vô hạn
-                slidesPerView: slides,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: $swiper.find(".swiper-button-next")[0],
-                    prevEl: $swiper.find(".swiper-button-prev")[0],
-                },
-                pagination: {
-                    el: $swiper.find('.swiper-pagination')[0],
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 3000,         // Tự động chuyển slide sau 3 giây
-                    disableOnInteraction: false,
-                },
-                breakpoints: Object.keys(breakpoints).length ? breakpoints : undefined, // Chỉ thêm breakpoints nếu có dữ liệu
-            });
-        });
     }
 
     function createPagination(totalPages, currentPage) {
@@ -271,16 +253,209 @@ $(document).ready(function () {
 
         paginationContainer.off('click', 'a.page-link');
 
-        paginationContainer.on('click', 'a.page-link', function (event) {
+        paginationContainer.on('click', 'a.page-link', async function (event) {
             event.preventDefault();
             const newPage = parseInt($(this).data('page'));
 
             if (!isNaN(newPage) && newPage > 0 && newPage <= totalPages && newPage !== currentPage) {
                 window.scrollTo(0, 0);
-                fetchProducts(newPage);
+                await fetchProducts(newPage);
             }
         });
     }
 
-    fetchProducts(page);
+    function fetchProductsByType(type, parentElement) {
+        return new Promise((resolve, reject) => {
+            // Chuyển đối tượng parent thành jQuery để có thể gọi các phương thức jQuery
+            $.ajax({
+                url: `/api/products?type=${encodeURIComponent(type.trim())}&page=1&limit=12`,
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+
+
+                    if (data && typeof data === 'object' && data.products && data.products.length > 0) {
+                        // Đảm bảo gọi đúng phương thức jQuery
+                        data.products.forEach(function (product, index) {
+                            const productHtml = index < 5 ? `
+                       <div class="row items">
+                            <div class="col-4">
+                                <img class="w-100" src="${product.thumbnail[0]}" alt="Tranh" />
+                            </div>
+                            <div class="ps-0 col-8">
+                                <h6 class="fs-6 fw-light"><a>${product.title}</a></h6>
+                                <div class="price-group">
+                                    <del class="old-price">590.000đ</del>
+                                    <span class="price sale-price">470.000đ</span>
+                                    <span class="badge">-20%</span>
+                                </div>
+                            </div>
+                        </div>
+                        ${index < 4 ? '<hr class="my-3" />' : ''}` : `
+                    <div class="product-box d-flex swiper-slide">
+                        <div class="product">
+                            <div class="product-img">
+                                <div class="swiper-wrapper">
+                                    <a href="/product/${product.slug}">
+                                        <img class="img-fluid" alt="Img" src="${product.thumbnail[0]}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title instructor-text">
+                                    <a href="/product/${product.slug}">${product.title}</a>
+                                </h3>
+                                <div class="product-info align-items-center">
+                                    <div class="rating-img d-flex align-items-center mb-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="price" style="">
+                                    <h3>
+                                        199,000 ₫ - 459,000 ₫
+                                        <span></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                            if (index < 5) {
+                                $(parentElement).find('.right-home-product .hot-product-items').first().append(productHtml);
+                            } else {
+                                $(parentElement).find(".home-product-top .swiper-wrapper").first().append(productHtml);
+                            }
+                        });
+                        resolve(); // Báo hoàn thành
+                    } else {
+                        console.warn("No products found for type:", type);
+                        resolve(); // Không có sản phẩm nhưng vẫn hoàn thành
+                    }
+                },
+                error: error => {
+                    console.error("Error fetching products by type:", error);
+                    reject(error); // Báo lỗi
+                }
+            });
+        });
+    }
+
+    function fetchListGroupProductHome() {
+        return new Promise((resolve, reject) => {
+            const groupElements = $('.group-home-product');
+            let index = 0;
+
+            function fetchNextGroup() {
+                if (index >= groupElements.length) {
+                    resolve(); // Báo hoàn thành khi tất cả nhóm đã được xử lý
+                    return;
+                }
+
+                const element = $(groupElements[index]);
+                const type = element.data('index');
+                fetchProductsByType(type, element)
+                    .then(() => {
+                        index++;
+                        fetchNextGroup(); // Gọi nhóm tiếp theo
+                    })
+                    .catch(error => {
+                        console.error("Error fetching group products:", error);
+                        reject(error); // Báo lỗi nếu có lỗi
+                    });
+            }
+
+            fetchNextGroup();
+        });
+    }
+    function fetchProductFlashSale() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/api/products?page=1&limit=12',
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+                    if (data && typeof data === 'object' && data.products && data.products.length > 0) {
+                        $(".home-flash-sale .flash-sale-items .swiper-wrapper").empty();
+                        data.products.forEach(function (product) {
+                            const productHtml = `
+                            <div class="swiper-slide rounded-1 card ">
+                                <div class="discount  position-absolute">-40%</div>
+                                <div class="logo-sale position-absolute">
+                                    <img width="13px" src="/assets/img/flash-sale-icon.svg" alt="sale-logo" />
+                                </div>
+                                <a href="/product/${product.slug}" class="link-underline link-underline-opacity-0">
+                                    <img style="height: 180px;" src="${product.thumbnail[0]}"
+                                        class="card-img-top" alt="tranh">
+                                    <div class="card-body pb-2">
+                                        <h6 class="card-title  text-center">
+                                            <div class="price-group">
+                                                <div class="price">
+                                                    199.000đ
+                                                </div>
+                                            </div>
+                                        </h6>
+                                        <p class="card-text sale-status position-relative mb-2 w-75"
+                                            style="height:15px ;margin: 0 auto; ">
+                                            <span class="status-text">Đang bán chạy</span>
+                                            <span class="status-progress" style="width: 78%;"></span>
+                                            <span class="status-bg"></span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                            $(".home-flash-sale .flash-sale-items .swiper-wrapper").append(productHtml);
+                        });
+                    }
+                    resolve(); // Báo hoàn thành
+                },
+                error: error => {
+                    console.error("Error fetching flash sale products:", error);
+                    reject(error); // Báo lỗi
+                }
+            });
+        });
+    }
+    async function fetchAllData() {
+        try {
+            await fetchProducts(page); // Gọi fetchProducts
+            await fetchProductFlashSale(); // Gọi fetchProductFlashSale sau khi fetchProducts hoàn thành
+            await fetchListGroupProductHome(); // Gọi fetchListGroupProductHome sau khi fetchProductFlashSale hoàn thành
+
+            // Khởi tạo Swiper sau khi tất cả dữ liệu đã được tải
+            $(".swiper").each(function () {
+                const swiperEl = this;
+                const $swiper = $(swiperEl);
+
+                let slides = $(this).data("slides") || 4;
+                let breakpointsAttr = $(this).attr("data-breakpoints");
+                let breakpoints = breakpointsAttr ? JSON.parse(breakpointsAttr) : {};
+
+                new Swiper(this, {
+                    loop: true,
+                    slidesPerView: slides,
+                    spaceBetween: 10,
+                    navigation: {
+                        nextEl: $swiper.find(".swiper-button-next")[0],
+                        prevEl: $swiper.find(".swiper-button-prev")[0],
+                    },
+                    pagination: {
+                        el: $swiper.find('.swiper-pagination')[0],
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: Object.keys(breakpoints).length ? breakpoints : undefined,
+                });
+            });
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+    // Gọi hàm fetchAllData
+    fetchAllData();
 });
