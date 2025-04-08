@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     let swiperWrapper = $('.swiper-wrapper');
 
@@ -70,50 +72,138 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     function fetchRelatedProducts() {
-        $.ajax({
-            url: '/api/products',
-            method: 'GET',
-            data: {
-                page: 1,
-                limit: 6
-            },
-            success: function (response) {
-                if (response && response.length > 0) {
-                    appendRelatedProducts(keysToCamelCase(response));
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `/api/products?type=${encodeURIComponent(type.trim())}&page=1&limit=5`,
+                method: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response && typeof response === 'object' && response.products && response.products.length > 0) {
+                        appendRelatedProducts(keysToCamelCase(response.products));
+                    }
+                    resolve(); // Báo hoàn thành
+                },
+                error: function (error) {
+                    console.error("Không thể lấy sản phẩm liên quan:", error);
+                    reject(error); // Báo lỗi
+
                 }
-            },
-            error: function (error) {
-                console.error("Không thể lấy sản phẩm liên quan:", error);
-            }
+            });
         });
     }
 
     function appendRelatedProducts(products) {
-        const container = $('.related-product');
+        const container = $('.page-content .right-home-product .hot-product-items');
         container.empty();
+
+        products.forEach(function (product, index) {
+
+            const productHtml = `
+                <div class="row items">
+                            <div class="col-4">
+                                <img class="w-100" src="${product.thumbnail[0]}" alt="Tranh" />
+                            </div>
+                            <div class="ps-0 col-8">
+                            <h6 class="fs-6 fw-light">
+                            <a href="/product/${product.slug}">${product.title.length > 59 ? product.title.substring(0, 56) + "..." : product.title}</a>
+                            </h6>
+                                <div class="price-group">
+                                    <del class="old-price">590.000đ</del>
+                                    <span class="price sale-price fs-6">470.000đ</span>
+                                    <span class="badge">-20%</span>
+                                </div>
+                            </div>
+                        </div>
+                        ${index < 4 ? '<hr class="my-3" />' : ''}`
+                ;
+            container.append(productHtml);
+        });
+    }
+    function fetchProducts() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `/api/products?page=1&limit=20`,
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+                    if (data && typeof data === 'object' && data.products && data.products.length > 0) {
+                        appendProducts(keysToCamelCase(data.products));
+                    }
+                    resolve(); // Báo hoàn thành
+
+                },
+                error: error => {
+                    console.error("Error fetching products:", error);
+                    reject(error); // Báo lỗi
+
+                }
+            });
+        });
+    }
+    function appendProducts(products) {
+        const container = $('#products-container');
 
         products.forEach(function (product) {
             const productHtml = `
-                <div class="related-product-item d-flex mb-3">
-                    <a href="/product/${product.slug}" class="related-products-img">
-                        <img class="related-product-img" alt="Ảnh sản phẩm" src="${product.thumbnail[0]}">
-                    </a>
-                    <div class="related-product-content ms-3">
-                        <a href="/product/${product.slug}" class="related-product-title">${product.title}</a>
-                        <div class="price" style="">
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <div class="product-box d-flex">
+                        <div class="product">
+                            <div class="product-img">
+                                <div class="swiper-wrapper">
+                                    <a href="/product/${product.slug}">
+                                        <img class="img-fluid" alt="Img" src="${product.thumbnail[0]}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title instructor-text">
+                                    <a href="/product/${product.slug}">${product.title}</a>
+                                </h3>
+                                <div class="product-info align-items-center">
+                                    <div class="rating-img d-flex align-items-center mb-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                                            <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="price" style="">
                                     <h3>
                                         199,000 ₫ - 459,000 ₫
                                         <span></span>
                                     </h3>
                                 </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
             container.append(productHtml);
         });
-    }
 
-    fetchRelatedProducts();
+    }
+    async function fetchAllData() {
+        try {
+            await fetchProducts(); // Gọi fetchProducts
+            await fetchRelatedProducts(); // Gọi fetchRelatedProducts
+        } catch (error) {
+            console.error("Error fetching all data:", error);
+        }
+    };
+
+
+    fetchAllData(); // Gọi hàm fetchAllData khi trang được tải
 });
 
 $(document).ready(function () {
@@ -137,7 +227,7 @@ $(document).ready(function () {
         console.log(JSON.parse(localStorage.getItem('cart')));
         updateHeaderCart(); // Cập nhật giỏ hàng trên header
     }
-    
+
     function updateHeaderCart() {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let cartItems = $('#header-cart-items');
@@ -177,7 +267,7 @@ $(document).ready(function () {
         const productTitle = $("h1").text();
         const productThumbnail = productImages[0];
         const productSlug = $(location).attr('href');
-        
+
         let selectedSize = $('input[name="size"]:checked').val();
         let selectedFrame = $('input[name="frame"]:checked').val();
         let selectedMaterial = $('input[name="material"]:checked').val();
@@ -195,7 +285,7 @@ $(document).ready(function () {
         } else {
             cart.push({
                 title: productTitle,
-                thumbnail: productThumbnail ,
+                thumbnail: productThumbnail,
                 slug: productSlug,
                 size: selectedSize,
                 frame: selectedFrame,
@@ -206,14 +296,14 @@ $(document).ready(function () {
         }
 
         syncCartToLocalStorage();
-        
+
         showCartToast(productTitle);
     });
-    
+
     function showCartToast(productTitle) {
         // Set the toast message
         $('#cartToast .toast-body').text(`Bạn đã thêm thành công "${productTitle}" vào giỏ hàng`);
-        
+
         // Initialize and show the toast
         var toast = new bootstrap.Toast(document.getElementById('cartToast'));
         toast.show();
