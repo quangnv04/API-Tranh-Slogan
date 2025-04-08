@@ -8,7 +8,7 @@ async def products(db=Depends(get_db_for_new_thread)):
     products = products_model.get_all_products()
     return products
 
-@router.get('/api/admin/products/{product_slug}')
+@router.get('/api/admin/product/{product_slug}')
 async def get_products(product_slug: str, db=Depends(get_db_for_new_thread)):
     product_model = ProductsModel(db)
     product = product_model.get_product_by_slug(product_slug)
@@ -16,7 +16,7 @@ async def get_products(product_slug: str, db=Depends(get_db_for_new_thread)):
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
-@router.put("/api/admin/products/{product_slug}")
+@router.put("/api/admin/product/{product_slug}")
 async def update_product(product_slug: str, request: Request, db=Depends(get_db_for_new_thread)):
     try:
         data = await request.json()
@@ -43,7 +43,7 @@ async def update_product(product_slug: str, request: Request, db=Depends(get_db_
     else:
         raise HTTPException(status_code=500, detail="Failed to update product")
 
-@router.patch('/api/admin/products/{product_slug}/delete')
+@router.patch('/api/admin/product/{product_slug}/delete')
 async def delete_product(product_slug: str, db=Depends(get_db_for_new_thread)):
     product_model = ProductsModel(db)
     existing_product = product_model.get_product_by_slug(product_slug)
@@ -54,8 +54,8 @@ async def delete_product(product_slug: str, db=Depends(get_db_for_new_thread)):
     if existing_product.get('status') == 'deleted':
         raise HTTPException(status_code=400, detail="Product already deleted")
 
-    success = product_model.update_product(product_slug, {'status': 'deleted'})
+    success = product_model.delete_product(product_slug)
     if success:
         return {"message": "Product deleted successfully"}
     else:
-        raise HTTPException(status_code=500, detail="Failed to update product")
+        raise HTTPException(status_code=500, detail="Failed to delete product")
