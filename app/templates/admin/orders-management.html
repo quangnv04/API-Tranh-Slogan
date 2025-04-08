@@ -1,13 +1,13 @@
 {% extends 'layout-admin.html' %}
 
 {% block title %}
-Admin | Accounts Management
+Admin | Orders Management
 {% endblock %}
 
 {% block meta %}
-<link rel="canonical" href="https://tranhslogan.vn/admin/users-management/" />
-<link rel="alternate" href="https://tranhslogan.vn/admin/users-management/" hreflang="vi" />
-<link rel="alternate" href="https://tranhslogan.vn/admin/users-management/" hreflang="x-default" />
+<link rel="canonical" href="https://tranhslogan.vn/admin/orders-management/" />
+<link rel="alternate" href="https://tranhslogan.vn/admin/orders-management/" hreflang="vi" />
+<link rel="alternate" href="https://tranhslogan.vn/admin/orders-management/" hreflang="x-default" />
 {%endblock%}
 
 {% block content %}
@@ -23,9 +23,9 @@ Admin | Accounts Management
                 </li>
                 <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white"
                         href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Accounts Management</li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Orders Management</li>
             </ol>
-            <h6 class="font-weight-bolder mb-0 text-white">Accounts Management</h6>
+            <h6 class="font-weight-bolder mb-0 text-white">Orders Management</h6>
         </nav>
         <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
             <a href="javascript:;" class="nav-link p-0">
@@ -72,14 +72,14 @@ Admin | Accounts Management
 <div class="container-fluid py-4">
     <div class="d-sm-flex justify-content-end">
         <div class="d-flex ">
-            <a href="javascript:;" class="btn btn-icon btn-outline-white" data-bs-toggle="modal"
+            <!-- <a href="javascript:;" class="btn btn-icon btn-outline-white" data-bs-toggle="modal"
                 data-bs-target="#exampleModalSignUp">
-                New Account
+                New Order
             </a>
             <button class="btn btn-icon btn-outline-white ms-2 export" data-type="csv" type="button">
                 <span class="btn-inner--icon"><i class="ni ni-archive-2"></i></span>
                 <span class="btn-inner--text">Export CSV</span>
-            </button>
+            </button> -->
         </div>
     </div>
     <div class="row">
@@ -90,11 +90,14 @@ Admin | Accounts Management
                         <thead class="thead-light">
                             <tr>
                                 <th>ID</th>
-                                <th>Username</th>
-                                <th>Password Hash</th>
-                                <th>Email</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Product</th>
+                                <th>Notes</th>
+                                <th>Time Created</th>
+                                <th>Orders</th>
+                                <th>Finished</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -115,7 +118,7 @@ Admin | Accounts Management
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-primary text-gradient">New Accounts</h3>
+                            <h3 class="font-weight-bolder text-primary text-gradient">New Users</h3>
                             <p class="mb-0">Enter your information to register</p>
                         </div>
                         <div class="card-body pb-3">
@@ -160,75 +163,94 @@ Admin | Accounts Management
 {% block script %}
 <script src="/assets_admin/js/plugins/datatables.js"></script>
 <script>
+    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+        searchable: true,
+        fixedHeight: false,
+        // perPageSelect: false
+    });
+
     $(document).ready(function () {
+        $('.table-cell').each(function () {
+            if (this.scrollWidth > this.clientWidth) {
+                $(this).attr('data-bs-toggle', 'popover');
+                $(this).popover({
+                    trigger: 'click',
+                    placement: 'top',
+                    content: $(this).text(),
+                    html: false
+                });
+            }
+        });
+
+        dataTableSearch.destroy();
         $.ajax({
-            url: '/api/admin/accounts',
+            url: '/api/admin/orders',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
                 const tbody = $('#datatable-search tbody');
                 tbody.empty();
 
-                data.forEach(a => {
-                    const accountHtml = `
+                data.forEach(o => {
+                    const orderHtml = `
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="customCheck${a.id}">
+                                        <input class="form-check-input" type="checkbox" id="customCheck${o.id}">
                                     </div>
-                                    <p class="text-xs font-weight-bold ms-2 mb-0">${a.id}</p>
+                                    <p class="text-xs font-weight-bold ms-2 mb-0">${o.id}</p>
                                 </div>
                             </td>
                             <td class="text-xs font-weight-bold table-cell">
                                 <div class="d-flex align-items-center">
-                                    <span>${a.username}</span>
+                                    <span>${o.name}</span>
                                 </div>
                             </td>
                             <td class="font-weight-bold table-cell">
-                                <span
-                                    class="my-2 text-xs">${a.password_hash}</span>
+                                <span class="my-2 text-xs">${o.address}</span>
                             </td>
                             <td class="font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${a.email}</span>
+                                <span class="my-2 text-xs">${o.phone_number}</span>
                             </td>
                             <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${a.created_at}</span>
+                                <span class="my-2 text-xs">${o.product}</span>
                             </td>
                             <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${a.updated_at}</span>
+                                <span class="my-2 text-xs">${o.notes}</span>
+                            </td>
+                            <td class="text-xs font-weight-bold table-cell">
+                                <span class="my-2 text-xs">${o.time_created}</span>
+                            </td>
+                            <td class="text-xs font-weight-bold table-cell">
+                                <span class="my-2 text-xs">${o.orders}</span>
+                            </td>
+                            <td class="text-xs font-weight-bold table-cell">
+                                <span class="my-2 text-xs">${o.finished}</span>
                             </td>
                             <td class="text-sm">
                                 <a href="javascript:;" data-bs-toggle="tooltip"
+                                    data-bs-original-title="Preview product">
+                                    <i class="fas fa-eye text-secondary"></i>
+                                </a>
+                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
                                     data-bs-original-title="Edit product">
                                     <i class="fas fa-user-edit text-secondary"></i>
                                 </a>
-                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Delete product">
+                                <a href="javascript:;" data-id="${o.id}" class="delete-order-btn" data-bs-toggle="tooltip"
+                                    data-bs-original-title="Delete order">
                                     <i class="fas fa-trash text-secondary"></i>
                                 </a>
                             </td>
                         </tr>
                     `;
-                    tbody.append(accountHtml);
+                    tbody.append(orderHtml);
                 });
 
                 $('[data-bs-toggle="tooltip"]').tooltip();
                 let table = new simpleDatatables.DataTable("#datatable-search", {
                     searchable: true,
-                    fixedHeight: false
-                });
-
-                $('.table-cell').each(function () {
-                    if (this.scrollWidth > this.clientWidth) {
-                        $(this).attr('data-bs-toggle', 'popover');
-                        $(this).popover({
-                            trigger: 'click',
-                            placement: 'top',
-                            content: $(this).text(),
-                            html: false
-                        });
-                    }
+                    fixedHeight: true
                 });
             },
             error: function (error) {
@@ -236,7 +258,27 @@ Admin | Accounts Management
             }
         });
 
+        $(document).on('click', '.delete-order-btn', function () {
+            const orderId = $(this).data('id');
+
+            if (confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
+                $.ajax({
+                    url: `/api/admin/order/${orderId}/delete`,
+                    type: 'PATCH',
+                    success: function (res) {
+                        alert(res.message);
+                        location.reload();
+                    },
+                    error: function (xhr) {
+                        const message = xhr.responseJSON?.detail || "Có lỗi xảy ra khi xóa!";
+                        alert(message);
+                    }
+                });
+            }
+        });
     });
+
+    
 
     document.querySelectorAll(".export").forEach(function (el) {
         el.addEventListener("click", function (e) {

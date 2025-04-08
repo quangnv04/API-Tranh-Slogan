@@ -86,8 +86,9 @@ class OrdersModel:
 
     def delete_order(self, order_id):
         cursor = self.db_connection.cursor()
-        cursor.execute('DELETE FROM orders WHERE id = ?', (order_id,))
+        result = cursor.execute('DELETE FROM orders WHERE id = ?', (order_id,))
         self.db_connection.commit()
+        return result.rowcount > 0
         
     def count_orders(self, keyword=None):
         cursor = self.db_connection.cursor()
@@ -112,3 +113,8 @@ class OrdersModel:
         result = cursor.fetchone()
         return result['count'] if result else 0
 
+    def get_all_orders(self):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM orders')
+        orders = cursor.fetchall()
+        return [dict(row) for row in orders]
