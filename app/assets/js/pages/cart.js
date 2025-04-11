@@ -206,6 +206,7 @@ const CartManager = (function() {
         const phone = $('#customerPhone').val().trim();
         const address = $('#customerAddress').val().trim();
         const notes = $('#orderNotes').val().trim();
+        const price = $('#modalGrandTotal').text();
         
         if (!name || !phone || !address) {
             UI.showNotification('Vui lòng điền đầy đủ thông tin đặt hàng', 'error');
@@ -230,6 +231,7 @@ const CartManager = (function() {
             phone: phone,
             address: address,
             product: productDescription,
+            price: price,
             notes: notes,
             status: 'inactive',
             finished: 0

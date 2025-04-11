@@ -19,8 +19,8 @@ class OrdersModel:
         try:
             cursor.execute(
                 '''
-                INSERT INTO orders (hash, name, phone, address, product, notes, status, finished)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO orders (hash, name, phone, address, product, notes, status, finished, price)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(hash) DO UPDATE SET
                 name = excluded.name,
                 phone = excluded.phone,
@@ -28,7 +28,8 @@ class OrdersModel:
                 product = excluded.product,
                 notes = excluded.notes,
                 status = excluded.status,
-                finished = excluded.finished
+                finished = excluded.finished,
+                price = excluded.price
                 ''',
                 (
                     order_hash,
@@ -38,7 +39,8 @@ class OrdersModel:
                     order['product'],
                     order.get('notes', ''),
                     order.get('status', 'inactive'),
-                    1 if order.get('finished', False) else 0
+                    1 if order.get('finished', False) else 0,
+                    order.get('price', '0 VNĐ')
                 )
             )
             self.db_connection.commit()
@@ -115,6 +117,7 @@ class OrdersModel:
         cursor = self.db_connection.cursor()
         cursor.execute('DELETE FROM orders WHERE hash = ?', (order_hash,))
         self.db_connection.commit()
+        result = cursor.fetchone()
         return result.rowcount > 0
         
     def count_orders(self, keyword=None):
