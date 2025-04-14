@@ -27,6 +27,7 @@ from app.routers.api.orders import router as orders_api_router
 from app.routers.api.auth import router as auth_api_router
 from app.routers.api.admin.roles import router as roles_admin_api_router
 from app.routers.api.admin.products import router as products_admin_api_router
+from app.routers.api.admin.statistics import router as statistics_admin_api_router
 
 from app.routers.authMiddleware import AuthMiddleware
 
@@ -59,7 +60,7 @@ app.include_router(orders_api_router)
 app.include_router(auth_api_router)
 app.include_router(roles_admin_api_router)
 app.include_router(products_admin_api_router)
-
+app.include_router(statistics_admin_api_router)
 app.include_router(admin_router, prefix="/admin", tags=["Admin"])
 
 app.add_middleware(AuthMiddleware, token_manager=TokenManager())

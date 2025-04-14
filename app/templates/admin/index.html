@@ -11,6 +11,23 @@ Admin | Tranh Slogan
 {%endblock%}
 
 {% block content %}
+
+<style>
+    .filter-controls {
+        margin-top: 20px;
+    }
+
+    .filter-controls select,
+    .filter-controls input,
+    .filter-controls button {
+        min-width: 150px;
+    }
+
+    .filter-controls button {
+        white-space: nowrap;
+    }
+</style>
+
 <!-- Navbar -->
 <nav class="navbar navbar-main navbar-expand-lg  px-0 mx-4 shadow-none border-radius-xl z-index-sticky " id="navbarBlur"
     data-scroll="false">
@@ -193,8 +210,47 @@ Admin | Tranh Slogan
                     </p>
                 </div>
                 <div class="card-body p-3">
+                    <ul class="nav nav-tabs mb-3" id="chartTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="price-tab" data-bs-toggle="tab" data-type="price">Doanh
+                                thu</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="count-tab" data-bs-toggle="tab" data-type="count">Số
+                                đơn</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="combine-tab" data-bs-toggle="tab" data-type="combine">Kết
+                                hợp</button>
+                        </li>
+                    </ul>
                     <div class="chart">
-                        <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                        <canvas id="chart-line" class="chart-canvas" style="max-height: 300px;" height="300"></canvas>
+                    </div>
+                    <div class="filter-controls row mt-4">
+                        <div class="col-md-3">
+                            <label for="typeSelect" class="form-label">Kiểu thống kê</label>
+                            <select id="typeSelect" class="form-select">
+                                <option value="date">Ngày</option>
+                                <option value="week">Tuần</option>
+                                <option value="month">Tháng</option>
+                                <option value="year">Năm</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="startDate" class="form-label">Từ ngày</label>
+                            <input type="date" id="startDate" class="form-control">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="endDate" class="form-label">Đến ngày</label>
+                            <input type="date" id="endDate" class="form-control">
+                        </div>
+
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button id="btnView" class="mb-0 btn btn-primary w-100">Xem</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1339,89 +1395,173 @@ Admin | Tranh Slogan
 
 {% block script %}
 
-<script src="/assets/js/plugins/chartjs.min.js"></script>
+<script src="/assets_admin/js/plugins/chartjs.min.js"></script>
 <script>
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
+    let chartInstance = null;
+    let currentTab = 'price'; // 'price' | 'count' | 'combine'
 
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+    function getEndpoint(type) {
+        return type === 'count' ? '/api/admin/statistics/order_count' : '/api/admin/statistics/revenue';
+    }
+    // Hàm gọi API dữ liệu
+    function fetchChartData(dataType, type, startDate, endDate) {
+        const url = getEndpoint(dataType)
 
-    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-    new Chart(ctx1, {
-        type: "line",
-        data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [{
-                label: "Mobile apps",
+        return $.ajax({
+            url: url,
+            method: 'GET',
+            data: { type, startDate, endDate }
+        });
+    }
+
+    // Hàm vẽ biểu đồ
+    function drawChart(data, dataType) {
+        if (!data.length) {
+            alert("Không có dữ liệu.");
+            return;
+        }
+
+        const timeField = Object.keys(data[0]).find(k => k.toLowerCase().includes('order'));
+        const labels = data.map(item => item[timeField]);
+
+        const valuesPrice = data.map(item => item.total_price || 0);
+        const valuesCount = data.map(item => item.total_count || 0);
+
+        const ctx = document.getElementById('chart-line').getContext('2d');
+        if (chartInstance) chartInstance.destroy();
+
+        const datasets = [];
+        const yAxes = {};
+
+        const isCombine = dataType === 'combine';
+        const onlyPrice = dataType === 'price';
+        const onlyCount = dataType === 'count';
+
+        if (onlyPrice || isCombine) {
+            datasets.push({
+                label: 'Doanh thu (VNĐ)',
+                data: valuesPrice,
+                borderColor: '#4bc0c0',
+                backgroundColor: 'rgba(75,192,192,0.2)',
+                yAxisID: 'yPrice',
                 tension: 0.4,
-                borderWidth: 0,
-                pointRadius: 0,
-                borderColor: "#5e72e4",
-                backgroundColor: gradientStroke1,
-                borderWidth: 3,
-                fill: true,
-                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                maxBarThickness: 6
+                fill: true
+            });
 
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false,
+            yAxes.yPrice = {
+                type: 'linear',
+                position: isCombine ? 'left' : 'left', // combine thì luôn ở trái, riêng cũng trái
+                title: {
+                    display: true,
+                    text: 'Doanh thu (VNĐ)'
+                },
+                beginAtZero: true
+            };
+        }
+
+        if (onlyCount || isCombine) {
+            datasets.push({
+                label: 'Số đơn hàng',
+                data: valuesCount,
+                borderColor: '#f39c12',
+                backgroundColor: 'rgba(243,156,18,0.2)',
+                yAxisID: 'yCount',
+                tension: 0.4,
+                fill: true
+            });
+
+            yAxes.yCount = {
+                type: 'linear',
+                position: isCombine ? 'right' : 'left', // nếu không phải combine thì cũng để bên trái
+                title: {
+                    display: true,
+                    text: 'Số đơn hàng'
+                },
+                beginAtZero: true,
+                grid: {
+                    drawOnChartArea: !isCombine // ẩn grid nếu là combine
                 }
+            };
+        }
+
+        chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets
             },
-            interaction: {
-                intersect: false,
-                mode: 'index',
-            },
-            scales: {
-                y: {
-                    grid: {
-                        drawBorder: false,
-                        display: true,
-                        drawOnChartArea: true,
-                        drawTicks: false,
-                        borderDash: [5, 5]
-                    },
-                    ticks: {
-                        display: true,
-                        padding: 10,
-                        color: '#fbfbfb',
-                        font: {
-                            size: 11,
-                            family: "Open Sans",
-                            style: 'normal',
-                            lineHeight: 2
-                        },
-                    }
+            options: {
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
                 },
-                x: {
-                    grid: {
-                        drawBorder: false,
-                        display: false,
-                        drawOnChartArea: false,
-                        drawTicks: false,
-                        borderDash: [5, 5]
+                stacked: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời gian'
+                        }
                     },
-                    ticks: {
-                        display: true,
-                        color: '#ccc',
-                        padding: 20,
-                        font: {
-                            size: 11,
-                            family: "Open Sans",
-                            style: 'normal',
-                            lineHeight: 2
-                        },
-                    }
-                },
-            },
-        },
+                    ...yAxes
+                }
+            }
+        });
+    }
+
+    // Hàm tải và kết hợp dữ liệu nếu cần
+    function reloadChart() {
+        const type = $('#typeSelect').val();
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+
+        if (currentTab === 'combine') {
+            // Gọi song song 2 API
+            Promise.all([
+                fetchChartData('price', type, startDate, endDate),
+                fetchChartData('count', type, startDate, endDate)
+            ])
+                .then(([priceData, countData]) => {
+                    // Kết hợp theo thứ tự (đảm bảo trả về cùng key thời gian)
+                    const mergedData = priceData.map((item, index) => ({
+                        ...item,
+                        total_count: countData[index]?.total_count || 0
+                    }));
+                    drawChart(mergedData, 'combine');
+                })
+                .catch(error => {
+                    console.error("Lỗi khi tải dữ liệu kết hợp:", error);
+                    alert("Lỗi khi tải dữ liệu kết hợp");
+                });
+        } else {
+            fetchChartData(currentTab, type, startDate, endDate)
+                .then(data => drawChart(data, currentTab))
+                .catch(error => {
+                    console.error("Lỗi khi tải dữ liệu:", error);
+                    alert("Lỗi khi tải dữ liệu");
+                });
+        }
+    }
+
+    // Xử lý khi nhấn nút hoặc chuyển tab
+    $(document).ready(() => {
+        // Load mặc định
+        reloadChart();
+
+        // Khi nhấn nút "Xem"
+        $('#btnView').click(() => {
+            reloadChart();
+        });
+
+        // Khi chuyển tab
+        $('#chartTab .nav-link').on('click', function () {
+            currentTab = $(this).data('type'); // lấy giá trị 'price', 'count', 'combine'
+            reloadChart();
+        });
     });
 </script>
+
+
 
 {%endblock%}
