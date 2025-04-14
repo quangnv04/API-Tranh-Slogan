@@ -137,4 +137,10 @@ class ProductsModel:
             cursor.execute("SELECT COUNT(*) FROM products WHERE publish = TRUE")
         result = cursor.fetchone()
         return result[0] if result else 0
+    
+    def delete_product(self, product_slug):
+        cursor = self.db_connection.cursor()
+        result = cursor.execute('DELETE FROM products WHERE slug = ?', (product_slug,))
+        self.db_connection.commit()
+        return result.rowcount > 0
 

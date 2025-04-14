@@ -36,8 +36,23 @@ class RolesModel:
         cursor.execute('SELECT * FROM roles')
         roles = cursor.fetchall()
         return [dict(row) for row in roles]
+    
+    def update_role(self, role_id, updates):
+        cursor = self.db_connection.cursor()
+        set_clause = ', '.join(f"{key} = ?" for key in updates.keys())
+        values = list(updates.values())
+        values.append(role_id)
+
+        result = cursor.execute(f'''
+        UPDATE roles
+        SET {set_clause}
+        WHERE id = ?
+        ''', values)
+        self.db_connection.commit()
+        return result.rowcount > 0
 
     def delete_role(self, role_id):
         cursor = self.db_connection.cursor()
-        cursor.execute('DELETE FROM roles WHERE id = ?', (role_id,))
+        result = cursor.execute('DELETE FROM roles WHERE id = ?', (role_id,))
         self.db_connection.commit()
+        return result.rowcount > 0

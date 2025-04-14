@@ -36,7 +36,12 @@ $(document).ready(function () {
         const subcategoryList = $(this).siblings('.subcategory-list');
         $('.subcategory-list').slideUp();
         if (subcategoryList.length > 0) {
-            subcategoryList.slideToggle();
+            if (subcategoryList.is(':visible')) {
+                $('.subcategory-list').slideUp();
+            } else {
+                subcategoryList.slideToggle();
+            }
+            
         } else {
             fetchProductsByType(selectedType, page);
 

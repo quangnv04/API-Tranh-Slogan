@@ -74,3 +74,9 @@ class AccountModel:
         cursor = self.db_connection.cursor()
         cursor.execute('DELETE FROM account WHERE id = ?', (account_id,))
         self.db_connection.commit()
+
+    def get_all_accounts(self):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM account')
+        accounts = cursor.fetchall()
+        return [dict(row) for row in accounts]
