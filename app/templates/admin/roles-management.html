@@ -72,8 +72,7 @@ Admin | Roles Management
 <div class="container-fluid py-4">
     <div class="d-sm-flex justify-content-end">
         <div class="d-flex ">
-            <a href="javascript:;" class="btn btn-icon btn-outline-white" id="create-btn" data-bs-toggle="modal"
-                data-bs-target="#roleModal">
+            <a href="javascript:;" class="btn btn-icon btn-outline-white" id="create-btn" data-bs-toggle="modal" data-bs-target="#roleModal">
                 New Role
             </a>
         </div>
@@ -110,7 +109,6 @@ Admin | Roles Management
                         </div>
                         <div class="card-body pb-3">
                             <form role="form text-left">
-                                <input type="hidden" id="input-role-id">
                                 <label>Role Name</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" id="input-role-name" placeholder="Role name">
@@ -145,6 +143,17 @@ Admin | Roles Management
                 tbody.empty();
 
                 data.forEach(r => {
+                    let actionHtml = '';
+                    if (r.role.toLowerCase() !== 'admin') {
+                        actionHtml = `
+                            <a href="javascript:;" data-id="${r.id}" class="edit-btn" data-bs-toggle="modal" data-bs-target="#roleModal">
+                                <i class="fas fa-user-edit text-secondary"></i>
+                            </a>
+                            <a href="javascript:;" data-id="${r.id}" class="mx-3 delete-btn" data-bs-toggle="tooltip">
+                                <i class="fas fa-trash text-secondary"></i>
+                            </a>
+                        `;
+                    }
                     const roleHtml = `
                         <tr>
                             <td>
@@ -155,19 +164,10 @@ Admin | Roles Management
                                     <p class="text-xs font-weight-bold ms-2 mb-0">${r.id}</p>
                                 </div>
                             </td>
-                            <td class="font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${r.role}</span>
-                            </td>
-                            <td class="font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${r.description}</span>
-                            </td>
+                            <td class="text-xs font-weight-bold table-cell">${r.role}</td>
+                            <td class="text-xs font-weight-bold table-cell">${r.description}</td>
                             <td class="text-sm">
-                                <a href="javascript:;" data-id="${r.id}" class="edit-btn" data-bs-original-title="Edit role" data-bs-toggle="modal" data-bs-target="#roleModal">
-                                    <i class="fas fa-user-edit text-secondary"></i>
-                                </a>
-                                <a href="javascript:;" data-id="${r.id}" class="mx-3 delete-btn" data-bs-toggle="tooltip" data-bs-original-title="Delete role">
-                                    <i class="fas fa-trash text-secondary"></i>
-                                </a>
+                                ${actionHtml}
                             </td>
                         </tr>
                     `;
@@ -175,6 +175,7 @@ Admin | Roles Management
                 });
 
                 $('[data-bs-toggle="tooltip"]').tooltip();
+                
                 const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
                     searchable: true,
                     fixedHeight: false,
@@ -193,36 +194,10 @@ Admin | Roles Management
                     }
                 });
 
-                document.querySelectorAll('.edit-btn').forEach(btn => {
-                    btn.addEventListener('click', async () => {
-                        const roleId = btn.dataset.id;
-
-                        try {
-                            const response = await fetch(`/api/admin/role/${roleId}`);
-                            if (!response.ok) throw new Error("Failed to fetch role data");
-
-                            const role = await response.json();
-
-                            document.getElementById('input-role-id').value = role.id;
-                            document.getElementById('input-role-name').value = role.role;
-                            document.getElementById('input-description').value = role.description;
-
-                            document.getElementById('role-modal-title').textContent = "Update Role";
-                            document.getElementById('role-modal-description').textContent = "Enter information to update role";
-                            document.getElementById('save-btn').textContent = "Update";
-
-                            document.getElementById('save-btn').onclick = updateRole;
-
-                            //new bootstrap.Modal(document.getElementById('roleModal')).show();
-
-                        } catch (error) {
-                            alert("Error loading role data: " + error.message);
-                        }
-                    });
-                });
+                
             },
             error: function (error) {
-                console.error("Error fetching roles", error);
+                console.error(error);
             }
         });
     });
@@ -246,25 +221,42 @@ Admin | Roles Management
         }
     });
 
-    document.getElementById('create-btn').addEventListener('click', async function () {
-        document.getElementById('input-role-id').value = "";
-        document.getElementById('input-role-name').value = "";
-        document.getElementById('input-description').value = "";
+    $('#create-btn').on('click', async function () {
+        $('#input-role-name').val("");
+        $('#input-description').val("");
 
-        document.getElementById('role-modal-title').textContent = "New Role";
-        document.getElementById('role-modal-description').textContent = "Enter information to create a new role";
-        document.getElementById('save-btn').textContent = "Create";
+        $('#role-modal-title').text("New Role");
+        $('#role-modal-description').text("Enter information to create a new role");
+        $('#save-btn').text("Create");
 
-        document.getElementById('save-btn').onclick = createRole;
+        $('#save-btn').off('click').on('click', createRole);
+    });
+
+    $('#datatable-search tbody').on('click', '.edit-btn', async function () {
+        const id = $(this).data('id');
+
+        try {
+            const response = await fetch(`/api/admin/role/${id}`);
+            if (!response.ok) throw new Error("Failed to fetch role data");
+
+            const role = await response.json();
+
+            $('#input-role-name').val(role.role);
+            $('#input-description').val(role.description);
+
+            $('#role-modal-title').text("Update Role");
+            $('#role-modal-description').text("Enter information to update role");
+            $('#save-btn').text("Update");
+
+            $('#save-btn').off('click').on('click', () => updateRole(id));
+        } catch (error) {
+            alert(error.message);
+        }
     });
 
     async function createRole() {
         const roleName = document.getElementById('input-role-name').value.trim();
         const description = document.getElementById('input-description').value.trim();
-
-        if (!roleName) {
-            return alert("Role name is required");
-        }
 
         try {
             const response = await fetch('/api/admin/role', {
@@ -281,22 +273,21 @@ Admin | Roles Management
                 alert("Role created successfully!");
                 location.reload();
             } else {
-                alert(result.detail || "Failed to create role");
+                alert(result.detail);
             }
         } catch (error) {
-            alert("Error creating role: " + error.message);
+            alert(error.message);
         }
     }
     
-    async function updateRole() {
-        const roleId = document.getElementById('input-role-id').value;
+    async function updateRole(id) {
         const roleName = document.getElementById('input-role-name').value.trim();
         const description = document.getElementById('input-description').value.trim();
 
         if (!roleName) return alert("Role name is required");
 
         try {
-            const response = await fetch(`/api/admin/role/${roleId}`, {
+            const response = await fetch(`/api/admin/role/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -307,13 +298,13 @@ Admin | Roles Management
 
             const result = await response.json();
             if (response.ok) {
-                alert("Role updated successfully!");
+                alert("Role updated successfully");
                 location.reload();
             } else {
-                alert(result.detail || "Failed to update role");
+                alert(result.detail);
             }
         } catch (err) {
-            alert("Error: " + err.message);
+            alert(err.message);
         }
     }
 </script>

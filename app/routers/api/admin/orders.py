@@ -10,17 +10,17 @@ async def orders(db=Depends(get_db_for_new_thread)):
     return orders
 
 
-@router.get('/api/admin/order/{order_id}')
-async def get_order(order_id: int, db=Depends(get_db_for_new_thread)):
+@router.get('/api/admin/order/{order_hash}')
+async def get_order(order_hash: str, db=Depends(get_db_for_new_thread)):
     order_model = OrdersModel(db)
-    order = order_model.get_orders_by_id(order_id)
+    order = order_model.get_orders_by_hash(order_hash)
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     return order
 
 
-@router.put("/api/admin/order/{order_id}")
-async def update_order(order_id: int, request: Request, db=Depends(get_db_for_new_thread)):
+@router.put("/api/admin/order/{order_hash}")
+async def update_order(order_hash: str, request: Request, db=Depends(get_db_for_new_thread)):
     try:
         data = await request.json()
     except Exception:
@@ -36,10 +36,23 @@ async def update_order(order_id: int, request: Request, db=Depends(get_db_for_ne
 
     order_model = OrdersModel(db)
 
-    if not order_model.get_orders_by_id(order_id):
+    existing_order = order_model.get_orders_by_hash(order_hash)
+    if not existing_order:
         raise HTTPException(status_code=404, detail="Order not found")
 
-    success = order_model.update_order(order_id, data)
+    new_name = data.get("name", existing_order["name"])
+    new_phone = data.get("phone", existing_order["phone"])
+    new_address = data.get("address", existing_order["address"])
+    new_product = data.get("product", existing_order["product"])
+    new_hash = order_model._generate_hash({
+        "name": new_name,
+        "phone": new_phone,
+        "address": new_address,
+        "product": new_product
+    })
+    data["hash"] = new_hash
+    
+    success = order_model.update_order(order_hash, data)
 
     if success:
         return {"message": "Order updated successfully"}

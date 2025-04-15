@@ -41,21 +41,22 @@ async def create_role(request: Request, db=Depends(get_db_for_new_thread)):
 async def update_role(role_id: int, request: Request, db=Depends(get_db_for_new_thread)):
     try:
         data = await request.json()
+        role = data.get("role")
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON format")
 
     if not data:
         raise HTTPException(status_code=400, detail="No data provided for update")
 
-    if "status" in data:
-        new_status = data["status"]
-        if new_status not in ("active", "inactive"):
-            raise HTTPException(status_code=400, detail="Invalid status value")
-
     role_model = RolesModel(db)
 
-    if not role_model.get_role_by_id(role_id):
+    role_by_id = role_model.get_role_by_id(role_id)
+    if not role_by_id:
         raise HTTPException(status_code=404, detail="Role not found")
+    
+    if role != role_by_id["role"]:
+        if role_model.get_role_by_role(role):
+            raise HTTPException(status_code=400, detail="Role already exists")
 
     success = role_model.update_role(role_id, data)
 
@@ -71,9 +72,6 @@ async def delete_role(role_id: int, db=Depends(get_db_for_new_thread)):
 
     if not existing_role:
         raise HTTPException(status_code=404, detail="Role not found")
-
-    if existing_role.get('status') == 'deleted':
-        raise HTTPException(status_code=400, detail="Role already deleted")
 
     success = role_model.delete_role(role_id)
     if success:

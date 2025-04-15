@@ -72,14 +72,10 @@ Admin | Accounts Management
 <div class="container-fluid py-4">
     <div class="d-sm-flex justify-content-end">
         <div class="d-flex ">
-            <a href="javascript:;" class="btn btn-icon btn-outline-white" data-bs-toggle="modal"
-                data-bs-target="#exampleModalSignUp">
+            <a href="javascript:;" class="btn btn-icon btn-outline-white" id="create-btn" data-bs-toggle="modal"
+                data-bs-target="#accountModal">
                 New Account
             </a>
-            <button class="btn btn-icon btn-outline-white ms-2 export" data-type="csv" type="button">
-                <span class="btn-inner--icon"><i class="ni ni-archive-2"></i></span>
-                <span class="btn-inner--text">Export CSV</span>
-            </button>
         </div>
     </div>
     <div class="row">
@@ -91,10 +87,10 @@ Admin | Accounts Management
                             <tr>
                                 <th>ID</th>
                                 <th>Username</th>
-                                <th>Password Hash</th>
+                                <th>Phone Number</th>
                                 <th>Email</th>
-                                <th>Created At</th>
                                 <th>Updated At</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -107,45 +103,43 @@ Admin | Accounts Management
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-primary text-gradient">New Accounts</h3>
-                            <p class="mb-0">Enter your information to register</p>
+                            <h3 class="font-weight-bolder text-primary text-gradient" id="account-modal-title">New Account</h3>
+                            <p class="mb-0" id="account-modal-description">Enter information to create a new account</p>
                         </div>
                         <div class="card-body pb-3">
                             <form role="form text-left">
                                 <label>Username</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                                        aria-describedby="name-addon">
+                                    <input type="text" class="form-control" name="username" id="input-username" placeholder="Username">
                                 </div>
                                 <label>Password</label>
                                 <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="Password"
-                                        aria-label="Password" aria-describedby="password-addon">
+                                    <input type="password" class="form-control" name="password" id="input-password" placeholder="Password">
+                                </div>
+                                <label>Phone Number</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="phone" id="input-phone" placeholder="Phone Number">
                                 </div>
                                 <label>Email</label>
                                 <div class="input-group mb-3">
-                                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
-                                        aria-describedby="email-addon">
+                                    <input type="email" class="form-control" name="email" id="input-email" placeholder="Email">
                                 </div>
-                                <div class="form-check form-check-info text-left">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                                        checked="">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        I agree to the <a href="javascript:;" class="text-dark font-weight-bolder">Terms
-                                            and Conditions</a>
-                                    </label>
+                                <label>Notes</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="notes" id="input-notes" placeholder="Notes">
+                                </div>
+                                <label>Status</label>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" name="status" id="status-switch">
                                 </div>
                                 <div class="text-center">
-                                    <button type="button"
-                                        class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Create</button>
+                                    <button type="button" id="save-btn" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Create</button>
                                 </div>
                             </form>
                         </div>
@@ -154,6 +148,30 @@ Admin | Accounts Management
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="accountDetailModal" tabindex="-1" role="dialog" aria-labelledby="accountDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <h4 id="detail-id" class="mb-3">Account Details</h4>
+                            <p><strong>Username:</strong> <span id="detail-username"></span></p>
+                            <p><strong>Password Hash:</strong> <span id="detail-password-hash"></span></p>
+                            <p><strong>Phone Number:</strong> <span id="detail-phone"></span></p>
+                            <p><strong>Email:</strong> <span id="detail-email"></span></p>
+                            <p><strong>Notes:</strong> <span id="detail-notes"></span></p>
+                            <p><strong>Status:</strong> <span id="detail-status"></span></p>
+                            <p><strong>Created At:</strong> <span id="detail-created-at"></span></p>
+                            <p><strong>Updated At:</strong> <span id="detail-updated-at"></span></p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg btn-rounded w-100 mt-4 mb-0" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 {% endblock %}
 
@@ -180,32 +198,21 @@ Admin | Accounts Management
                                     <p class="text-xs font-weight-bold ms-2 mb-0">${a.id}</p>
                                 </div>
                             </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <div class="d-flex align-items-center">
-                                    <span>${a.username}</span>
+                            <td class="text-xs font-weight-bold table-cell">${a.username}</td>
+                            <td class="text-xs font-weight-bold table-cell">${a.phone}</td>
+                            <td class="text-xs font-weight-bold table-cell">${a.email}</td>
+                            <td class="text-xs font-weight-bold table-cell">${a.updated_at}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input toggle-status-switch" type="checkbox" role="switch" data-id="${a.id}" ${a.status === 'active' ? 'checked' : ''}>
                                 </div>
                             </td>
-                            <td class="font-weight-bold table-cell">
-                                <span
-                                    class="my-2 text-xs">${a.password_hash}</span>
-                            </td>
-                            <td class="font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${a.email}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${a.created_at}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${a.updated_at}</span>
-                            </td>
                             <td class="text-sm">
-                                <a href="javascript:;" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Edit product">
-                                    <i class="fas fa-user-edit text-secondary"></i>
+                                <a href="javascript:;" class="toggle-details" data-id="${a.id}" data-bs-toggle="modal" data-bs-target="#accountDetailModal">
+                                    <i class="fas fa-eye text-secondary"></i>
                                 </a>
-                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Delete product">
-                                    <i class="fas fa-trash text-secondary"></i>
+                                <a href="javascript:;" class="mx-3 edit-btn" data-id="${a.id}" data-bs-toggle="modal" data-bs-target="#accountModal">
+                                    <i class="fas fa-user-edit text-secondary"></i>
                                 </a>
                             </td>
                         </tr>
@@ -213,7 +220,6 @@ Admin | Accounts Management
                     tbody.append(accountHtml);
                 });
 
-                $('[data-bs-toggle="tooltip"]').tooltip();
                 let table = new simpleDatatables.DataTable("#datatable-search", {
                     searchable: true,
                     fixedHeight: false
@@ -232,27 +238,167 @@ Admin | Accounts Management
                 });
             },
             error: function (error) {
-                console.error("Error fetching roles:", error);
+                console.error("Error fetching accounts:", error);
+            }
+        });
+
+        $('#datatable-search tbody').on('change', '.toggle-status-switch', async function () {
+            const checkbox = $(this);
+            const id = checkbox.data('id');
+            const newStatus = checkbox.is(':checked') ? 'active' : 'inactive';
+
+            try {
+                const response = await fetch(`/api/admin/account/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                const result = await response.json();
+                if (!response.ok) {
+                    alert(result.detail);
+                    checkbox.prop('checked', !checkbox.is(':checked'));
+                }
+            } catch (err) {
+                alert(err.message);
+                checkbox.prop('checked', !checkbox.is(':checked'));
             }
         });
 
     });
 
-    document.querySelectorAll(".export").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-            var type = el.dataset.type;
+    $(document).on('click', '.toggle-details', async function () {
+        const id = $(this).data('id');
 
-            var data = {
-                type: type,
-                filename: "soft-ui-" + type,
-            };
-
-            if (type === "csv") {
-                data.columnDelimiter = "|";
+        try {
+            const response = await fetch(`/api/admin/account/${id}`);
+            const data = await response.json();
+            if (!response.ok) {
+                return alert(data.detail);
             }
 
-            dataTableSearch.export(data);
-        });
+            $('#detail-id').text('Account #' + data.id);
+            $('#detail-username').text(data.username);
+            $('#detail-password-hash').text(data.password_hash);
+            $('#detail-phone').text(data.phone);
+            $('#detail-email').text(data.email);
+            $('#detail-notes').text(data.notes);
+            $('#detail-status').text(data.status);
+            $('#detail-created-at').text(data.created_at);
+            $('#detail-updated-at').text(data.updated_at);
+        } catch (err) {
+            alert(err.message);
+        }
     });
+
+    $('#create-btn').on('click', async function () {
+        $('#input-username').val("");
+        $('#input-password').val("");
+        $('#input-phone').val("");
+        $('#input-email').val("");
+        $('#input-notes').val("");
+        $('#status-switch').prop('checked');
+
+        $('#account-modal-title').text("New Account");
+        $('#account-modal-description').text("Enter information to create a new account");
+        $('#save-btn').text("Create");
+
+        $('#save-btn').off('click').on('click', createAccount);
+    });
+
+    $('#datatable-search tbody').on('click', '.edit-btn', async function () {
+        const id = $(this).data('id');
+
+        try {
+            const response = await fetch(`/api/admin/account/${id}`);
+            if (!response.ok) throw new Error("Failed to fetch account data");
+
+            const account = await response.json();
+
+            $('#input-username').val(account.username);
+            $('#input-password').val(account.password_hash);
+            $('#input-phone').val(account.phone);
+            $('#input-email').val(account.email);
+            $('#input-notes').val(account.notes);
+            $('#status-switch').prop('checked', account.status == 'active');
+
+            $('#account-modal-title').text("Update Account");
+            $('#account-modal-description').text("Enter information to update account");
+            $('#save-btn').text("Update");
+
+            $('#save-btn').off('click').on('click', () => updateAccount(id));
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+    async function createAccount() {
+        const username = document.getElementById('input-username').value.trim();
+        const password_hash = document.getElementById('input-password').value.trim();
+        const phone = document.getElementById('input-phone').value.trim();
+        const email = document.getElementById('input-email').value.trim();
+        const notes = document.getElementById('input-notes').value.trim();
+        const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
+
+        try {
+            const response = await fetch('/api/admin/account', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: username,
+                    password_hash: password_hash,
+                    phone: phone,
+                    email: email,
+                    notes: notes,
+                    status: status
+                })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("Account created successfully!");
+                location.reload();
+            } else {
+                alert(result.detail);
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+    
+    async function updateAccount(id) {
+        const username = document.getElementById('input-username').value.trim();
+        const password_hash = document.getElementById('input-password').value.trim();
+        const phone = document.getElementById('input-phone').value.trim();
+        const email = document.getElementById('input-email').value.trim();
+        const notes = document.getElementById('input-notes').value.trim();
+        const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
+
+        try {
+            const response = await fetch(`/api/admin/account/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    username: username,
+                    password_hash: password_hash,
+                    phone: phone,
+                    email: email,
+                    notes: notes,
+                    status: status 
+                })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("Account updated successfully");
+                location.reload();
+            } else {
+                alert(result.detail);
+            }
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+
 </script>
 {% endblock %}

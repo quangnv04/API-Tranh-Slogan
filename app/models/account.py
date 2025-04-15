@@ -25,6 +25,12 @@ class AccountModel:
         )
         self.db_connection.commit()
 
+    def get_account_by_id(self, account_id):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM account WHERE id = ?', (account_id,))
+        account = cursor.fetchone()
+        return dict(account) if account else None
+    
     def get_account_by_username(self, username):
         cursor = self.db_connection.cursor()
         cursor.execute('SELECT * FROM account WHERE username = ?', (username,))

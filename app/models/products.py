@@ -1,3 +1,4 @@
+import hashlib
 import sqlite3
 import urllib.parse
 from app.dependencies import GOOGLE_SPREADSHEET_API_URL
@@ -8,6 +9,10 @@ class ProductsModel:
         self.GOOGLE_SPREADSHEET_API_URL = GOOGLE_SPREADSHEET_API_URL
         self.db_connection = db_connection
         self.db_connection.row_factory = sqlite3.Row
+
+    def _generate_hash(self, product):
+        hash_string = f"{product['type']}|{product['sku']}|{product['title']}"
+        return hashlib.md5(hash_string.encode('utf-8')).hexdigest()
 
     def insert_products(self, products):
         cursor = self.db_connection.cursor()
@@ -39,8 +44,8 @@ class ProductsModel:
                     product['title'],
                     product['slug'],
                     product['type'],
-                    str(product['canvasPrice']),
-                    str(product['micaPrice']),
+                    str(product['canvas_price']),
+                    str(product['mica_price']),
                     product['discount'],
                     images,
                     product['description'],
@@ -111,8 +116,24 @@ class ProductsModel:
         cursor.execute('SELECT * FROM products WHERE slug = ?', (slug,))
         product = cursor.fetchone()
         return dict(product) if product else None
+    
+    def get_product_by_hash(self, hash):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM products WHERE hash = ?', (hash,))
+        product = cursor.fetchone()
+        return dict(product) if product else None
 
     def get_all_products(self):
+        cursor = self.db_connection.cursor()
+        cursor.execute(f'''
+        SELECT *
+        FROM products
+        ORDER BY id ASC
+        ''', ())
+        products = cursor.fetchall()
+        return [dict(row) for row in products]
+    
+    def get_all_publish_products(self):
         cursor = self.db_connection.cursor()
         cursor.execute(f'''
         SELECT *
@@ -138,9 +159,23 @@ class ProductsModel:
         result = cursor.fetchone()
         return result[0] if result else 0
     
-    def delete_product(self, product_slug):
+    def update_product(self, product_hash, updates):
         cursor = self.db_connection.cursor()
-        result = cursor.execute('DELETE FROM products WHERE slug = ?', (product_slug,))
+        set_clause = ', '.join(f"{key} = ?" for key in updates.keys())
+        values = list(updates.values())
+        values.append(product_hash)
+
+        result = cursor.execute(f'''
+        UPDATE products
+        SET {set_clause}, updated_at = CURRENT_TIMESTAMP
+        WHERE hash = ?
+        ''', values)
+        self.db_connection.commit()
+        return result.rowcount > 0
+    
+    def delete_product(self, product_hash):
+        cursor = self.db_connection.cursor()
+        result = cursor.execute('DELETE FROM products WHERE hash = ?', (product_hash,))
         self.db_connection.commit()
         return result.rowcount > 0
 

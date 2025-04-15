@@ -72,35 +72,26 @@ Admin | Products Management
 <div class="container-fluid py-4">
     <div class="d-sm-flex justify-content-end">
         <div class="d-flex ">
-            <a href="javascript:;" class="btn btn-icon btn-outline-white" data-bs-toggle="modal"
-                data-bs-target="#exampleModalSignUp">
+            <a href="javascript:;" class="btn btn-icon btn-outline-white" id="create-btn" data-bs-toggle="modal" data-bs-target="#productModal">
                 New Product
             </a>
-            <button class="btn btn-icon btn-outline-white ms-2 export" data-type="csv" type="button">
-                <span class="btn-inner--icon"><i class="ni ni-archive-2"></i></span>
-                <span class="btn-inner--text">Export CSV</span>
-            </button>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive">
                     <table class="table table-flush" id="datatable-search">
                         <thead class="thead-light">
-                            <tr>
-                                <th>ID</th>
-                                <th>Hash</th>
-                                <th>SKU</th>
-                                <th>Title</th>
-                                <th>Slug</th>
-                                <th>Type</th>
-                                <th>Action</th>
-                            </tr>
+                            
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="7" class="text-center">Đang tải dữ liệu...</td>
+                                <td colspan="8">
+                                    <div style="height: 450px; display: flex; justify-content: center; align-items: center;">
+                                        Đang tải dữ liệu...
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -109,80 +100,115 @@ Admin | Products Management
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-primary text-gradient">New Product</h3>
-                            <p class="mb-0">Enter information to create a new product</p>
+                            <h3 class="font-weight-bolder text-primary text-gradient" id="product-modal-title">New Product</h3>
+                            <p class="mb-0" id="product-modal-description">Enter information to create a new product</p>
                         </div>
                         <div class="card-body pb-3">
-                            <form role="form text-left">
-                                <label>Hash</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Hash" aria-label="Hash"
-                                        aria-describedby="hash-addon">
-                                </div>
-                                <label>SKU</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="SKU"
-                                        aria-label="SKU" aria-describedby="sku-addon">
-                                </div>
-                                <label>Title</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Title" aria-label="Title"
-                                        aria-describedby="title-addon">
-                                </div>
-                                <label>Slug</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Slug" aria-label="Slug"
-                                        aria-describedby="slug-addon">
-                                </div>
-                                <label>Type</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Type" aria-label="Type"
-                                        aria-describedby="type-addon">
-                                </div>
-                                <label>Canvas Price</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Canvas Price" aria-label="Canvas Price"
-                                        aria-describedby="canvas-price-addon">
-                                </div>
-                                <label>Mica Price</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Mica Price" aria-label="Mica Price"
-                                        aria-describedby="mica-price-addon">
-                                </div>
-                                <label>Discount</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Discount" aria-label="Discount"
-                                        aria-describedby="discount-addon">
-                                </div>
-                                <label>Images</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Images" aria-label="Images"
-                                        aria-describedby="images-addon">
-                                </div>
-                                <label>Description</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Description" aria-label="Description"
-                                        aria-describedby="description-addon">
-                                </div>
-                                <label>Publish</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Publish" aria-label="Publish"
-                                        aria-describedby="publish-addon">
+                            <form id="create-product-form" role="form text-left">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>SKU</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="sku" id="input-sku" placeholder="SKU (Ex: TS01)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Title</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="title" id="input-title" placeholder="Title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Type</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="type" id="input-type" placeholder="Type">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Slug</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="slug" id="input-slug" placeholder="Slug">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Canvas Price</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="canvas_price" id="input-canvas-price" placeholder="Size | Price (Ex: 30x40 | 120000)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Mica Price</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="mica_price" id="input-mica-price" placeholder="Size | Price (Ex: 30x40 | 150000)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Images</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="images" id="input-images" placeholder='Images (Ex: ["img1.jpg", "img2.jpg"])'>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Description</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="description" id="input-description" placeholder="Description">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Publish</label>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="publish" id="publish-switch">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Discount</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="discount" id="input-discount" placeholder="Discount">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button"
-                                        class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Create</button>
+                                    <button type="button" id="save-btn" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Create</button>
                                 </div>
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <div class="modal fade" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-5 text-center">
+                            <img id="detail-image" src="" class="img-fluid rounded-3 shadow-sm" alt="Product Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h4 id="detail-id" class="mb-3">Product Details</h4>
+                            <p><strong>Hash:</strong> <span id="detail-hash"></span></p>
+                            <p><strong>SKU:</strong> <span id="detail-sku"></span></p>
+                            <p><strong>Title:</strong> <span id="detail-title"></span></p>
+                            <p><strong>Type:</strong> <span id="detail-type"></span></p>
+                            <p><strong>Slug:</strong> <span id="detail-slug"></span></p>
+                            <p><strong>Canvas Price:</strong> <span id="detail-canvas-price"></span></p>
+                            <p><strong>Mica Price:</strong> <span id="detail-mica-price"></span></p>
+                            <p><strong>Discount:</strong> <span id="detail-discount"></span></p>
+                            <p><strong>Description:</strong> <span id="detail-description"></span></p>
+                            <p><strong>Publish:</strong> <span id="detail-publish"></span></p>
+                            <p><strong>Create At:</strong> <span id="detail-created-at"></span></p>
+                            <p><strong>Updated At:</strong> <span id="detail-updated-at"></span></p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg btn-rounded w-100 mt-4 mb-0" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -195,8 +221,6 @@ Admin | Products Management
 <script src="/assets_admin/js/plugins/datatables.js"></script>
 <script>
     $(document).ready(function () {
-        
-
         $.ajax({
             url: '/api/admin/products',
             type: 'GET',
@@ -204,6 +228,7 @@ Admin | Products Management
             success: function (data) {
                 const tbody = $('#datatable-search tbody');
                 tbody.empty();
+                tbody.css('height', '');
 
                 data.forEach(p => {
                     rowHtml = `
@@ -213,44 +238,49 @@ Admin | Products Management
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="customCheck${p.id}">
                                     </div>
-                                    <p class="text-sm font-weight-normal table-cell ms-2 mb-0">${p.id}</p>
+                                    <p class="text-xs font-weight-bold table-cell ms-2 mb-0">${p.id}</p>
                                 </div>
                             </td>
-                            <td class="text-sm font-weight-normal table-cell">${p.hash}</td>
-                            <td class="text-sm font-weight-normal table-cell">${p.sku}</td>
-                            <td class="text-sm font-weight-normal table-cell">${p.title}</td>
-                            <td class="text-sm font-weight-normal table-cell">${p.slug}</td>
-                            <td class="text-sm font-weight-normal table-cell">${p.type}</td>
+                            <td class="text-xs font-weight-bold table-cell">${p.sku}</td>
+                            <td class="text-xs font-weight-bold table-cell">${p.title}</td>
+                            <td class="text-xs font-weight-bold table-cell">${p.type}</td>
+                            <td class="text-xs font-weight-bold table-cell">${p.discount}</td>
+                            <td class="text-xs font-weight-bold table-cell">${p.updated_at}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input toggle-publish-switch" type="checkbox" role="switch" data-hash="${p.hash}" ${p.publish ? 'checked' : ''}>
+                                </div>
+                            </td>
                             <td class="text-sm">
-                                <a href="javascript:;" class="toggle-details" data-id="${p.id}" data-bs-toggle="tooltip" data-bs-original-title="Xem thêm">
+                                <a href="javascript:;" class="toggle-details" data-hash="${p.hash}" data-bs-toggle="modal" data-bs-target="#productDetailModal">
                                     <i class="fas fa-eye text-secondary"></i>
                                 </a>
-                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit role">
+                                <a href="javascript:;" class="mx-3 edit-btn" data-hash="${p.hash}" data-bs-toggle="modal" data-bs-target="#productModal">
                                     <i class="fas fa-user-edit text-secondary"></i>
                                 </a>
-                                <a href="javascript:;" data-slug="${p.slug}" class="delete-btn" data-bs-toggle="tooltip" data-bs-original-title="Delete role">
+                                <a href="javascript:;" class="delete-btn" data-hash="${p.hash}" data-bs-toggle="tooltip">
                                     <i class="fas fa-trash text-secondary"></i>
                                 </a>
                             </td>
-                            <tr class="details-row" style="display:none; background-color:#f9f9f9;">
-                                <td colspan="7" class="text-sm font-weight-normal p-0">
-                                    <div class="details-content" style="padding: 15px 60px; display: none;">
-                                        <strong>Canvas Price:</strong> ${p.canvas_price}<br>
-                                        <strong>Mica Price:</strong> ${p.mica_price}<br>
-                                        <strong>Discount:</strong> ${p.discount}<br>
-                                        <strong>Images:</strong> ${p.images}<br>
-                                        <strong>Description:</strong> ${p.description}<br>
-                                        <strong>Publish:</strong> ${p.publish}<br>
-                                        <strong>Created At:</strong> ${p.created_at}<br>
-                                        <strong>Updated At:</strong> ${p.updated_at}
-                                    </div>
-                                </td>
-                            </tr>
-
                         </tr>
                     `;
                     tbody.append(rowHtml);
                 });
+
+                thHtml = `
+                    <tr>
+                        <th>ID</th>
+                        <th>SKU</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Discount</th>
+                        <th>Updated At</th>
+                        <th>Publish</th>
+                        <th>Action</th>
+                    </tr>
+                `;
+                const thead = $('#datatable-search thead');
+                thead.append(thHtml);
                 
                 $('[data-bs-toggle="tooltip"]').tooltip();
 
@@ -275,32 +305,66 @@ Admin | Products Management
                 console.error("Error fetching products:", error);
             }
         });
+        
+        $('#datatable-search tbody').on('change', '.toggle-publish-switch', async function () {
+            const checkbox = $(this);
+            const hash = checkbox.data('hash');
+            const newPublish = checkbox.is(':checked') ? 1 : 0;
+
+            try {
+                const response = await fetch(`/api/admin/product/${hash}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ publish: newPublish })
+                });
+
+                const result = await response.json();
+                if (!response.ok) {
+                    alert(result.detail);
+                    checkbox.prop('checked', !checkbox.is(':checked'));
+                }
+            } catch (err) {
+                alert(err.message);
+                checkbox.prop('checked', !checkbox.is(':checked'));
+            }
+        });
     });
-    
-    $(document).on('click', '.toggle-details', function (e) {
-        const row = $(this).closest('tr');
-        const detailsRow = row.next('.details-row');
-        const detailsContent = detailsRow.find('.details-content');
 
-        $('.details-row').not(detailsRow).find('.details-content:visible').slideUp(200);
-        $('.details-row').not(detailsRow).hide();
+    $(document).on('click', '.toggle-details', async function () {
+        const hash = $(this).data('hash');
 
-        if (detailsContent.is(':visible')) {
-            detailsContent.slideUp(200, function () {
-                detailsRow.hide();
-            });
-        } else {
-            detailsRow.show();
-            detailsContent.slideDown(200);
+        try {
+            const response = await fetch(`/api/admin/product/${hash}`);
+            const data = await response.json();
+            if (!response.ok) {
+                return alert(data.detail);
+            }
+
+            $('#detail-id').text('Product #' + data.id);
+            $('#detail-hash').text(data.hash);
+            $('#detail-sku').text(data.sku);
+            $('#detail-title').text(data.title);
+            $('#detail-slug').text(data.slug);
+            $('#detail-type').text(data.type);
+            $('#detail-canvas-price').text(data.canvas_price);
+            $('#detail-mica-price').text(data.mica_price);
+            $('#detail-discount').text(data.discount);
+            $('#detail-description').text(data.description);
+            $('#detail-publish').text(data.publish == 1 ? 'Yes' : 'No');
+            $('#detail-created-at').text(data.created_at);
+            $('#detail-updated-at').text(data.updated_at);
+            $('#detail-image').attr('src', data.thumbnail[0]);
+        } catch (err) {
+            alert(err.message);
         }
     });
 
     $(document).on('click', '.delete-btn', function () {
-        const slug = $(this).data('slug');
+        const hash = $(this).data('hash');
 
-        if (confirm("Do you want to delete this role?")) {
+        if (confirm("Do you want to delete this product?")) {
             $.ajax({
-                url: `/api/admin/product/${slug}/delete`,
+                url: `/api/admin/product/${hash}/delete`,
                 type: 'PATCH',
                 success: function (res) {
                     alert(res.message);
@@ -313,5 +377,185 @@ Admin | Products Management
             });
         }
     });
+
+    $('#create-btn').on('click', async function () {
+        $('#input-sku').val("").prop('disabled', false);
+        $('#input-title').val("");
+        $('#input-type').val("");
+        $('#input-slug').val("").prop('disabled', true);
+        $('#input-canvas-price').val("");
+        $('#input-mica-price').val("");
+        $('#input-discount').val("");
+        $('#input-images').val("");
+        $('#input-description').val("");
+        $('#publish-switch').prop('checked', true);
+
+        $('#product-modal-title').text("New Product");
+        $('#product-modal-description').text("Enter information to create a new product");
+        $('#save-btn').text("Create");
+
+        $('#save-btn').off('click').on('click', createProduct);
+    });
+
+    $('#datatable-search tbody').on('click', '.edit-btn', async function () {
+        const hash = $(this).data('hash');
+
+        try {
+            const response = await fetch(`/api/admin/product/${hash}`);
+            if (!response.ok) throw new Error("Failed to fetch product data");
+
+            const product = await response.json();
+
+            $('#input-sku').val(product.sku).prop('disabled', true);
+            $('#input-title').val(product.title);
+            $('#input-type').val(product.type);
+            $('#input-slug').val(product.slug).prop('disabled', true);
+            $('#input-canvas-price').val(product.canvas_price);
+            $('#input-mica-price').val(product.mica_price);
+            $('#input-discount').val(product.discount);
+            $('#input-images').val(product.images);
+            $('#input-description').val(product.description);
+            $('#publish-switch').prop('checked', product.publish == 1);
+
+            $('#product-modal-title').text("Update Product");
+            $('#product-modal-description').text("Enter information to update product");
+            $('#save-btn').text("Update");
+
+            $('#save-btn').off('click').on('click', () => updateProduct(hash));
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+    async function createProduct() {
+        const sku = document.getElementById('input-sku').value.trim();
+        const title = document.getElementById('input-title').value.trim();
+        const slug = document.getElementById('input-slug').value.trim();
+        const type = document.getElementById('input-type').value.trim();
+        const canvas_price = document.getElementById('input-canvas-price').value.trim();
+        const mica_price = document.getElementById('input-mica-price').value.trim();
+        const discount = document.getElementById('input-discount').value.trim();
+        const images = document.getElementById('input-images').value.trim();
+        const description = document.getElementById('input-description').value.trim();
+        const publish = document.getElementById('publish-switch').checked ? 1 : 0;
+        
+        try {
+            const response = await fetch('/api/admin/product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    
+                    sku: sku,
+                    title: title,
+                    slug: slug,
+                    type: type,
+                    canvas_price: canvas_price,
+                    mica_price: mica_price,
+                    discount: discount,
+                    images: images,
+                    description: description,
+                    publish: publish
+                })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("Products created successfully!");
+                location.reload();
+            } else {
+                alert(result.detail);
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+    
+    async function updateProduct(hash) {
+        const title = document.getElementById('input-title').value.trim();
+        const slug = document.getElementById('input-slug').value.trim();
+        const type = document.getElementById('input-type').value.trim();
+        const canvas_price = document.getElementById('input-canvas-price').value.trim();
+        const mica_price = document.getElementById('input-mica-price').value.trim();
+        let discount = document.getElementById('input-discount').value.trim();
+        const images = document.getElementById('input-images').value.trim();
+        const description = document.getElementById('input-description').value.trim();
+        const publish = document.getElementById('publish-switch').checked ? 1 : 0;
+
+        if (!title) 
+            return alert("Title is required");
+        else if (!type) 
+            return alert("Type is required");
+        else if (!canvas_price)
+            return alert("Canvas price is required");
+        if (!mica_price)
+            return alert("Mica price is required");
+        if (!images)
+            return alert("Images is required");
+
+        if (discount) {
+            discount = parseFloat(discount);
+            if (isNaN(discount)) {
+                alert("Discount must be a number");
+                return;
+            }
+            if (discount < 0 || discount > 100)
+                return alert("Discount must be between 0 and 100");
+        }
+
+        try {
+            const response = await fetch(`/api/admin/product/${hash}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: title,
+                    slug: slug,
+                    type: type,
+                    canvas_price: canvas_price,
+                    mica_price: mica_price,
+                    discount: discount,
+                    images: images,
+                    description: description,
+                    publish: publish
+                })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("Product updated successfully!");
+                location.reload();
+            } else {
+                alert(result.detail);
+            }
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+
+    function generateSlug(text) {
+        return text
+            .toLowerCase()
+            .normalize("NFD")                   // remove accents
+            .replace(/[\u0300-\u036f]/g, "")    // remove accents continued
+            .replace(/đ/g, "d")                    // convert đ
+            .replace(/[^a-z0-9\s-]/g, "")       // remove invalid chars
+            .trim()                             // trim whitespace
+            .replace(/\s+/g, "-");              // replace spaces with -
+    }
+
+    function updateSlug() {
+        const type = document.getElementById('input-type').value || "";
+        const sku = document.getElementById('input-sku').value || "";
+        const title = document.getElementById('input-title').value || "";
+
+        const raw = `${type} ${sku} ${title}`;
+        const slug = generateSlug(raw);
+
+        document.getElementById('input-slug').value = slug;
+    }
+
+    document.getElementById('input-type').addEventListener('input', updateSlug);
+    document.getElementById('input-sku').addEventListener('input', updateSlug);
+    document.getElementById('input-title').addEventListener('input', updateSlug);
+
 </script>
 {% endblock %}

@@ -70,18 +70,6 @@ Admin | Orders Management
     </div>
 </nav>
 <div class="container-fluid py-4">
-    <div class="d-sm-flex justify-content-end">
-        <div class="d-flex ">
-            <!-- <a href="javascript:;" class="btn btn-icon btn-outline-white" data-bs-toggle="modal"
-                data-bs-target="#exampleModalSignUp">
-                New Order
-            </a>
-            <button class="btn btn-icon btn-outline-white ms-2 export" data-type="csv" type="button">
-                <span class="btn-inner--icon"><i class="ni ni-archive-2"></i></span>
-                <span class="btn-inner--text">Export CSV</span>
-            </button> -->
-        </div>
-    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -91,12 +79,11 @@ Admin | Orders Management
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Address</th>
                                 <th>Phone Number</th>
-                                <th>Product</th>
-                                <th>Notes</th>
-                                <th>Time Created</th>
-                                <th>Orders</th>
+                                <th>Address</th>
+                                <th>Price</th>
+                                <th>Created At</th>
+                                <th>Status</th>
                                 <th>Finished</th>
                                 <th>Action</th>
                             </tr>
@@ -110,45 +97,69 @@ Admin | Orders Management
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-primary text-gradient">New Users</h3>
-                            <p class="mb-0">Enter your information to register</p>
+                            <h3 class="font-weight-bolder text-primary text-gradient">Update Order</h3>
+                            <p class="mb-0">Enter information to create a update Order</p>
                         </div>
                         <div class="card-body pb-3">
                             <form role="form text-left">
-                                <label>Username</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                                        aria-describedby="name-addon">
-                                </div>
-                                <label>Password</label>
-                                <div class="input-group mb-3">
-                                    <input type="password" class="form-control" placeholder="Password"
-                                        aria-label="Password" aria-describedby="password-addon">
-                                </div>
-                                <label>Email</label>
-                                <div class="input-group mb-3">
-                                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
-                                        aria-describedby="email-addon">
-                                </div>
-                                <div class="form-check form-check-info text-left">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                                        checked="">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        I agree to the <a href="javascript:;" class="text-dark font-weight-bolder">Terms
-                                            and Conditions</a>
-                                    </label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="name" id="input-name" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Phone Number</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="phone" id="input-phone" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Address</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="address" id="input-address" placeholder="Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Product</label>
+                                        <div class="input-group mb-3">
+                                            <textarea class="form-control" name="product" id="input-product" placeholder="Product" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Price</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="price" id="input-price" placeholder="Price">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Notes</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="notes" id="input-notes" placeholder="Notes">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Status</label>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="status" id="status-switch">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Finished</label>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" name="finished" id="finished-switch">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button"
-                                        class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Create</button>
+                                    <button type="button" id="save-btn" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -157,32 +168,73 @@ Admin | Orders Management
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <h4 id="detail-id" class="mb-3">Order Details</h4>
+                            <p><strong>Hash:</strong> <span id="detail-hash"></span></p>
+                            <p><strong>Name:</strong> <span id="detail-name"></span></p>
+                            <p><strong>Phone Number:</strong> <span id="detail-phone"></span></p>
+                            <p><strong>Address:</strong> <span id="detail-address"></span></p>
+                            <p><strong>Product:</strong> <span id="detail-product"></span></p>
+                            <p><strong>Price:</strong> <span id="detail-price"></span></p>
+                            <p><strong>Notes:</strong> <span id="detail-notes"></span></p>
+                            <p><strong>Status:</strong> <span id="detail-status"></span></p>
+                            <p><strong>Finished:</strong> <span id="detail-finished"></span></p>
+                            <p><strong>Create At:</strong> <span id="detail-created-at"></span></p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg btn-rounded w-100 mt-4 mb-0" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="printModalLabel">Preview Order</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="order-preview" class="p-4 border rounded bg-white">
+                        <h4 class="text-center mb-4">HÓA ĐƠN BÁN HÀNG</h4>
+                        <p><strong>Mã đơn:</strong> <span id="print-id"></span></p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Khách hàng:</strong> <span id="print-name"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>SĐT:</strong> <span id="print-phone"></span></p>
+                            </div>
+                        </div>
+                        <p><strong>Địa chỉ:</strong> <span id="print-address"></span></p>
+                        <p><strong>Sản phẩm:</strong> <span id="print-product"></span></p>
+                        <p><strong>Giá:</strong> <span id="print-price"></span></p>
+                        <p><strong>Ghi chú:</strong> <span id="print-notes"></span></p>
+                        <p><strong>Ngày đặt hàng:</strong> <span id="print-created-at"></span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="btn-print-pdf" class="btn btn-primary">Print Order (PDF)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
 </div>
 {% endblock %}
 
 {% block script %}
 <script src="/assets_admin/js/plugins/datatables.js"></script>
+<script src="/assets_admin/js/html2pdf.bundle.min.js"></script>
 <script>
-    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-        searchable: true,
-        fixedHeight: false,
-        // perPageSelect: false
-    });
-
     $(document).ready(function () {
-        $('.table-cell').each(function () {
-            if (this.scrollWidth > this.clientWidth) {
-                $(this).attr('data-bs-toggle', 'popover');
-                $(this).popover({
-                    trigger: 'click',
-                    placement: 'top',
-                    content: $(this).text(),
-                    html: false
-                });
-            }
-        });
-
-        dataTableSearch.destroy();
         $.ajax({
             url: '/api/admin/orders',
             type: 'GET',
@@ -202,44 +254,30 @@ Admin | Orders Management
                                     <p class="text-xs font-weight-bold ms-2 mb-0">${o.id}</p>
                                 </div>
                             </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <div class="d-flex align-items-center">
-                                    <span>${o.name}</span>
+                            <td class="text-xs font-weight-bold table-cell">${o.name}</td>
+                            <td class="text-xs font-weight-bold table-cell">${o.phone}</td>
+                            <td class="text-xs font-weight-bold table-cell">${o.address}</td>
+                            <td class="text-xs font-weight-bold table-cell">${o.price}</td>
+                            <td class="text-xs font-weight-bold table-cell">${o.created_at}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input toggle-status-switch" type="checkbox" role="switch" data-hash="${o.hash}" ${o.status === 'active' ? 'checked' : ''}>
                                 </div>
                             </td>
-                            <td class="font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.address}</span>
-                            </td>
-                            <td class="font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.phone_number}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.product}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.notes}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.time_created}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.orders}</span>
-                            </td>
-                            <td class="text-xs font-weight-bold table-cell">
-                                <span class="my-2 text-xs">${o.finished}</span>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input toggle-finished-switch" type="checkbox" role="switch" data-hash="${o.hash}" ${o.finished ? 'checked' : ''}>
+                                </div>
                             </td>
                             <td class="text-sm">
-                                <a href="javascript:;" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Preview product">
+                                <a href="javascript:;" class="toggle-details" data-hash="${o.hash}" data-bs-toggle="modal" data-bs-target="#orderDetailModal">
                                     <i class="fas fa-eye text-secondary"></i>
                                 </a>
-                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Edit product">
+                                <a href="javascript:;" class="mx-3 edit-btn" data-hash="${o.hash}" data-bs-toggle="modal" data-bs-target="#orderModal">
                                     <i class="fas fa-user-edit text-secondary"></i>
                                 </a>
-                                <a href="javascript:;" data-id="${o.id}" class="delete-order-btn" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Delete order">
-                                    <i class="fas fa-trash text-secondary"></i>
+                                <a href="javascript:;" class="print-btn" data-hash="${o.hash}" data-bs-toggle="modal" data-bs-target="#printModal">
+                                    <i class="fas fa-print text-secondary"></i>
                                 </a>
                             </td>
                         </tr>
@@ -247,10 +285,21 @@ Admin | Orders Management
                     tbody.append(orderHtml);
                 });
 
-                $('[data-bs-toggle="tooltip"]').tooltip();
                 let table = new simpleDatatables.DataTable("#datatable-search", {
                     searchable: true,
-                    fixedHeight: true
+                    fixedHeight: false
+                });
+
+                $('.table-cell').each(function () {
+                    if (this.scrollWidth > this.clientWidth) {
+                        $(this).attr('data-bs-toggle', 'popover');
+                        $(this).popover({
+                            trigger: 'click',
+                            placement: 'top',
+                            content: $(this).text(),
+                            html: false
+                        });
+                    }
                 });
             },
             error: function (error) {
@@ -258,43 +307,179 @@ Admin | Orders Management
             }
         });
 
-        $(document).on('click', '.delete-order-btn', function () {
-            const orderId = $(this).data('id');
+        $('#datatable-search tbody').on('change', '.toggle-status-switch', async function () {
+            const checkbox = $(this);
+            const hash = checkbox.data('hash');
+            const newStatus = checkbox.is(':checked') ? 'active' : 'inactive';
 
-            if (confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
-                $.ajax({
-                    url: `/api/admin/order/${orderId}/delete`,
-                    type: 'PATCH',
-                    success: function (res) {
-                        alert(res.message);
-                        location.reload();
-                    },
-                    error: function (xhr) {
-                        const message = xhr.responseJSON?.detail || "Có lỗi xảy ra khi xóa!";
-                        alert(message);
-                    }
+            try {
+                const response = await fetch(`/api/admin/order/${hash}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
                 });
+
+                const result = await response.json();
+                if (!response.ok) {
+                    alert(result.detail);
+                    checkbox.prop('checked', !checkbox.is(':checked'));
+                }
+            } catch (err) {
+                alert(err.message);
+                checkbox.prop('checked', !checkbox.is(':checked'));
             }
         });
+
+        $('#datatable-search tbody').on('change', '.toggle-finished-switch', async function () {
+            const checkbox = $(this);
+            const hash = checkbox.data('hash');
+            const newFinished = checkbox.is(':checked') ? 1 : 0;
+
+            try {
+                const response = await fetch(`/api/admin/order/${hash}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ finished: newFinished })
+                });
+
+                const result = await response.json();
+                if (!response.ok) {
+                    alert(result.detail);
+                    checkbox.prop('checked', !checkbox.is(':checked'));
+                }
+            } catch (err) {
+                alert(err.message);
+                checkbox.prop('checked', !checkbox.is(':checked'));
+            }
+        });
+
     });
 
-    
+    $(document).on('click', '.toggle-details', async function () {
+        const hash = $(this).data('hash');
 
-    document.querySelectorAll(".export").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-            var type = el.dataset.type;
-
-            var data = {
-                type: type,
-                filename: "soft-ui-" + type,
-            };
-
-            if (type === "csv") {
-                data.columnDelimiter = "|";
+        try {
+            const response = await fetch(`/api/admin/order/${hash}`);
+            const data = await response.json();
+            if (!response.ok) {
+                return alert(data.detail);
             }
 
-            dataTableSearch.export(data);
-        });
+            $('#detail-id').text('Order #' + data.id);
+            $('#detail-hash').text(data.hash);
+            $('#detail-name').text(data.name);
+            $('#detail-phone').text(data.phone);
+            $('#detail-address').text(data.address);
+            $('#detail-product').text(data.product);
+            $('#detail-price').text(data.price);
+            $('#detail-notes').text(data.notes);
+            $('#detail-status').text(data.status);
+            $('#detail-finished').text(data.finished == 1 ? 'Yes' : 'No');
+            $('#detail-created-at').text(data.created_at);
+        } catch (err) {
+            alert(err.message);
+        }
+    });
+
+    $('#datatable-search tbody').on('click', '.edit-btn', async function () {
+        const hash = $(this).data('hash');
+
+        try {
+            const response = await fetch(`/api/admin/order/${hash}`);
+            if (!response.ok) throw new Error("Failed to fetch order data");
+
+            const order = await response.json();
+
+            $('#input-name').val(order.name);
+            $('#input-phone').val(order.phone);
+            $('#input-address').val(order.address);
+            $('#input-product').val(order.product).prop('disabled', true);
+            $('#input-price').val(order.price).prop('disabled', true);
+            $('#input-notes').val(order.notes);
+            $('#status-switch').prop('checked', order.status == 'active');
+            $('#finished-switch').prop('checked', order.finished == 1);
+
+            $('#save-btn').off('click').on('click', () => updateOrder(hash));
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+    async function updateOrder(hash) {
+        const name = document.getElementById('input-name').value.trim();
+        const phone = document.getElementById('input-phone').value.trim();
+        const address = document.getElementById('input-address').value.trim();
+        const notes = document.getElementById('input-notes').value.trim();
+        const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
+        const finished = document.getElementById('finished-switch').checked ? 1 : 0;
+        
+        const phoneRegex = /^(0|\+84)(\d{9})$/;
+        if (!phoneRegex.test(phone)) {
+            return alert("Invalid phone number. Please enter correct format (starts with 0 or +84, followed by 9 digits)");
+        }
+
+        if (!name) return alert("Name is required");
+        else if (!phone) return alert("Phone number is required");
+        else if (!address) return alert("Address is required");
+
+        try {
+            const response = await fetch(`/api/admin/order/${hash}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    name: name,
+                    phone: phone,
+                    address: address,
+                    notes: notes,
+                    status: status,
+                    finished: finished
+                })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("Order updated successfully!");
+                location.reload();
+            } else {
+                alert(result.detail);
+            }
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+
+    $(document).on('click', '.print-btn', async function () {
+        const hash = $(this).data('hash');
+
+        try {
+            const response = await fetch(`/api/admin/order/${hash}`);
+            const data = await response.json();
+
+            if (!response.ok) return alert(data.detail);
+
+            $('#print-id').text(data.id);
+            $('#print-name').text(data.name);
+            $('#print-phone').text(data.phone);
+            $('#print-address').text(data.address);
+            $('#print-product').text(data.product);
+            $('#print-price').text(data.price);
+            $('#print-notes').text(data.notes);
+            $('#print-created-at').text(data.created_at);
+        } catch (err) {
+            alert(err.message);
+        }
+    });
+
+    $('#btn-print-pdf').on('click', function () {
+        const element = document.getElementById('order-preview');
+        const opt = {
+            margin:       0.5,
+            filename:     `order_${Date.now()}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
     });
 </script>
 {% endblock %}

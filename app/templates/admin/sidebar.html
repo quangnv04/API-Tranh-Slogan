@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="/admin/" class="nav-link active" aria-controls="dashboardsExamples" role="button"
+                <a href="/admin/" class="nav-link {% if request.path == '/admin/' %}active{% endif %}" aria-controls="dashboardsExamples" role="button"
                     aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
                         <i class="ni ni-shop text-primary text-sm opacity-10"></i>
@@ -21,16 +21,16 @@
                     <span class="nav-link-text ms-1">Dashboards</span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="../admin/roles-management" class="nav-link " aria-controls="rolesExamples" role="button"
+            <li class="nav-item">
+                <a href="../admin/roles-management" class="nav-link {% if request.path.startswith('/admin/roles-management') %}active{% endif %}" aria-controls="rolesExamples" role="button"
                     aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
                         <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Roles Management</span>
                 </a>
-            </li> -->
-            <li class="nav-item">
+            </li>
+            <!-- <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link "
                     aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
@@ -54,9 +54,9 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a href="../admin/users-management" class="nav-link " aria-controls="usersExamples" role="button"
+                <a href="../admin/users-management" class="nav-link {% if request.path.startswith('/admin/users-management') %}active{% endif %}" aria-controls="usersExamples" role="button"
                     aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
                         <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
@@ -65,15 +65,24 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../admin/orders-management" class="nav-link " aria-controls="ordersExamples" role="button"
+                <a href="../admin/orders-management" class="nav-link {% if request.path.startswith('/admin/orders-management') %}active{% endif %}" aria-controls="ordersExamples" role="button"
                     aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                        <i class="ni ni-ui-04 text-info text-sm opacity-10"></i>
+                        <i class="ni ni-single-copy-04 text-success text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Orders Management</span>
                 </a>
             </li>
             <li class="nav-item">
+                <a href="../admin/rooms-management" class="nav-link {% if request.path.startswith('/admin/rooms-management') %}active{% endif %}" aria-controls="roomsExamples" role="button"
+                    aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-archive-2 text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Products Management</span>
+                </a>
+            </li>
+            <!-- <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link "
                     aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
@@ -121,7 +130,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Reconciliation – transaction</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </aside>
