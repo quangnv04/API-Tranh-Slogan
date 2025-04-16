@@ -10,9 +10,9 @@ from starlette.concurrency import run_in_threadpool
 # templates = Jinja2Templates(directory="app/templates/admin")
 # admin_router = APIRouter()
 
-@router.get("/admin/rooms-management", response_class=HTMLResponse)
-async def roomsManagement(request: Request):
+@router.get("/admin/products-management", response_class=HTMLResponse)
+async def productsManagement(request: Request):
     time_debug = "0.1.57"
     if DEBUG == 'True':
         time_debug = time.time()
-    return templates.TemplateResponse("/admin/rooms-management.html", {"request": request, "time": time_debug})
+    return templates.TemplateResponse("/admin/products-management.html", {"request": request, "time": time_debug})

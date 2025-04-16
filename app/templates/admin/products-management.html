@@ -1,13 +1,13 @@
 {% extends 'layout-admin.html' %}
 
 {% block title %}
-Admin | Orders Management
+Admin | Products Management
 {% endblock %}
 
 {% block meta %}
-<link rel="canonical" href="https://tranhslogan.vn/admin/orders-management/" />
-<link rel="alternate" href="https://tranhslogan.vn/admin/orders-management/" hreflang="vi" />
-<link rel="alternate" href="https://tranhslogan.vn/admin/orders-management/" hreflang="x-default" />
+<link rel="canonical" href="https://tranhslogan.vn/admin/rooms-management/" />
+<link rel="alternate" href="https://tranhslogan.vn/admin/rooms-management/" hreflang="vi" />
+<link rel="alternate" href="https://tranhslogan.vn/admin/rooms-management/" hreflang="x-default" />
 {%endblock%}
 
 {% block content %}
@@ -23,9 +23,9 @@ Admin | Orders Management
                 </li>
                 <li class="breadcrumb-item text-sm text-white"><a class="opacity-5 text-white"
                         href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Orders Management</li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Products Management</li>
             </ol>
-            <h6 class="font-weight-bolder mb-0 text-white">Orders Management</h6>
+            <h6 class="font-weight-bolder mb-0 text-white">Products Management</h6>
         </nav>
         <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
             <a href="javascript:;" class="nav-link p-0">
@@ -70,26 +70,29 @@ Admin | Orders Management
     </div>
 </nav>
 <div class="container-fluid py-4">
+    <div class="d-sm-flex justify-content-end">
+        <div class="d-flex ">
+            <a href="javascript:;" class="btn btn-icon btn-outline-white" id="create-btn" data-bs-toggle="modal" data-bs-target="#productModal">
+                New Product
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive">
                     <table class="table table-flush" id="datatable-search">
                         <thead class="thead-light">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Phone Number</th>
-                                <th>Address</th>
-                                <th>Price</th>
-                                <th>Created At</th>
-                                <th>Status</th>
-                                <th>Finished</th>
-                                <th>Action</th>
-                            </tr>
+                            
                         </thead>
                         <tbody>
-                            
+                            <tr>
+                                <td colspan="8">
+                                    <div style="height: 450px; display: flex; justify-content: center; align-items: center;">
+                                        Đang tải dữ liệu...
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -97,69 +100,81 @@ Admin | Orders Management
         </div>
     </div>
 
-    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-primary text-gradient">Update Order</h3>
-                            <p class="mb-0">Enter information to create a update Order</p>
+                            <h3 class="font-weight-bolder text-primary text-gradient" id="product-modal-title">New Product</h3>
+                            <p class="mb-0" id="product-modal-description">Enter information to create a new product</p>
                         </div>
                         <div class="card-body pb-3">
-                            <form role="form text-left">
+                            <form id="create-product-form" role="form text-left">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Name</label>
+                                        <label>SKU</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="name" id="input-name" placeholder="Name">
+                                            <input type="text" class="form-control" name="sku" id="input-sku" placeholder="SKU (Ex: TS01)">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Phone Number</label>
+                                        <label>Title</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="phone" id="input-phone" placeholder="Phone">
+                                            <input type="text" class="form-control" name="title" id="input-title" placeholder="Title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Type</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="type" id="input-type" placeholder="Type">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Slug</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="slug" id="input-slug" placeholder="Slug">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Canvas Price</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="canvas_price" id="input-canvas-price" placeholder="Size | Price (Ex: 30x40 | 120000)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Mica Price</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="mica_price" id="input-mica-price" placeholder="Size | Price (Ex: 30x40 | 150000)">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <label>Address</label>
+                                        <label>Images</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="address" id="input-address" placeholder="Address">
+                                            <input type="text" class="form-control" name="images" id="input-images" placeholder='Images (Ex: ["img1.jpg", "img2.jpg"])'>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <label>Product</label>
+                                        <label>Description</label>
                                         <div class="input-group mb-3">
-                                            <textarea class="form-control" name="product" id="input-product" placeholder="Product" rows="3"></textarea>
+                                            <input type="text" class="form-control" name="description" id="input-description" placeholder="Description">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Price</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="price" id="input-price" placeholder="Price">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Notes</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="notes" id="input-notes" placeholder="Notes">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Status</label>
+                                        <label>Publish</label>
                                         <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" name="status" id="status-switch">
+                                            <input class="form-check-input" type="checkbox" name="publish" id="publish-switch">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Finished</label>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" name="finished" id="finished-switch">
+                                        <label>Discount</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="discount" id="input-discount" placeholder="Discount">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" id="save-btn" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Update</button>
+                                    <button type="button" id="save-btn" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Create</button>
                                 </div>
                             </form>
                         </div>
@@ -168,24 +183,29 @@ Admin | Orders Management
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+      
+    <div class="modal fade" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content border-0 rounded-4 shadow-lg">
                 <div class="modal-body p-4">
                     <div class="row g-4">
-                        <div class="col-md-12">
-                            <h4 id="detail-id" class="mb-3">Order Details</h4>
+                        <div class="col-md-5 text-center">
+                            <img id="detail-image" src="" class="img-fluid rounded-3 shadow-sm" alt="Product Image">
+                        </div>
+                        <div class="col-md-7">
+                            <h4 id="detail-id" class="mb-3">Product Details</h4>
                             <p><strong>Hash:</strong> <span id="detail-hash"></span></p>
-                            <p><strong>Name:</strong> <span id="detail-name"></span></p>
-                            <p><strong>Phone Number:</strong> <span id="detail-phone"></span></p>
-                            <p><strong>Address:</strong> <span id="detail-address"></span></p>
-                            <p><strong>Product:</strong> <span id="detail-product"></span></p>
-                            <p><strong>Price:</strong> <span id="detail-price"></span></p>
-                            <p><strong>Notes:</strong> <span id="detail-notes"></span></p>
-                            <p><strong>Status:</strong> <span id="detail-status"></span></p>
-                            <p><strong>Finished:</strong> <span id="detail-finished"></span></p>
+                            <p><strong>SKU:</strong> <span id="detail-sku"></span></p>
+                            <p><strong>Title:</strong> <span id="detail-title"></span></p>
+                            <p><strong>Type:</strong> <span id="detail-type"></span></p>
+                            <p><strong>Slug:</strong> <span id="detail-slug"></span></p>
+                            <p><strong>Canvas Price:</strong> <span id="detail-canvas-price"></span></p>
+                            <p><strong>Mica Price:</strong> <span id="detail-mica-price"></span></p>
+                            <p><strong>Discount:</strong> <span id="detail-discount"></span></p>
+                            <p><strong>Description:</strong> <span id="detail-description"></span></p>
+                            <p><strong>Publish:</strong> <span id="detail-publish"></span></p>
                             <p><strong>Create At:</strong> <span id="detail-created-at"></span></p>
+                            <p><strong>Updated At:</strong> <span id="detail-updated-at"></span></p>
                         </div>
                     </div>
                     <button type="button" class="btn btn-secondary btn-lg btn-rounded w-100 mt-4 mb-0" data-bs-dismiss="modal">Close</button>
@@ -194,44 +214,10 @@ Admin | Orders Management
         </div>
     </div>
 
-    <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="printModalLabel">Preview Order</h5>
-                </div>
-                <div class="modal-body">
-                    <div id="order-preview" class="p-4 border rounded bg-white">
-                        <h4 class="text-center mb-4">HÓA ĐƠN BÁN HÀNG</h4>
-                        <p><strong>Mã đơn:</strong> <span id="print-id"></span></p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Khách hàng:</strong> <span id="print-name"></span></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>SĐT:</strong> <span id="print-phone"></span></p>
-                            </div>
-                        </div>
-                        <p><strong>Địa chỉ:</strong> <span id="print-address"></span></p>
-                        <p><strong>Sản phẩm:</strong> <span id="print-product"></span></p>
-                        <p><strong>Giá:</strong> <span id="print-price"></span></p>
-                        <p><strong>Ghi chú:</strong> <span id="print-notes"></span></p>
-                        <p><strong>Ngày đặt hàng:</strong> <span id="print-created-at"></span></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="btn-print-pdf" class="btn btn-primary">Print Order (PDF)</button>
-                </div>
-            </div>
-        </div>
-    </div>
-  
 </div>
 {% endblock %}
 
 {% block script %}
 <script src="/assets_admin/js/plugins/datatables.js"></script>
-<script src="/assets_admin/js/html2pdf.bundle.min.js"></script>
-<script src="/assets_admin/js/pages/order.js"></script>
+<script src="/assets_admin/js/pages/product.js"></script>
 {% endblock %}

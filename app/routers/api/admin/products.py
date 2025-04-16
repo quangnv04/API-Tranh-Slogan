@@ -36,18 +36,8 @@ async def create_product(request: Request, db=Depends(get_db_for_new_thread)):
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON")
     
-    if not sku:
-        raise HTTPException(status_code=400, detail="SKU is required")
-    elif not title:
-        raise HTTPException(status_code=400, detail="Title is required")
-    elif not type:
-        raise HTTPException(status_code=400, detail="Type is required")
-    elif not canvas_price:
-        raise HTTPException(status_code=400, detail="Canvas price is required")
-    elif not mica_price:
-        raise HTTPException(status_code=400, detail="Mica price is required")
-    elif not images:
-        raise HTTPException(status_code=400, detail="Images is required")
+    if not sku or not title or not type or not canvas_price or not mica_price or not images:
+        raise HTTPException(status_code=400, detail="SKU, Title, Type, Canvas price, Mica price, Images is required")
     
     if discount != '':
         try:
