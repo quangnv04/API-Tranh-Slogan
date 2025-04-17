@@ -10,17 +10,31 @@ async def accounts(db=Depends(get_db_for_new_thread)):
     return accounts
 
 
-@router.get('/api/admin/account/{username}')
-async def get_account(username: str, db=Depends(get_db_for_new_thread)):
+@router.get('/api/admin/account/{account_id}')
+async def get_account(account_id: int, db=Depends(get_db_for_new_thread)):
     account_model = AccountModel(db)
-    account = account_model.get_account_by_username(username)
+    account = account_model.get_account_by_id(account_id)
     if not account:
         raise HTTPException(status_code=404, detail="Account not found")
     return account
 
+@router.post("/api/admin/account")
+async def create_account(request: Request, db=Depends(get_db_for_new_thread)):
+    try:
+        data = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
 
-@router.put("/api/admin/account/{username}")
-async def update_account(username: str, request: Request, db=Depends(get_db_for_new_thread)):
+    account_model = AccountModel(db)
+
+    try:
+        account_model.insert_account([data])
+        return {"message": "Account created or updated successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create account")
+
+@router.put("/api/admin/account/{account_id}")
+async def update_account(account_id: int, request: Request, db=Depends(get_db_for_new_thread)):
     try:
         data = await request.json()
     except Exception:
@@ -36,10 +50,10 @@ async def update_account(username: str, request: Request, db=Depends(get_db_for_
 
     account_model = AccountModel(db)
 
-    if not account_model.get_account_by_username(username):
+    if not account_model.get_account_by_id(account_id):
         raise HTTPException(status_code=404, detail="Account not found")
 
-    success = account_model.update_account(username, data)
+    success = account_model.update_account(account_id, data)
 
     if success:
         return {"message": "Account updated successfully"}

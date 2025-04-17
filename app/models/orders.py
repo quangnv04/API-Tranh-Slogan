@@ -106,16 +106,17 @@ class OrdersModel:
         values = list(updates.values())
         values.append(order_hash)
 
-        cursor.execute(f'''
+        result = cursor.execute(f'''
         UPDATE orders
         SET {set_clause}
         WHERE hash = ?
         ''', values)
         self.db_connection.commit()
+        return result.rowcount > 0
 
     def delete_order(self, order_hash):
         cursor = self.db_connection.cursor()
-        cursor.execute('DELETE FROM orders WHERE hash = ?', (order_hash,))
+        result = cursor.execute('DELETE FROM orders WHERE hash = ?', (order_hash,))
         self.db_connection.commit()
         result = cursor.fetchone()
         return result.rowcount > 0

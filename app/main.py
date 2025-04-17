@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.routers.admin.dashboard import admin_router
 from app.routers.admin.login import router as login_router
-from app.routers.admin.roomsManagement import router as rooms_management_router
+from app.routers.admin.productsManagement import router as products_management_router
 from app.routers.admin.usersManagement import router as users_management_router
 from app.routers.admin.rolesManagement import router as roles_management_router
 from app.routers.admin.ordersManagement import router as orders_management_router
@@ -42,7 +42,7 @@ app.mount("/assets", StaticFiles(directory="app/assets"), name="assets")
 app.mount("/assets_admin", StaticFiles(directory="app/assets_admin"), name="assets_admin")
 
 app.include_router(login_router)
-app.include_router(rooms_management_router)
+app.include_router(products_management_router)
 app.include_router(users_management_router)
 app.include_router(orders_management_router)
 app.include_router(roles_management_router)
