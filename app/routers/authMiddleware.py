@@ -15,12 +15,6 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
         token = request.cookies.get("access_token")
         
-        # if token and token.startswith("Bearer "):
-        #     token = token.replace("Bearer ", "").strip()
-        # else:
-        #     print("Token is missing or invalid. Redirecting to /admin/login")
-        #     return RedirectResponse(url="/admin/login")
-        
         if not token:
             print("Token is missing or invalid. Redirecting to /admin/login")
             return RedirectResponse(url="/admin/login")
