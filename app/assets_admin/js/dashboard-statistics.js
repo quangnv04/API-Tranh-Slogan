@@ -147,7 +147,7 @@
 function fortamtPercent(val) {
   if(val==0) return {className:"text-primary", text: val + "%"}
     if(val>0) return {className:"text-success", text: "+" + val + "%"}
-    else return {className:"text-danger", text: "-"  + val + "%"}
+    else return {className:"text-danger", text:val + "%"}
 }
     // Xử lý khi nhấn nút hoặc chuyển tab
     $(document).ready(() => {
@@ -169,6 +169,7 @@ function fortamtPercent(val) {
             url: '/api/admin/statistics/daily_revenue_and_order_count',
             method: 'GET',
             success: function(response) {
+                
                 let percentRevenue = fortamtPercent(response.revenue_percent_change)
                 let percentOrder = fortamtPercent(response.order_count_percent_change)
 

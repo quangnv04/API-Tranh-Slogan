@@ -53,7 +53,7 @@ class StatisticsModel:
         cursor = self.db_connection.cursor()
 
         base_query = f"""
-            SELECT {select_query}, IFNULL(SUM(price), 0) AS total_price
+            SELECT {select_query}, IFNULL(SUM(CAST(REPLACE(REPLACE(price, 'đ', ''), ',', '') AS REAL)), 0) AS total_price
             FROM orders
         """
 
@@ -120,7 +120,7 @@ class StatisticsModel:
         SELECT
             COALESCE(SUM(CASE 
                 WHEN DATE(created_at) = DATE('now') 
-                THEN price 
+                THEN CAST(REPLACE(REPLACE(price, 'đ', ''), ',', '') AS REAL)
                 END), 0) AS today_revenue,
             
             COALESCE(COUNT(CASE 
@@ -129,23 +129,29 @@ class StatisticsModel:
                 END), 0) AS today_order_count,
 
             CASE 
-                WHEN COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN price END), 0) = 0 THEN
+                WHEN COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN CAST(REPLACE(REPLACE(price, 'đ', ''), ',', '') AS REAL) END), 0) = 0 THEN
                     0.0
                 ELSE
-                    100.0 * (
-                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now') THEN price END), 0) - 
-                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN price END), 0)
-                    ) / COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN price END), 1)
+                    ROUND(
+                        100.0 * (
+                            COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now') THEN CAST(REPLACE(REPLACE(price, 'đ', ''), ',', '') AS REAL) END), 0) - 
+                            COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN CAST(REPLACE(REPLACE(price, 'đ', ''), ',', '') AS REAL) END), 0)
+                        ) / COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN CAST(REPLACE(REPLACE(price, 'đ', ''), ',', '') AS REAL) END), 1),
+                        2
+                    )
             END AS revenue_percent_change,
 
             CASE 
                 WHEN COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 0) = 0 THEN
                     0.0
                 ELSE
-                    100.0 * (
-                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now') THEN 1 END), 0) - 
-                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 0)
-                    ) / COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 1)
+                    ROUND(
+                        100.0 * (
+                            COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now') THEN 1 END), 0) - 
+                            COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 0)
+                        ) / COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 1),
+                        2
+                    )
             END AS order_count_percent_change
 
         FROM orders
