@@ -115,7 +115,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     let currentPage = 1;
-    const postsPerPage = 6;
+    const postsPerPage = 8;
     
     setupSocialShare();
     fetchBlogDetail();

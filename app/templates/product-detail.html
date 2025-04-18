@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/default-skin/default-skin.css">
 <link rel="stylesheet" href="/assets/css/photoswipe.css">
-<link rel="stylesheet" href="/assets/css/product-detail.css?v={{ time }}">
 <link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/product-detail.css?v={{ time }}">
 <link rel="stylesheet" href="/assets/css/home.css">
 
 
@@ -29,27 +29,19 @@
 <div class="inner-banner">
     <div class="container">
         <div class="product-info row">
-            <div class="swiper-container swiper col-sm-12 col-md-6 col-lg-5 mb-4">
+            <div class="swiper-container swiper col-sm-12 col-md-6 col-lg-4 mb-4">
                 <div class="swiper-wrapper"></div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
-            <div class="product-details  col-md-6 col-lg-7" id="product-form">
+            <div class="product-details  col-md-6 col-lg-5" id="product-form">
                 <h1>{{ product.title }}</h1>
                 <p class="price">Giá: <span id="price"></span></p>
 
                 <div class="size-options">
                     <p>Kích Thước</p>
                     <div class="value">
-                        <input type="radio" id="size-30x40" name="size" value="30x40" checked>
-                        <label for="size-30x40">30x40cm</label>
-                        <input type="radio" id="size-40x60" name="size" value="40x60">
-                        <label for="size-40x60">40x60cm</label>
-                        <input type="radio" id="size-50x70" name="size" value="50x70">
-                        <label for="size-50x70">50x70cm</label>
-                        <input type="radio" id="size-60x90" name="size" value="60x90">
-                        <label for="size-60x90">60x90cm</label>
                     </div>
                 </div>
 
@@ -82,24 +74,30 @@
                     <button type="button" class="button add-to-cart">Thêm vào giỏ hàng</button>
                     <button class="button buy-now" onclick="window.location.href='/cart';">Mua Ngay</button>
                 </div>
-
+            </div>
+            <div class="col-lg-3">
                 <div class="highlights">
                     <div class="return-policy">
-                        <img src="https://cdn.tranhslogan.vn/product-details/icon-2.png"
+                        <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/492002466_1388521752572207_8598692506065606142_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGVH2UUgkMgTGcbWGNjmK045DRaRUMaxBfkNFpFQxrEFw0UlVZpdvPdc8wTHoJ41pRoXWPA87BmodNwPmLt7_05&_nc_ohc=_WDNoqAlq4oQ7kNvwGX15fM&_nc_oc=AdnCF62EVHHdMkuBTHgTtXzLkM2dkpAPzo67CWj5jyQMHQ8g0_UYWDwr5emnI-P_43E&_nc_zt=23&_nc_ht=scontent.fhan17-1.fna&_nc_gid=Rz__ekPi5XSRnqUCzCN_ig&oh=00_AfH-xWI7Ntv_SNTGuq20tSn5kW6p57KF8qtsLZaknRDXQg&oe=68086696"
                             alt="Chính sách hoàn trả - Tranhslogan.vn">
                         <p class="text-content"><strong>Chính sách hoàn trả</strong></p>
                     </div>
 
                     <div class="delivery-policy">
-                        <img src="https://cdn.tranhslogan.vn/product-details/icon-1.png"
+                        <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/491409404_1388521749238874_5045580012319606077_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHK6BC1an4TMbYa67F8pn0jMIbtd_qwzGQwhu13-rDMZMoe7e5_9BXPMfHZzvuHt8qCdvTW7nLI7_bGABrBq9sn&_nc_ohc=yDISvN1Zg1QQ7kNvwEp-rvH&_nc_oc=AdnWDco-nnVdE5rKdWJT_89dyhHYEodE1T-3dOPCpY02Cfa45sSt-2INO5v7op-ee10&_nc_zt=23&_nc_ht=scontent.fhan17-1.fna&_nc_gid=rSotQQ0Zj_pMVNExgbW7fg&oh=00_AfF0mb0j3OWZLaL4dA8ZCr0WnxL-lAar0x_1P9YwwU-VWw&oe=680867CB"
                             alt="Chính sách giao hàng - Tranhslogan.vn">
                         <p class="text-content"><strong>Giao hàng toàn quốc</strong></p>
                     </div>
 
                     <div class="warranty-policy">
-                        <img src="https://cdn.tranhslogan.vn/product-details/icon-3.png"
+                        <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/491832328_1388521729238876_4244045250944728069_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFlCDyem7aQzDfP9BQ2mEO8tlkZmgKX15a2WRmaApfXlmfck3c_r1fyaQCafCe7UTfR71gFX1LhnpONKPAQKFXg&_nc_ohc=Y5_euAlwiEcQ7kNvwGyf1rn&_nc_oc=Adlj-0FVZ_o5P94AGIAggZb0bbwM19-5fer4PSCPO7q57SH_x6U8_eXOylZ69SktJXQ&_nc_zt=23&_nc_ht=scontent.fhan17-1.fna&_nc_gid=Q0ncEiSaSuW016jYt4-xjA&oh=00_AfHXj_LGg7ptbSzllqvZv_QD7tZjCMuc6vHT2yJHDGz74g&oe=68083C76"
                             alt="Chính sách bảo hành - Tranhslogan.vn">
                         <p class="text-content"><strong>Bảo hành 6 tháng</strong></p>
+                    </div>
+                    <div class="warranty-policy">
+                        <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t39.30808-6/491935707_1388650009226048_4592829088248225926_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGulcU_rJ2Vup-e_fLLn7cA0mxfsKYXb5nSbF-wphdvmX_hseZmt9aWjL4EYFW-zNjjynFTtOkVur0JyA6WlDdM&_nc_ohc=73OevNMjTA8Q7kNvwEYOldG&_nc_oc=Admipk5W2Anls3pBd9kdiRqSGE0QHOqXiCNJPyxI7pgn_x12tHRHZBK-rUCd3HQtSfI&_nc_zt=23&_nc_ht=scontent.fhan17-1.fna&_nc_gid=mODayFsZw2zcp2zaHhQsBw&oh=00_AfGoj3nNWqKxqmZ7mMlWaciZduZTKPbuaWVzakTpm_mp1Q&oe=68088D45"
+                            alt="Chính sách bảo hành - Tranhslogan.vn">
+                        <p class="text-content"><strong>Thiết kế theo yêu cầu</strong></p>
                     </div>
 
                     <div class="bank-card">
@@ -112,8 +110,22 @@
                             <p>00000842495</p>
                         </div>
                     </div>
+                    <!-- <div class="contact mt-3">
+                        <h6>Thông tin liên lạc</h6>
+                        <p>📞 Hotline: <a href="https://zalo.me/0369620182">(+84) 369 620 182</a></p>
+                        <p>🔔 Fanpage: <a href="https://www.facebook.com/vn.tranhslogan">Tranh Slogan</a></p>
+                    </div> -->
                 </div>
             </div>
+        </div>
+        <div class="group-support-right">
+            <a href="https://zalo.me/0369620182" target="_blank" class="icon icon-zalo">
+                <img src="/assets/img/logo-zalo-150.png" alt="Zalo">
+            </a>
+
+            <a href="https://www.facebook.com/vn.tranhslogan" target="_blank" class="icon icon-messenger">
+                <img src="/assets/img/messenger-icon-150.png" alt="Messenger">
+            </a>
         </div>
     </div>
     <div class="toast-container position-fixed bottom-0 p-3" style="z-index: 11">

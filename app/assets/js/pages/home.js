@@ -9,6 +9,9 @@ let page = 1;
 const limit = 20;
 let totalPages = 1;
 
+let currentPage = 1;
+const postsPerPage = 4;
+
 
 $(document).ready(function () {
     let canFetch = true;
@@ -460,4 +463,53 @@ $(document).ready(function () {
 
     // Gọi hàm fetchAllData
     fetchAllData();
+    
+    
+    
+    // fetchBlogDetail();
+    
+    function fetchBlogDetail() {
+        $.ajax({
+            url: `/api/blogs?limit=${postsPerPage}&page=${currentPage}`,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response.blogs && Array.isArray(response.blogs)) {
+                    appendBlogDetail(response.blogs, true);
+                } else {
+                    console.error("Dữ liệu blogs không hợp lệ:", response);
+                }
+            },
+            error: function (error) {
+                console.error("Error fetching blogs:", error);
+            }
+        });
+    }
+    
+    function appendBlogDetail(blogs, empty = false) {
+        const container = $('#blogs-related-home');
+        if (empty) {
+            container.empty();
+        }
+        blogs.forEach(function (blog) {
+            const blogDetailHtml = `
+                <div class="col-md-6 col-sm-12">
+                        <div class="blog grid-blog">
+                            <div class="blog-image">
+                                <a href="/blog/${blog.slug}">
+                                    <img class="img-fluid" src="${blog.thumbnail}" alt="Post Image">
+                                </a>
+                            </div>
+                            <div class="blog-detail-grid-box">
+                                <h3 class="blog-detail-title mt-2">
+                                    <a href="/blog/${blog.slug}">${blog.title}</a>
+                                </h3>
+                                <span class="blog-detail-date">${blog.date}</span>
+                            </div>
+                        </div>
+                    </div>
+            `;
+            container.append(blogDetailHtml);
+        });
+    }
 });

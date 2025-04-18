@@ -327,3 +327,51 @@
 .home-product-top .home-product-items .item:hover .button-buy-now {
     opacity: 1;
 }
+.channel-entrance{
+    height: 36px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background: #f07c63;
+}
+
+.channel-entrance a {
+    color: #373737;
+}
+
+.channel-entrance .hot-icon {
+    position: relative;
+}
+
+.channel-entrance a {
+    line-height: 36px;
+}
+
+.channel-entrance a {
+    float: left;
+    line-height: 34px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ece8e8;
+    position: relative;
+    -webkit-transition: all .25s ease;
+    transition: all .25s ease;
+    text-decoration: none;
+}
+
+.channel-entrance .hot-icon:after {
+    position: absolute;
+    top: -7px;
+    right: 5px;
+    content: "";
+    width: 37px;
+    height: 16px;
+    background: url(../img/hot-icon.png) no-repeat;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}

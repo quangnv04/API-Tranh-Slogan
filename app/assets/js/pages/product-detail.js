@@ -21,10 +21,36 @@ $(document).ready(function () {
     });
 });
 
+// function updatePrice() {
+//     const selectedSize = document.querySelector('input[name="size"]:checked').value;
+//     const selectedMaterial = document.querySelector('input[name="material"]:checked').value;
+//     const selectedQuantity = parseInt(document.getElementById('quantity').value);
+//     let priceData = null;
+
+//     if (selectedMaterial === 'Canvas') {
+//         priceData = canvasPrice.find(item => item.size === selectedSize);
+//     } else if (selectedMaterial === 'Mica') {
+//         priceData = micaPrice.find(item => item.size === selectedSize);
+//     }
+
+//     if (priceData && priceData.price) {
+//         const totalPrice = priceData.price * selectedQuantity;
+//         document.getElementById('price').textContent = formatVND(totalPrice);
+//     }
+// }
 function updatePrice() {
-    const selectedSize = document.querySelector('input[name="size"]:checked').value;
-    const selectedMaterial = document.querySelector('input[name="material"]:checked').value;
-    const selectedQuantity = parseInt(document.getElementById('quantity').value);
+    const $selectedSize = $('input[name="size"]:checked');
+    const $selectedMaterial = $('input[name="material"]:checked');
+    const quantityVal = $('#quantity').val();
+
+    if ($selectedSize.length === 0 || $selectedMaterial.length === 0 || !quantityVal) {
+        $('#price').text(''); // hoặc hiện "Liên hệ"
+        return;
+    }
+
+    const selectedSize = $selectedSize.val();
+    const selectedMaterial = $selectedMaterial.val();
+    const selectedQuantity = parseInt(quantityVal);
     let priceData = null;
 
     if (selectedMaterial === 'Canvas') {
@@ -35,7 +61,9 @@ function updatePrice() {
 
     if (priceData && priceData.price) {
         const totalPrice = priceData.price * selectedQuantity;
-        document.getElementById('price').textContent = formatVND(totalPrice);
+        $('#price').text(formatVND(totalPrice));
+    } else {
+        $('#price').text('Liên hệ');
     }
 }
 
@@ -55,7 +83,258 @@ document.getElementById('decrease-btn').addEventListener('click', () => {
     }
 });
 
-updatePrice();
+// updatePrice();
+function getTypeFromUrl() {
+    const path = window.location.pathname;
+    const slug = path.split('/product/')[1]; // lấy phần sau '/product/'
+    
+    if (!slug) return null;
+
+    const typeSlug = slug.split('-ts')[0]; // lấy phần 'tranh-dong-luc' từ 'tranh-dong-luc-ts358...'
+    
+    return typeSlug;
+}
+
+const sizeOptionsByType = {
+    "tranh-thuan-buom-xuoi-gio": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-dong-luc": [
+        { id: "30x40", label: "30x40cm" },
+        { id: "40x60", label: "40x60cm" },
+        { id: "50x70", label: "50x70cm" },
+        { id: "60x90", label: "60x90cm" }
+    ],
+    "tranh-tieng-anh": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-quan-tra-sua": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-tuc-ngu": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-doanh-nhan": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-ca-chep": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-chim-cong": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-hoa-mau-don": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-rong": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-tu-quy": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-ma-dao-thanh-cong": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-son-thuy-huu-tinh": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-huou-nai": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-nghe-thuat": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-hoa-la": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-con-vat": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-phat-giao": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-cong-giao": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-3d": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-cau-thu-bong-da": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-co-gai-nghe-thuat": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-phuc-loc-tho": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-thu-phap": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-ly-ruou": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-gau-bearbrick-kaws-nghe-thuat": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-nhan-vat-hoat-hinh-sieu-anh-hung": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-vi-nhan-nhan-vat-lich-su": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "xuong-in-tranh-anh-cuoi-theo-yeu-cau": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "xuong-in-tranh-anh-ki-yeu-tot-nghiep-theo-yeu-cau": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-lich": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-phu-dieu-tranh-treo-tuong-co-khung-cao-cap": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "bien-bao": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-lien-treo-tuong": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-tron-trang-guong": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-dong-ho-treo-tuong": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-canvas": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-phong-canh-thien-nhien": [
+        { "id": "50x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-phong-canh-viet-nam": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-phong-canh-nuoc-ngoai": [
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ]    
+};
+
+function renderSizeOptions() {
+    const type = getTypeFromUrl();
+    const $container = $(".size-options .value");
+    $container.empty(); 
+
+    const sizes = sizeOptionsByType[type] || [];    
+
+    $.each(sizes, function(index, size) {
+        const inputId = `size-${size.id}`;
+
+        const $input = $("<input>")
+            .attr({
+                type: "radio",
+                id: inputId,
+                name: "size",
+                value: size.id
+            });
+
+        if (index === 0) {
+            $input.prop("checked", true);
+        }
+
+        const $label = $("<label>")
+            .attr("for", inputId)
+            .text(size.label);
+
+        $container.append($input, $label);
+        
+    });
+}
+
+$(document).ready(function () {
+    updatePrice();
+    renderSizeOptions(type);
+    
+});
 
 $(document).ready(function () {
     $(".read-more-btn").click(function () {
@@ -299,6 +578,46 @@ $(document).ready(function () {
 
         showCartToast(productTitle);
     });
+    
+    $('.buy-now').click(function () {
+        const productTitle = $("h1").text();
+        const productThumbnail = productImages[0];
+        const productSlug = $(location).attr('href');
+    
+        let selectedSize = $('input[name="size"]:checked').val();
+        let selectedFrame = $('input[name="frame"]:checked').val();
+        let selectedMaterial = $('input[name="material"]:checked').val();
+        let selectedQuantity = parseInt($('#quantity').val());
+        let price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+    
+        let item = {
+            title: productTitle,
+            thumbnail: productThumbnail,
+            slug: productSlug,
+            size: selectedSize,
+            frame: selectedFrame,
+            material: selectedMaterial,
+            quantity: selectedQuantity,
+            price: price
+        };
+    
+        // Lưu sản phẩm cần mua ngay vào localStorage
+        localStorage.setItem('buyNowItem', JSON.stringify(item));
+    
+        // Nếu chưa có trong cart, thêm vào
+        let existingItem = cart.find(i =>
+            i.title === item.title &&
+            i.size === item.size &&
+            i.material === item.material
+        );
+        if (!existingItem) {
+            cart.push(item);
+            syncCartToLocalStorage();
+        }
+        
+        window.location.href = '/cart';
+    });
+    
 
     function showCartToast(productTitle) {
         // Set the toast message

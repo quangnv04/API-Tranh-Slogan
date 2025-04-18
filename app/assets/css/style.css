@@ -1092,8 +1092,8 @@ button.bg-danger:hover {
 
 .main-nav li a {
     display: block;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 550;
     color: #26292c;
 }
 
@@ -2161,13 +2161,13 @@ html.menu-opened body {
 }
 
 .banner-slide {
-    width: 100%;
+    /* width: 100%; */
     border-radius: 10px;
 }
 
 .swiper-slide img {
     width: 100%;
-    height: 100%;
+    height: 90%;
     object-fit: cover;
 }
 
@@ -2175,7 +2175,7 @@ html.menu-opened body {
     color: #f07c63 !important;
 }
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
     .banner-slide {
         margin-top: 40px;
     }
@@ -2185,7 +2185,7 @@ html.menu-opened body {
     .banner-slide {
         margin-top: 10px;
     }
-}
+} */
 
 .carousel-inner {
     border-radius: 10px;
@@ -37343,7 +37343,7 @@ img.skeleton[alt] {
 .product-detail-swiper-image {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: 90%;
     border-radius: 10px;
     border: 1px solid #d1d5db85;
 }

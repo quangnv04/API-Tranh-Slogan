@@ -185,14 +185,12 @@ const CartManager = (function() {
         const cart = getCart();
         
         if (index >= 0 && index < cart.length) {
-            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
-                cart.splice(index, 1);
-                saveCart(cart);
-                renderCart();
-                UI.showNotification('Đã xóa sản phẩm khỏi giỏ hàng');
-            }
+            cart.splice(index, 1);
+            saveCart(cart);
+            renderCart();
+            UI.showNotification('Đã xóa sản phẩm khỏi giỏ hàng');
         }
-    }
+    }  
     
     function submitOrder() {
         const cart = getCart();
@@ -465,6 +463,7 @@ const UI = (function() {
 // Initialize when document is ready
 $(document).ready(function() {
     CartManager.init();
+    
     
     $('.btn').addClass('position-relative overflow-hidden');
     

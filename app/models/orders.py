@@ -19,8 +19,8 @@ class OrdersModel:
         try:
             cursor.execute(
                 '''
-                INSERT INTO orders (hash, name, phone, address, product, notes, status, finished, price)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO orders (hash, name, phone, address, product, notes, status, created_at, finished, price)
+                VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ?)
                 ON CONFLICT(hash) DO UPDATE SET
                 name = excluded.name,
                 phone = excluded.phone,
