@@ -112,3 +112,48 @@ class StatisticsModel:
         cursor.execute(query, params)
         data = cursor.fetchall()
         return [dict(row) for row in data]
+
+    async def get_daily_revenue_and_order_count(self):
+        cursor = self.db_connection.cursor()
+
+        query = """
+        SELECT
+            COALESCE(SUM(CASE 
+                WHEN DATE(created_at) = DATE('now') 
+                THEN price 
+                END), 0) AS today_revenue,
+            
+            COALESCE(COUNT(CASE 
+                WHEN DATE(created_at) = DATE('now') 
+                THEN 1 
+                END), 0) AS today_order_count,
+
+            CASE 
+                WHEN COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN price END), 0) = 0 THEN
+                    0.0
+                ELSE
+                    100.0 * (
+                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now') THEN price END), 0) - 
+                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN price END), 0)
+                    ) / COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN price END), 1)
+            END AS revenue_percent_change,
+
+            CASE 
+                WHEN COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 0) = 0 THEN
+                    0.0
+                ELSE
+                    100.0 * (
+                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now') THEN 1 END), 0) - 
+                        COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 0)
+                    ) / COALESCE(SUM(CASE WHEN DATE(created_at) = DATE('now', '-1 day') THEN 1 END), 1)
+            END AS order_count_percent_change
+
+        FROM orders
+        WHERE DATE(created_at) IN (DATE('now'), DATE('now', '-1 day'))
+        AND finished = 1;
+        """
+
+        cursor.execute(query)
+        row = cursor.fetchone()
+
+        return dict(row) if row else None
