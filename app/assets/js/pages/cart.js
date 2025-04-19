@@ -218,9 +218,17 @@ const CartManager = (function() {
         }
         
         let productDescription = '';
-        cart.forEach(item => {
-            productDescription += `${item.title} - Kích thước: ${item.size} | Chất liệu: ${item.material} | Số lượng: ${item.quantity}\n`;
+        const prices = [];
+        $('.cart-item .product-price').each(function () {
+            prices.push($(this).text().trim());
         });
+
+        cart.forEach((item, index) => {
+            const itemPrice = prices[index] || 'Không rõ giá';
+            productDescription += `${item.title} - Kích thước: ${item.size} | Chất liệu: ${item.material} | Số lượng: ${item.quantity} | Giá: ${itemPrice}\n`;
+            console.log(productDescription)
+        });
+        
         
         const loadingModal = UI.showLoadingModal();
         

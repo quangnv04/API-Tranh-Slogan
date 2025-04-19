@@ -427,6 +427,7 @@ $(document).ready(function () {
             await fetchProducts(page); // Gọi fetchProducts
             await fetchProductFlashSale(); // Gọi fetchProductFlashSale sau khi fetchProducts hoàn thành
             await fetchListGroupProductHome(); // Gọi fetchListGroupProductHome sau khi fetchProductFlashSale hoàn thành
+            await fetchBlogDetail(); // Gọi fetchBlogDetail sau khi fetchListGroupProductHome hoàn thành
 
             // Khởi tạo Swiper sau khi tất cả dữ liệu đã được tải
             $(".swiper").each(function () {
@@ -469,20 +470,24 @@ $(document).ready(function () {
     // fetchBlogDetail();
     
     function fetchBlogDetail() {
-        $.ajax({
-            url: `/api/blogs?limit=${postsPerPage}&page=${currentPage}`,
-            type: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                if (response.blogs && Array.isArray(response.blogs)) {
-                    appendBlogDetail(response.blogs, true);
-                } else {
-                    console.error("Dữ liệu blogs không hợp lệ:", response);
+        return new Promise((resolve, reject) =>{
+            $.ajax({
+                url: `/api/blogs?limit=${postsPerPage}&page=${currentPage}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.blogs && Array.isArray(response.blogs)) {
+                        appendBlogDetail(response.blogs, true);
+                    } else {
+                        console.error("Dữ liệu blogs không hợp lệ:", response);
+                    }
+                    resolve();
+                },
+                error: function (error) {
+                    console.error("Error fetching blogs:", error);
+                    reject(error);
                 }
-            },
-            error: function (error) {
-                console.error("Error fetching blogs:", error);
-            }
+            });
         });
     }
     
@@ -493,21 +498,19 @@ $(document).ready(function () {
         }
         blogs.forEach(function (blog) {
             const blogDetailHtml = `
-                <div class="col-md-6 col-sm-12">
-                        <div class="blog grid-blog">
-                            <div class="blog-image">
-                                <a href="/blog/${blog.slug}">
-                                    <img class="img-fluid" src="${blog.thumbnail}" alt="Post Image">
-                                </a>
-                            </div>
-                            <div class="blog-detail-grid-box">
-                                <h3 class="blog-detail-title mt-2">
-                                    <a href="/blog/${blog.slug}">${blog.title}</a>
-                                </h3>
-                                <span class="blog-detail-date">${blog.date}</span>
-                            </div>
-                        </div>
+                <div class="blog grid-blog">
+                    <div class="blog-image">
+                        <a href="/blog/${blog.slug}">
+                            <img class="img-fluid" src="${blog.thumbnail}" alt="Post Image">
+                        </a>
                     </div>
+                    <div class="blog-detail-grid-box">
+                        <h3 class="blog-detail-title mt-2">
+                            <a href="/blog/${blog.slug}">${blog.title.length > 61 ? blog.title.substring(0, 58) + "..." : blog.title}</a>
+                        </h3>
+                        <span class="blog-detail-date">${blog.date}</span>
+                    </div>
+                </div>
             `;
             container.append(blogDetailHtml);
         });
