@@ -21,30 +21,13 @@ $(document).ready(function () {
     });
 });
 
-// function updatePrice() {
-//     const selectedSize = document.querySelector('input[name="size"]:checked').value;
-//     const selectedMaterial = document.querySelector('input[name="material"]:checked').value;
-//     const selectedQuantity = parseInt(document.getElementById('quantity').value);
-//     let priceData = null;
-
-//     if (selectedMaterial === 'Canvas') {
-//         priceData = canvasPrice.find(item => item.size === selectedSize);
-//     } else if (selectedMaterial === 'Mica') {
-//         priceData = micaPrice.find(item => item.size === selectedSize);
-//     }
-
-//     if (priceData && priceData.price) {
-//         const totalPrice = priceData.price * selectedQuantity;
-//         document.getElementById('price').textContent = formatVND(totalPrice);
-//     }
-// }
 function updatePrice() {
     const $selectedSize = $('input[name="size"]:checked');
     const $selectedMaterial = $('input[name="material"]:checked');
     const quantityVal = $('#quantity').val();
 
     if ($selectedSize.length === 0 || $selectedMaterial.length === 0 || !quantityVal) {
-        $('#price').text(''); // hoặc hiện "Liên hệ"
+        $('#price').text('');
         return;
     }
 
@@ -74,6 +57,7 @@ document.querySelectorAll('input[name="size"], input[name="material"], input[nam
 document.getElementById('increase-btn').addEventListener('click', () => {
     let currentQuantity = parseInt(document.getElementById('quantity').value);
     document.getElementById('quantity').value = currentQuantity + 1;
+    updatePrice();
 });
 
 document.getElementById('decrease-btn').addEventListener('click', () => {
@@ -81,6 +65,7 @@ document.getElementById('decrease-btn').addEventListener('click', () => {
     if (currentQuantity > 1) {
         document.getElementById('quantity').value = currentQuantity - 1;
     }
+    updatePrice();
 });
 
 // updatePrice();

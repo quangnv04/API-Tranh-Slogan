@@ -498,17 +498,16 @@ $(document).ready(function () {
         }
         blogs.forEach(function (blog) {
             const blogDetailHtml = `
-                <div class="blog grid-blog">
-                    <div class="blog-image">
+                <div class="blog grid-blog mb-0">
+                    <div class="blog-image" style="width: 150px; padding: 10px">
                         <a href="/blog/${blog.slug}">
                             <img class="img-fluid" src="${blog.thumbnail}" alt="Post Image">
                         </a>
                     </div>
                     <div class="blog-detail-grid-box">
-                        <h3 class="blog-detail-title mt-2">
+                        <h3 class="blog-detail-title mt-2"style="font-weight: 300">
                             <a href="/blog/${blog.slug}">${blog.title.length > 61 ? blog.title.substring(0, 58) + "..." : blog.title}</a>
                         </h3>
-                        <span class="blog-detail-date">${blog.date}</span>
                     </div>
                 </div>
             `;

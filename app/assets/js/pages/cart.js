@@ -2,6 +2,7 @@ const CartManager = (function() {
     let voucherApplied = false;
     let shippingFee = 35000;
     let voucherDiscount = 0;
+    let nameOfVoucher = '';
     
     const VOUCHERS = {
         'TS001': {
@@ -79,6 +80,7 @@ const CartManager = (function() {
         
         if (voucher.type === 'percentage') {
             voucherDiscount = subtotal * voucher.value;
+            nameOfVoucher = code;
             UI.showNotification(`Áp dụng mã giảm giá thành công: Giảm ${voucher.value * 100}%`);
         } else if (voucher.type === 'shipping') {
             voucherDiscount = shippingFee;
@@ -226,8 +228,8 @@ const CartManager = (function() {
         cart.forEach((item, index) => {
             const itemPrice = prices[index] || 'Không rõ giá';
             productDescription += `${item.title} - Kích thước: ${item.size} | Chất liệu: ${item.material} | Số lượng: ${item.quantity} | Giá: ${itemPrice}\n`;
-            console.log(productDescription)
         });
+        productDescription += `Mã giảm giá: ${nameOfVoucher}\n`;
         
         
         const loadingModal = UI.showLoadingModal();
@@ -443,7 +445,6 @@ const UI = (function() {
                                 </div>
                                 <h4 class="mb-3">Cảm ơn bạn đã đặt hàng!</h4>
                                 <p class="mb-3">Đơn hàng của bạn đã được ghi nhận thành công.</p>
-                                <p class="mb-3">Một tin nhắn SMS xác nhận đã được gửi đến số điện thoại của bạn.</p>
                                 <p class="mb-3">Chúng tôi sẽ liên hệ lại với bạn trong thời gian sớm nhất để xác nhận đơn hàng.</p>
                                 <p class="alert alert-info">Vui lòng giữ điện thoại và để ý cuộc gọi từ nhân viên của chúng tôi.</p>
                             </div>
