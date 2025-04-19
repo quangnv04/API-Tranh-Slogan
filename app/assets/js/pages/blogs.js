@@ -28,14 +28,14 @@ $(document).ready(function () {
     }
     blogs.forEach(function (blog) {
       const blogHtml = `
-                        <div class="row">
-                           <div class="col-md-6">
-                            <div  class="blog-image col-md-6 ">
+                        <div class="row col-lg-3 position-relative">
+                           <div class="col-md-12">
+                            <div  class="blog-image ">
                                 <a href="/blog/${blog.slug}">
-                                    <img style="object-fit:cover;" class="img-fluid w-100" src="${blog.thumbnail}" alt="Post Image">
+                                    <img style="min-height:274px;object-fit:cover;" class="img-fluid w-100" src="${blog.thumbnail}" alt="Post Image">
                                 </a>
                             </div></div>
-                            <div style="margin: 0px; margin-top: -20px;" class="blog-grid-box col-md-6">
+                            <div style="margin: 0px; margin-top: -20px;" class="blog-grid-box col-md-12">
                                 <div class="blog-info clearfix">
                                     <div class="post-left">
                                         <ul>
