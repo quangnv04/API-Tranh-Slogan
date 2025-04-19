@@ -28,14 +28,14 @@ $(document).ready(function () {
     }
     blogs.forEach(function (blog) {
       const blogHtml = `
-                <div class="col-sm-12">
-                        <div class="blog grid-blog">
-                            <div class="blog-image">
+                        <div class="row">
+                           <div class="col-md-6">
+                            <div  class="blog-image col-md-6 ">
                                 <a href="/blog/${blog.slug}">
-                                    <img class="img-fluid w-100" src="${blog.thumbnail}" alt="Post Image">
+                                    <img style="object-fit:cover;" class="img-fluid w-100" src="${blog.thumbnail}" alt="Post Image">
                                 </a>
-                            </div>
-                            <div class="blog-grid-box">
+                            </div></div>
+                            <div style="margin: 0px; margin-top: -20px;" class="blog-grid-box col-md-6">
                                 <div class="blog-info clearfix">
                                     <div class="post-left">
                                         <ul>
@@ -51,11 +51,9 @@ $(document).ready(function () {
                                 </h3>
                                 <div class="blog-content blog-read">
                                     <p>${blog.short_content}</p>
-                                    <a href="/blog/${blog.slug}" class="read-more btn btn-primary">Đọc Thêm</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
             `;
       container.append(blogHtml);
     });
@@ -151,20 +149,22 @@ $(document).ready(function () {
     }
     blogs.forEach(function (blog) {
       const blogDetailHtml = `
-                <div class="col-sm-12">
+                <div class="row">
+                        <div class="col-md-6">
                         <div class="blog grid-blog">
                             <div class="blog-image">
                                 <a href="/blog/${blog.slug}">
-                                    <img class="img-fluid w-100" src="${blog.thumbnail}" alt="Post Image">
+                                    <img class="img-fluid w-100" style="object-fit:cover;" src="${blog.thumbnail}" alt="Post Image">
                                 </a>
                             </div>
-                            <div class="ms-3 blog-detail-grid-box">
+                        </div>
+</div>
+                            <div class="col-md-6 blog-detail-grid-box">
                                 <h3 class="blog-detail-title mt-2">
                                     <a href="/blog/${blog.slug}">${blog.title}</a>
                                 </h3>
                                 <span class="blog-detail-date">${blog.date}</span>
                             </div>
-                        </div>
                     </div>
             `;
       container.append(blogDetailHtml);
