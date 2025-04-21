@@ -66,7 +66,7 @@ class AccountModel:
         params.append(account_id)
 
         set_query = ', '.join(set_clauses)
-        cursor.execute(
+        result = cursor.execute(
             f'''
             UPDATE account
             SET {set_query}, updated_at = CURRENT_TIMESTAMP
@@ -75,6 +75,7 @@ class AccountModel:
             params
         )
         self.db_connection.commit()
+        return result.rowcount > 0
 
     def delete_account(self, account_id):
         cursor = self.db_connection.cursor()

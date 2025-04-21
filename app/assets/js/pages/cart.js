@@ -79,11 +79,12 @@ const CartManager = (function() {
         }
         
         if (voucher.type === 'percentage') {
-            voucherDiscount = subtotal * voucher.value;
+            voucherDiscount = subtotal * voucher.value + shippingFee;
             nameOfVoucher = code;
             UI.showNotification(`Áp dụng mã giảm giá thành công: Giảm ${voucher.value * 100}%`);
         } else if (voucher.type === 'shipping') {
             voucherDiscount = shippingFee;
+            nameOfVoucher = code;
             UI.showNotification('Áp dụng mã giảm giá thành công: Miễn phí vận chuyển');
         }
         
