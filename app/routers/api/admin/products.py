@@ -84,19 +84,19 @@ async def update_product(product_hash: str, request: Request, db=Depends(get_db_
     if not existing_product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    current_type = existing_product["type"]
-    current_sku = existing_product["sku"]
-    current_title = existing_product["title"]
+    # current_type = existing_product["type"]
+    # current_sku = existing_product["sku"]
+    # current_title = existing_product["title"]
 
-    new_type = data.get("type", current_type)
-    new_title = data.get("title", current_title)
-    if new_type != current_type or new_title != current_title:
-        new_hash = product_model._generate_hash({
-            "type": new_type,
-            "sku": current_sku,
-            "title": new_title
-        })
-        data["hash"] = new_hash
+    # new_type = data.get("type", current_type)
+    # new_title = data.get("title", current_title)
+    # if new_type != current_type or new_title != current_title:
+    #     new_hash = product_model._generate_hash({
+    #         "type": new_type,
+    #         "sku": current_sku,
+    #         "title": new_title
+    #     })
+    #     data["hash"] = new_hash
     
     success = product_model.update_product(product_hash, data)
 

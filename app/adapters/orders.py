@@ -1,3 +1,4 @@
+from datetime import datetime
 import hashlib
 import json
 import sqlite3
@@ -22,7 +23,8 @@ class OrdersAdapter:
         
     def send_order_to_sheets(self, order_data):
         try:
-            hash_string = f"{order_data['name']}|{order_data['phone']}|{order_data['address']}|{order_data['product']}"
+            current_time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+            hash_string = f"{order_data['name']}|{order_data['phone']}|{order_data['address']}|{order_data['product']}|{current_time}"
             order_hash = hashlib.md5(hash_string.encode('utf-8')).hexdigest()
             
             order_data['hash'] = order_hash

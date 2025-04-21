@@ -39,24 +39,6 @@ async def update_order(order_hash: str, request: Request, db=Depends(get_db_for_
     existing_order = order_model.get_orders_by_hash(order_hash)
     if not existing_order:
         raise HTTPException(status_code=404, detail="Order not found")
-
-    current_name = existing_order["name"]
-    current_phone = existing_order["phone"]
-    current_address = existing_order["address"]
-    current_product = existing_order["product"]
-
-    new_name = data.get("name", current_name)
-    new_phone = data.get("phone", current_phone)
-    new_address = data.get("address", current_address)
-    new_product = data.get("product", current_product)
-    if new_name != current_name or new_phone != current_phone or new_address != current_address or new_product != current_phone:
-        new_hash = order_model._generate_hash({
-            "name": new_name,
-            "phone": new_phone,
-            "address": new_address,
-            "product": new_product
-        })
-        data["hash"] = new_hash
     
     success = order_model.update_order(order_hash, data)
 
