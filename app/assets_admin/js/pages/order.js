@@ -157,8 +157,8 @@ $('#datatable-search tbody').on('click', '.edit-btn', async function () {
         $('#input-name').val(order.name);
         $('#input-phone').val(order.phone);
         $('#input-address').val(order.address);
-        $('#input-product').val(order.product).prop('disabled', true);
-        $('#input-price').val(order.price).prop('disabled', true);
+        $('#input-product').val(order.product);
+        $('#input-price').val(order.price);
         $('#input-notes').val(order.notes);
         $('#status-switch').prop('checked', order.status == 'active');
         $('#finished-switch').prop('checked', order.finished == 1);
@@ -173,6 +173,8 @@ async function updateOrder(hash) {
     const name = document.getElementById('input-name').value.trim();
     const phone = document.getElementById('input-phone').value.trim();
     const address = document.getElementById('input-address').value.trim();
+    const product = document.getElementById('input-product').value.trim();
+    const price = document.getElementById('input-price').value.trim();
     const notes = document.getElementById('input-notes').value.trim();
     const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
     const finished = document.getElementById('finished-switch').checked ? 1 : 0;
@@ -192,6 +194,8 @@ async function updateOrder(hash) {
                 name: name,
                 phone: phone,
                 address: address,
+                product: product,
+                price: price,
                 notes: notes,
                 status: status,
                 finished: finished
@@ -219,18 +223,172 @@ $(document).on('click', '.print-btn', async function () {
 
         if (!response.ok) return alert(data.detail);
 
-        $('#print-id').text(data.id);
+        $('#print-id').text(String(data.id).padStart(7, '0'));
         $('#print-name').text(data.name);
         $('#print-phone').text(data.phone);
         $('#print-address').text(data.address);
-        $('#print-product').text(data.product);
-        $('#print-price').text(data.price);
-        $('#print-notes').text(data.notes);
-        $('#print-created-at').text(data.created_at);
+        
+        const date = new Date(data.created_at);
+        const formattedDate = date.toLocaleDateString('vi-VN');
+        $('#print-created-at').text(formattedDate);
+
+        const productText = data.product;
+        const lines = productText.split(/\n/);
+        
+        const tbody = $('#print-product-table tbody');
+        tbody.empty();
+
+        let grandTotal = 0;
+        let discountCode = '';
+        let index = 0;
+        lines.forEach((line) => {
+            if (!line.trim()) return;
+
+            if (line.trim().startsWith('Mã giảm giá:')) {
+                const discountMatch = line.match(/Mã giảm giá:\s*(\w+)/);
+                if (discountMatch) discountCode = discountMatch[1].trim();
+                return;
+            }
+
+            const name = line.split('| Số lượng:')[0].trim();
+
+            const qtyMatch = line.match(/Số lượng:\s*(.+?)\s*\|/);
+            const quantity = qtyMatch ? parseInt(qtyMatch[1].trim()) : 0;
+
+            const priceMatch = line.match(/Giá:\s*([^\|]+)/);
+            const priceText = priceMatch ? priceMatch[1].replace(/[^\d]/g, '') : '0';
+            const price = parseInt(priceText, 10);
+
+            const total = price * quantity;
+            grandTotal += total;
+
+            const row = `
+                <tr>
+                    <td>${++index}</td>
+                    <td class="text-start" style="white-space: normal; word-break: break-word; max-width: 500px;">${name}</td>
+                    <td>${quantity}</td>
+                    <td>${formatVND(price)}</td>
+                    <td>${formatVND(total)}</td>
+                </tr>
+            `;
+            tbody.append(row);
+        });
+
+        let discountPercent = 0;
+        let deliveryFee = 35000;
+
+        if (discountCode === 'TS001') {
+            discountPercent = 5;
+            deliveryFee = 0;
+        } 
+        else if (discountCode === 'TS002') {
+            discountPercent = 8;
+            deliveryFee = 0;
+        }
+        else if (discountCode === 'FREESHIP') {
+            discountPercent = 0;
+            deliveryFee = 0;
+        }
+        const discountAmount = Math.floor(grandTotal * (discountPercent / 100));
+
+        if (discountAmount > 0) {
+            grandTotal -= discountAmount;
+            tbody.append(`
+                <tr>
+                    <td>${++index}</td>
+                    <td colspan="3" class="text-start">Mã giảm giá: ${discountCode} (${discountPercent}%):</td>
+                    <td>- ${formatVND(discountAmount)}</td>
+                </tr>
+            `);
+        }
+
+        grandTotal += deliveryFee;
+        const rowDeliveryFee = `
+            <tr>
+                <td>${++index}</td>
+                <td colspan="3" class="text-start">Phí giao hàng:</td>
+                <td>${formatVND(deliveryFee)}</td>
+            </tr>
+        `;
+        tbody.append(rowDeliveryFee);
+
+        const rowTotal = `
+            <tr>
+                <td colspan="4">Cộng tiền hàng hóa:</td>
+                <td>${formatVND(grandTotal)}</td>
+            </tr>
+        `;
+        tbody.append(rowTotal);
+
+        const rowTotalWord = `
+            <tr>
+                <td colspan="5" class="text-start">Số tiền viết bằng chữ: ${convertNumberToWords(grandTotal)}</td>
+            </tr>
+        `;
+        tbody.append(rowTotalWord);
+
     } catch (err) {
         alert(err.message);
     }
 });
+
+function formatVND(number) {
+    return new Intl.NumberFormat('vi-VN').format(number) + ' đ';
+}
+
+function convertNumberToWords(number) {
+    const Tien = ["", "nghìn", "triệu", "tỷ", "nghìn tỷ", "triệu tỷ"];
+    
+    if (number === 0) return "Không đồng";
+
+    let str = "";
+    let numStr = number.toString();
+    let pos = 0;
+
+    while (numStr.length > 0) {
+        let chunk = numStr.length >= 3 ? numStr.slice(-3) : numStr;
+        numStr = numStr.slice(0, -chunk.length);
+        let chunkWords = readChunk(parseInt(chunk));
+        if (chunkWords !== "") {
+            str = chunkWords + " " + Tien[pos] + " " + str;
+        }
+        pos++;
+    }
+
+    str = str.replace(/\s+/g, ' ').trim();
+    str = str.charAt(0).toUpperCase() + str.slice(1) + " đồng";
+    return str;
+}
+
+function readChunk(number) {
+    const ChuSo = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+    let tram = Math.floor(number / 100);
+    let chuc = Math.floor((number % 100) / 10);
+    let donVi = number % 10;
+    let result = "";
+
+    if (tram > 0) {
+        result += ChuSo[tram] + " trăm ";
+        if (chuc === 0 && donVi > 0) result += "lẻ ";
+    } else if (number >= 100) {
+        result += "không trăm ";
+    }
+
+    if (chuc > 1) {
+        result += ChuSo[chuc] + " mươi ";
+        if (donVi === 1) result += "mốt ";
+        else if (donVi === 5) result += "lăm ";
+        else if (donVi > 0) result += ChuSo[donVi] + " ";
+    } else if (chuc === 1) {
+        result += "mười ";
+        if (donVi === 5) result += "lăm ";
+        else if (donVi > 0) result += ChuSo[donVi] + " ";
+    } else if (chuc === 0 && donVi > 0) {
+        result += ChuSo[donVi] + " ";
+    }
+
+    return result.trim();
+}
 
 $('#btn-print-pdf').on('click', function () {
     const element = document.getElementById('order-preview');
@@ -239,7 +397,7 @@ $('#btn-print-pdf').on('click', function () {
         filename:     `order_${Date.now()}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
     };
     html2pdf().set(opt).from(element).save();
 });

@@ -1,0 +1,43 @@
+.order-template {
+font-family: "Arial", sans-serif;
+font-size: 13px;
+background: #fff;
+color: #005bac;
+}
+.order-template h5 {
+    color: #004786;
+}
+.order-header {
+border-bottom: 1px solid #005bac;
+padding-bottom: 6px;
+margin-bottom: 10px;
+}
+.order-template table {
+width: 100%;
+border-collapse: collapse;
+}
+.order-template table th, .order-template table td {
+    border: 1px solid #005bac;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+}
+.modal-dialog.offset-right {
+    margin-left: auto !important;
+    margin-right: 55px !important;
+}
+.modal-footer .btn {
+    margin-bottom: 3px;
+}
+.company {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: fit-content;
+}
+.company img {
+    height: 30px;
+}
+.number-id {
+    width: 130px;
+}

@@ -8,6 +8,7 @@ Admin | Quản lý đơn hàng
 <link rel="canonical" href="https://tranhslogan.vn/admin/orders-management/" />
 <link rel="alternate" href="https://tranhslogan.vn/admin/orders-management/" hreflang="vi" />
 <link rel="alternate" href="https://tranhslogan.vn/admin/orders-management/" hreflang="x-default" />
+<link rel="stylesheet" href="/assets_admin/css/order.css">
 {%endblock%}
 
 {% block content %}
@@ -195,28 +196,61 @@ Admin | Quản lý đơn hàng
     </div>
 
     <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-xl offset-right" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="printModalLabel">Preview Order</h5>
                 </div>
-                <div class="modal-body">
-                    <div id="order-preview" class="p-4 border rounded bg-white">
-                        <h4 class="text-center mb-4">HÓA ĐƠN BÁN HÀNG</h4>
-                        <p><strong>Mã đơn:</strong> <span id="print-id"></span></p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p><strong>Khách hàng:</strong> <span id="print-name"></span></p>
+                <div class="modal-body p-4" id="order-preview">
+                    <div class="border border-dark p-4 order-template">
+                        <div class="d-flex justify-content-between align-items-start order-header mb-2">
+                            <div>
+                                <div class="company">
+                                    <img src="/assets/img/logo/logo.png" alt="Logo">
+                                    <h5 class="mb-0 text-uppercase fw-bold mt-2">CÔNG TY TNHH Tranh Slogan</h5>
+                                </div>
+                                <p class="mb-0">Địa chỉ: 219 Nguyễn Ngọc Vũ, Cầu Giấy, Hà Nội</p>
+                                <p class="mb-0">Điện thoại: 0369 620 182</p>
+                                <p class="mb-0">Tài khoản: 00000842495</p>
+                                <p class="mb-0">Ngân hàng Thương mại Cổ phần Tiên Phong TPBank</p>
                             </div>
-                            <div class="col-md-6">
-                                <p><strong>SĐT:</strong> <span id="print-phone"></span></p>
+                            <div class="text-center flex-grow-1">
+                                <h4 class="text-danger fw-bold mb-1">HÓA ĐƠN BÁN HÀNG</h4>
+                                <p>Ngày: <span id="print-created-at">__/__/____</span></p>
+                            </div>
+                            <div class="number-id">
+                                <p class="mb-0">Mẫu số: 02GTTT0/003</p>
+                                <p class="mb-0">Ký hiệu: AA/19E</p>
+                                <p class="mb-0">Số: <span class="text-danger" id="print-id"></span></p>
                             </div>
                         </div>
-                        <p><strong>Địa chỉ:</strong> <span id="print-address"></span></p>
-                        <p><strong>Sản phẩm:</strong> <span id="print-product"></span></p>
-                        <p><strong>Giá:</strong> <span id="print-price"></span></p>
-                        <p><strong>Ghi chú:</strong> <span id="print-notes"></span></p>
-                        <p><strong>Ngày đặt hàng:</strong> <span id="print-created-at"></span></p>
+                        <div class="mb-3">
+                            <p class="mb-0">Họ tên người mua hàng: <span id="print-name"></span></p>
+                            <p class="mb-0">SĐT: <span id="print-phone"></span></p>
+                            <p class="mb-0">Địa chỉ: <span id="print-address"></span></p>
+                        </div>
+                        <table class="table-bordered text-center align-middle" id="print-product-table">
+                            <thead>
+                                <tr>
+                                <th>STT</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Đơn Giá</th>
+                                <th>Thành Tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <div class="row mt-2 mb-4 text-center">
+                            <div class="col-md-6">
+                                <p>Người mua hàng</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Người bán hàng</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -225,8 +259,7 @@ Admin | Quản lý đơn hàng
                 </div>
             </div>
         </div>
-    </div>
-  
+    </div> 
 </div>
 {% endblock %}
 
