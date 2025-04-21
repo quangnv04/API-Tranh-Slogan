@@ -1,3 +1,4 @@
+from datetime import datetime
 import hashlib
 import sqlite3
 import urllib.parse
@@ -10,7 +11,8 @@ class OrdersModel:
         self.db_connection.row_factory = sqlite3.Row
         
     def _generate_hash(self, order):
-        hash_string = f"{order['name']}|{order['phone']}|{order['address']}|{order['product']}"
+        current_time = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+        hash_string = f"{order['name']}|{order['phone']}|{order['address']}|{order['product']}|{current_time}"
         return hashlib.md5(hash_string.encode('utf-8')).hexdigest()
  
     def insert_orders(self, order):

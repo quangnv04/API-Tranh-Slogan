@@ -1,3 +1,4 @@
+import re
 from fastapi import Request, HTTPException, Depends, Response
 from fastapi.responses import JSONResponse
 import bcrypt
@@ -16,11 +17,20 @@ async def register(request: Request, db=Depends(get_db_for_new_thread)):
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
-    role = data.get("role", "user")
+    phone = data.get("phone")
+    notes = data.get("notes")
+    status = data.get("status")
+    role = data.get("role", "admin")
 
-    if not username or not email or not password:
-        raise HTTPException(status_code=400, detail="Missing information")
+    if not username or not email or not password or not phone:
+        raise HTTPException(status_code=400, detail="Username, Password, Phone number, Email is required")
 
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        raise HTTPException(status_code=400, detail="Invalid email format")
+
+    if not re.match(r"^(0|\+84)(\d{9})$", phone):
+        raise HTTPException(status_code=400, detail="Invalid phone number format")
+    
     password_hash = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
     account_model = AccountModel(db)
@@ -28,14 +38,21 @@ async def register(request: Request, db=Depends(get_db_for_new_thread)):
     if existing_account:
         raise HTTPException(status_code=400, detail="Username already exists")
 
-    existing_email = account_model.get_account_by_username(email)
+    existing_email = account_model.get_account_by_email(email)
     if existing_email:
         raise HTTPException(status_code=400, detail="Email already exists")
+    
+    existing_phone = account_model.get_account_by_phone(phone)
+    if existing_phone:
+        raise HTTPException(status_code=400, detail="Phone number already exists")
 
     account_data = {
         'username': username,
         'password_hash': password_hash,
-        'email': email
+        'email': email,
+        'phone': phone,
+        'notes': notes,
+        'status': status
     }
     account_model.insert_account(account_data)
 

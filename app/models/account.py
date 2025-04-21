@@ -10,17 +10,23 @@ class AccountModel:
         cursor = self.db_connection.cursor()
         cursor.execute(
             '''
-            INSERT INTO account (username, password_hash, email, created_at, updated_at)
-            VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+            INSERT INTO account (username, password_hash, email, phone, notes, status, created_at, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
             ON CONFLICT(username) DO UPDATE SET
                 password_hash = excluded.password_hash,
                 email = excluded.email,
+                phone = excluded.phone,
+                notes = excluded.notes,
+                status = excluded.status,
                 updated_at = CURRENT_TIMESTAMP
             ''',
             (
                 account['username'],
                 account['password_hash'],
                 account.get('email', None),
+                account['phone'],
+                account['notes'],
+                account['status'],
             )
         )
         self.db_connection.commit()
@@ -34,6 +40,18 @@ class AccountModel:
     def get_account_by_username(self, username):
         cursor = self.db_connection.cursor()
         cursor.execute('SELECT * FROM account WHERE username = ?', (username,))
+        account = cursor.fetchone()
+        return dict(account) if account else None
+    
+    def get_account_by_email(self, email):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM account WHERE email = ?', (email,))
+        account = cursor.fetchone()
+        return dict(account) if account else None
+    
+    def get_account_by_phone(self, phone):
+        cursor = self.db_connection.cursor()
+        cursor.execute('SELECT * FROM account WHERE phone = ?', (phone,))
         account = cursor.fetchone()
         return dict(account) if account else None
 

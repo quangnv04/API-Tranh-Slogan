@@ -392,9 +392,11 @@ function readChunk(number) {
 
 $('#btn-print-pdf').on('click', function () {
     const element = document.getElementById('order-preview');
+    const sdt = document.getElementById('print-phone').innerText.trim();
+    const createdAt = document.getElementById('print-created-at').innerText.trim();
     const opt = {
         margin:       0.5,
-        filename:     `order_${Date.now()}.pdf`,
+        filename:     `order_${sdt}_${createdAt}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2 },
         jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }

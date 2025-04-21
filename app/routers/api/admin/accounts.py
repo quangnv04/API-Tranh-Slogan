@@ -1,3 +1,5 @@
+import re
+import bcrypt
 from fastapi import Depends, HTTPException, Request, Response
 from app.models.account import AccountModel
 from app.dependencies import router, get_db_for_new_thread
@@ -18,42 +20,57 @@ async def get_account(account_id: int, db=Depends(get_db_for_new_thread)):
         raise HTTPException(status_code=404, detail="Account not found")
     return account
 
-@router.post("/api/admin/account")
-async def create_account(request: Request, db=Depends(get_db_for_new_thread)):
-    try:
-        data = await request.json()
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
-
-    account_model = AccountModel(db)
-
-    try:
-        account_model.insert_account([data])
-        return {"message": "Account created or updated successfully"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to create account")
-
 @router.put("/api/admin/account/{account_id}")
 async def update_account(account_id: int, request: Request, db=Depends(get_db_for_new_thread)):
     try:
         data = await request.json()
+        username = data.get("username")
+        password = data.get("password")
+        email = data.get("email")
+        phone = data.get("phone")
+        notes = data.get("notes")
+        status = data.get("status")
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON format")
 
     if not data:
         raise HTTPException(status_code=400, detail="No data provided for update")
 
-    if "status" in data:
-        new_status = data["status"]
-        if new_status not in ("active", "inactive"):
-            raise HTTPException(status_code=400, detail="Invalid status value")
-
     account_model = AccountModel(db)
 
-    if not account_model.get_account_by_id(account_id):
+    account = account_model.get_account_by_id(account_id)
+    if not account:
         raise HTTPException(status_code=404, detail="Account not found")
 
-    success = account_model.update_account(account_id, data)
+    update_data = {'status': status}
+
+    if username and username != account["username"]:
+        if account_model.get_account_by_username(username):
+            raise HTTPException(status_code=400, detail="Username already exists")
+        update_data["username"] = username
+
+    if email:
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            raise HTTPException(status_code=400, detail="Invalid email format")
+        existing_email = account_model.get_account_by_email(email)
+        if email != account["email"] and existing_email and existing_email["id"] != account_id:
+            raise HTTPException(status_code=400, detail="Email already exists")
+        update_data["email"] = email
+
+    if phone:
+        if not re.match(r"^(0|\+84)(\d{9})$", phone):
+            raise HTTPException(status_code=400, detail="Invalid phone number format")
+        existing_phone = account_model.get_account_by_phone(phone)
+        if phone != account["phone"] and existing_phone and existing_phone["id"] != account_id:
+            raise HTTPException(status_code=400, detail="Phone number already exists")
+        update_data["phone"] = phone
+    if notes is not None: update_data["notes"] = notes
+    
+    if password:
+        password_hash = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+        update_data["password_hash"] = password_hash
+        
+    success = account_model.update_account(account_id, update_data)
 
     if success:
         return {"message": "Account updated successfully"}

@@ -112,8 +112,7 @@ $(document).on('click', '.toggle-details', async function () {
 });
 
 $('#create-btn').on('click', async function () {
-    $('#input-username').val("").prop('disabled', false);;
-    $('#input-password').val("").prop('disabled', false);;
+    $('#input-username').val("");
     $('#input-phone').val("");
     $('#input-email').val("");
     $('#input-notes').val("");
@@ -135,8 +134,7 @@ $('#datatable-search tbody').on('click', '.edit-btn', async function () {
 
         const account = await response.json();
 
-        $('#input-username').val(account.username).prop('disabled', true);
-        $('#input-password').val(account.password_hash).prop('disabled', true);
+        $('#input-username').val(account.username);
         $('#input-phone').val(account.phone);
         $('#input-email').val(account.email);
         $('#input-notes').val(account.notes);
@@ -154,19 +152,19 @@ $('#datatable-search tbody').on('click', '.edit-btn', async function () {
 
 async function createAccount() {
     const username = document.getElementById('input-username').value.trim();
-    const password_hash = document.getElementById('input-password').value.trim();
+    const password = document.getElementById('input-password').value.trim();
     const phone = document.getElementById('input-phone').value.trim();
     const email = document.getElementById('input-email').value.trim();
     const notes = document.getElementById('input-notes').value.trim();
     const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
 
     try {
-        const response = await fetch('/api/admin/account', {
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 username: username,
-                password_hash: password_hash,
+                password: password,
                 phone: phone,
                 email: email,
                 notes: notes,
@@ -187,16 +185,24 @@ async function createAccount() {
 }
 
 async function updateAccount(id) {
+    const username = document.getElementById('input-username').value.trim();
+    const password = document.getElementById('input-password').value.trim();
     const phone = document.getElementById('input-phone').value.trim();
     const email = document.getElementById('input-email').value.trim();
     const notes = document.getElementById('input-notes').value.trim();
     const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
 
+    if (!username || !email || !phone) {
+        return alert("Username, Email, Phone are required");
+    }
+    
     try {
         const response = await fetch(`/api/admin/account/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
+                username: username,
+                password: password,
                 phone: phone,
                 email: email,
                 notes: notes,
