@@ -1,7 +1,7 @@
 const formatVND = (amount) => {
     if (amount === "" || amount === 0) return "";
     let result = parseInt(amount).toLocaleString('it-IT') + 'đ';
-    return result.replace(".", ",").trim();
+    return result.replace(/\./g, ",").trim();
 }
 
 const keysToCamelCase = (obj) => {

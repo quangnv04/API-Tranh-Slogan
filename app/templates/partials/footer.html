@@ -2,7 +2,7 @@
     <div class="footer-top aos" data-aos="fade-up">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-widget footer-about footer-contact">
                         <div class="footer-logo">
                             <img src="/assets/img/logo/logo.png" alt="logo">
@@ -32,6 +32,8 @@
                     <div class="footer-widget footer-menu">
                         <h2 class="footer-title">Dịch Vụ</h2>
                         <ul>
+                            <li><a href="/contact-us">Liên hệ</a></li>
+                            <li><a href="/blogs">Blogs</a></li>
                             <li><a href="#">Thiết kế theo yêu cầu</a></li>
                             <li><a href="#">In tranh theo yêu cầu</a></li>
                             <li><a href="#">Đo kích thước tận nơi </a></li>
@@ -45,23 +47,23 @@
                             <li><a href="#terms-of-use">Điều khoản</a></li>
                             <li><a href="/privacy-policy">Chính sách bảo mật</a></li>
                             <li><a href="/refund-cancellation-policy">Chính sách hoàn huỷ</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <div class="footer-widget footer-menu">
-                        <h2 class="footer-title">Tranh Slogan</h2>
-                        <ul>
-                            <li><a href="/blogs">Blogs</a></li>
-                            <li><a href="/contact-us">Liên hệ</a></li>
-                            <li><a href="#">Câu chuyện chúng tôi</a></li>
                             <li><a href="/about-us">Giới thiệu về Tranh Slogan</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <!-- <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-menu">
+                        <h2 class="footer-title">Tranh Slogan</h2>
+                        <ul>
+                            
+                            <li><a href="#">Câu chuyện chúng tôi</a></li>
+                            
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="col-lg-4 col-md-6">
                     <h2 class="footer-title">Bản đồ</h2>
-                    <div id="map" style="width: 350px; height: 300px; margin-top: 30px; border-radius: 10px;"></div>
+                    <div id="map" style="width: 400px; height: 260px; margin-top: 30px; border-radius: 10px;"></div>
                 </div>
             </div>
         </div>       
@@ -134,12 +136,11 @@
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v12',
-        center: [105.801944, 21.007222], // Toạ độ Ngõ 219 Nguyễn Ngọc Vũ
+        center: [105.80564156266387, 21.013950154856484], // Toạ độ Ngõ 219 Nguyễn Ngọc Vũ
         zoom: 15
     });
-
     new mapboxgl.Marker({ color: 'red' })
-        .setLngLat([105.801944, 21.007222])
+        .setLngLat([105.80564156266387, 21.013950154856484])
         .setPopup(new mapboxgl.Popup().setText("Tranh Slogan - 219 Nguyễn Ngọc Vũ"))
         .addTo(map);
     

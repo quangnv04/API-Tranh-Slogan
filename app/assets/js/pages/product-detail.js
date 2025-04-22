@@ -82,9 +82,9 @@ function getTypeFromUrl() {
 
 const sizeOptionsByType = {
     "tranh-thuan-buom-xuoi-gio": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "70x100", "label": "70x100cm" },
+        { "id": "80x120", "label": "80x120cm" },
+        { "id": "100x150", "label": "100x150cm" }
     ],
     "tranh-dong-luc": [
         { id: "30x40", label: "30x40cm" },
@@ -93,79 +93,93 @@ const sizeOptionsByType = {
         { id: "60x90", label: "60x90cm" }
     ],
     "tranh-tieng-anh": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { id: "30x40", label: "30x40cm" },
+        { id: "40x60", label: "40x60cm" },
+        { id: "50x70", label: "50x70cm" },
+        { id: "60x90", label: "60x90cm" }
     ],
     "tranh-quan-tra-sua": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { id: "30x40", label: "30x40cm" },
+        { id: "40x60", label: "40x60cm" },
+        { id: "50x70", label: "50x70cm" },
+        { id: "60x90", label: "60x90cm" }
     ],
     "tranh-tuc-ngu": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { id: "30x40", label: "30x40cm" },
+        { id: "40x60", label: "40x60cm" },
+        { id: "50x70", label: "50x70cm" },
+        { id: "60x90", label: "60x90cm" }
     ],
     "tranh-doanh-nhan": [
+        { "id": "30x40", "label": "30x40cm" },
         { "id": "40x60", "label": "40x60cm" },
         { "id": "50x70", "label": "50x70cm" },
         { "id": "60x90", "label": "60x90cm" }
     ],
     "tranh-ca-chep": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "60x120", "label": "60x120cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "90x180", "label": "90x180cm" }
     ],
     "tranh-chim-cong": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100" },
+        { "id": "60x120", "label": "60x120cm" }
     ],
     "tranh-hoa-mau-don": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100cm" },
+        { "id": "60x120", "label": "60x120cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "90x180", "label": "90x180cm" },
+        { "id": "100x200", "label": "100x200cm" }
     ],
     "tranh-rong": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "60x120", "label": "60x120cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "100x200", "label": "100x200cm" }
     ],
     "tranh-tu-quy": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "46x76", "label": "46x76cm" },
+        { "id": "56x96", "label": "56x96cm" },
+        { "id": "66x116", "label": "66x116cm" }
     ],
     "tranh-ma-dao-thanh-cong": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "70x100", "label": "70x100cm" },
+        { "id": "80x120", "label": "80x120cm" },
+        { "id": "100x150", "label": "100x150cm" }
     ],
     "tranh-son-thuy-huu-tinh": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "40x40", "label": "40x40cm" },
+        { "id": "50x50", "label": "50x50cm" },
+        { "id": "60x60", "label": "60x60cm" },
+        { "id": "100x100", "label": "100x100cm" },
     ],
     "tranh-huou-nai": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100cm" },
+        { "id": "60x120", "label": "60x120cm" }
     ],
     "tranh-nghe-thuat": [
         { "id": "40x60", "label": "40x60cm" },
         { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "60x90", "label": "60x90cm" },
+        { "id": "70x100", "label": "70x100cm" }
     ],
     "tranh-hoa-la": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "80x80", "label": "80x80cm" },
+        { "id": "100x100", "label": "100x100cm" }
     ],
     "tranh-con-vat": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "40x40", "label": "40x40cm" },
+        { "id": "50x50", "label": "50x50cm" },
+        { "id": "60x60", "label": "60x60cm" }
     ],
     "tranh-phat-giao": [
         { "id": "40x60", "label": "40x60cm" },
@@ -173,14 +187,14 @@ const sizeOptionsByType = {
         { "id": "60x90", "label": "60x90cm" }
     ],
     "tranh-cong-giao": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "70x100", "label": "70x100cm" },
+        { "id": "80x120", "label": "80x120cm" },
+        { "id": "100x150", "label": "100x150cm" }
     ],
     "tranh-3d": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100cm" }
     ],
     "tranh-cau-thu-bong-da": [
         { "id": "40x60", "label": "40x60cm" },
@@ -193,27 +207,27 @@ const sizeOptionsByType = {
         { "id": "60x90", "label": "60x90cm" }
     ],
     "tranh-phuc-loc-tho": [
+        { "id": "30x60", "label": "30x60cm" },
         { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "50x100", "label": "50x100cm" }
     ],
     "tranh-thu-phap": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100cm" },
+        { "id": "60x120", "label": "60x120cm" }
     ],
     "tranh-ly-ruou": [
+        { "id": "30x40", "label": "30x40cm" },
         { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "50x70", "label": "50x70cm" }
     ],
     "tranh-gau-bearbrick-kaws-nghe-thuat": [
+        { "id": "30x40", "label": "30x40cm" },
         { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "50x70", "label": "50x70cm" }
     ],
     "tranh-nhan-vat-hoat-hinh-sieu-anh-hung": [
-        { "id": "40x60", "label": "40x60cm" },
         { "id": "50x70", "label": "50x70cm" },
         { "id": "60x90", "label": "60x90cm" }
     ],
@@ -233,54 +247,59 @@ const sizeOptionsByType = {
         { "id": "60x90", "label": "60x90cm" }
     ],
     "tranh-lich": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "50x70", "label": "50x70cm" }
     ],
     "tranh-phu-dieu-tranh-treo-tuong-co-khung-cao-cap": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "60x120", "label": "60x120cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "90x180", "label": "90x180cm" }
     ],
     "bien-bao": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "21x30", "label": "21x30cm" }
     ],
     "tranh-lien-treo-tuong": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x90", "label": "30x90cm" }
     ],
     "tranh-tron-trang-guong": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "40x40", "label": "40x40cm" },
+        { "id": "50x50", "label": "50x50cm" },
+        { "id": "60x60", "label": "60x60cm" }
     ],
     "tranh-dong-ho-treo-tuong": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "Đường kính 30cm", "label": "Đường kính 30cm" },
+        { "id": "Đường kính 40cm", "label": "Đường kính 40cm" }
     ],
     "tranh-canvas": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "70x100", "label": "70x100cm" },
+        { "id": "80x120", "label": "80x120cm" },
+        { "id": "100x150", "label": "100x150cm" }
     ],
     "tranh-phong-canh-thien-nhien": [
-        { "id": "50x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "60x120", "label": "40x60cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "90x180", "label": "90x180cm" }
     ],
     "tranh-phong-canh-viet-nam": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100cm" },
+        { "id": "60x120", "label": "60x120cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "90x180", "label": "90x180cm" },
+        { "id": "100x200", "label": "100x200cm" }
     ],
     "tranh-phong-canh-nuoc-ngoai": [
-        { "id": "40x60", "label": "40x60cm" },
-        { "id": "50x70", "label": "50x70cm" },
-        { "id": "60x90", "label": "60x90cm" }
+        { "id": "30x60", "label": "30x60cm" },
+        { "id": "40x80", "label": "40x80cm" },
+        { "id": "50x100", "label": "50x100cm" },
+        { "id": "60x120", "label": "60x120cm" },
+        { "id": "70x140", "label": "70x140cm" },
+        { "id": "80x160", "label": "80x160cm" },
+        { "id": "90x180", "label": "90x180cm" },
+        { "id": "100x200", "label": "100x200cm" }
     ]    
 };
 
