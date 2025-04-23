@@ -8,7 +8,7 @@ from starlette.concurrency import run_in_threadpool
 
 @router.get("/menu", response_class=HTMLResponse)
 async def get_menus(request: Request):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
     return templates.TemplateResponse("menu.html", {"request": request, "time": time_debug})

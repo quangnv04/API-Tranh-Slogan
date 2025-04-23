@@ -227,20 +227,21 @@ $(document).on('click', '.print-btn', async function () {
         $('#print-name').text(data.name);
         $('#print-phone').text(data.phone);
         $('#print-address').text(data.address);
-        
+
         const date = new Date(data.created_at);
         const formattedDate = date.toLocaleDateString('vi-VN');
         $('#print-created-at').text(formattedDate);
 
         const productText = data.product;
         const lines = productText.split(/\n/);
-        
+
         const tbody = $('#print-product-table tbody');
         tbody.empty();
 
         let grandTotal = 0;
         let discountCode = '';
         let index = 0;
+
         lines.forEach((line) => {
             if (!line.trim()) return;
 
@@ -251,7 +252,6 @@ $(document).on('click', '.print-btn', async function () {
             }
 
             const name = line.split('| Số lượng:')[0].trim();
-
             const qtyMatch = line.match(/Số lượng:\s*(.+?)\s*\|/);
             const quantity = qtyMatch ? parseInt(qtyMatch[1].trim()) : 0;
 
@@ -280,17 +280,15 @@ $(document).on('click', '.print-btn', async function () {
         if (discountCode === 'TS001') {
             discountPercent = 5;
             deliveryFee = 0;
-        } 
-        else if (discountCode === 'TS002') {
+        } else if (discountCode === 'TS002') {
             discountPercent = 8;
             deliveryFee = 0;
-        }
-        else if (discountCode === 'FREESHIP') {
+        } else if (discountCode === 'FREESHIP') {
             discountPercent = 0;
             deliveryFee = 0;
         }
-        const discountAmount = Math.floor(grandTotal * (discountPercent / 100));
 
+        const discountAmount = Math.floor(grandTotal * (discountPercent / 100));
         if (discountAmount > 0) {
             grandTotal -= discountAmount;
             tbody.append(`
@@ -303,34 +301,51 @@ $(document).on('click', '.print-btn', async function () {
         }
 
         grandTotal += deliveryFee;
-        const rowDeliveryFee = `
+        tbody.append(`
             <tr>
                 <td>${++index}</td>
                 <td colspan="3" class="text-start">Phí giao hàng:</td>
                 <td>${formatVND(deliveryFee)}</td>
             </tr>
-        `;
-        tbody.append(rowDeliveryFee);
-
-        const rowTotal = `
             <tr>
                 <td colspan="4">Cộng tiền hàng hóa:</td>
                 <td>${formatVND(grandTotal)}</td>
             </tr>
-        `;
-        tbody.append(rowTotal);
-
-        const rowTotalWord = `
             <tr>
+                <td colspan="4">Chiết khấu (VNĐ):</td>
+                <td>
+                    <input  id="discount-manual" class="form-control" value="0" min="0" style="width: 150px; text-align: center; border-radius: 5px; border: none;">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Số tiền cần thanh toán:</strong></td>
+                <td><strong id="print-final-total">${formatVND(grandTotal)}</strong></td>
+            </tr>
+            <tr class="row-total-word">
                 <td colspan="5" class="text-start">Số tiền viết bằng chữ: ${convertNumberToWords(grandTotal)}</td>
             </tr>
-        `;
-        tbody.append(rowTotalWord);
+        `);
+
+        // Cập nhật số tiền cần thanh toán khi thay đổi chiết khấu tay
+        $('#discount-manual').off('input').on('input', function () {
+            const manualDiscount = parseInt($(this).val().replace(/[^\d]/g, '')) || 0;
+            const finalAmount = Math.max(grandTotal - manualDiscount, 0);
+            $('#print-final-total').text(formatVND(finalAmount));
+
+            // Cập nhật số tiền viết bằng chữ
+            $('.row-total-word').remove();
+            $('#print-product-table tbody').parent().append(`
+                <tr class="row-total-word">
+                    <td colspan="5" class="text-start">Số tiền viết bằng chữ: ${convertNumberToWords(finalAmount)}</td>
+                </tr>
+            `);
+        });
 
     } catch (err) {
         alert(err.message);
     }
 });
+
 
 function formatVND(number) {
     return new Intl.NumberFormat('vi-VN').format(number) + ' đ';

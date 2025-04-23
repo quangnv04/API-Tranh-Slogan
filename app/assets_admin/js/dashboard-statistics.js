@@ -166,6 +166,7 @@ $(document).ready(() => {
     currentTab = $(this).data("type");
     reloadChart();
   });
+  console.log("Đã tải xong trang thống kê");
 
   setTimeout(() => {
     $.ajax({

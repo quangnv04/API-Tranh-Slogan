@@ -11,7 +11,7 @@ from starlette.concurrency import run_in_threadpool
 
 @router.get("/product/{slug}", response_class=HTMLResponse)
 async def get_product_detail(request: Request, slug: str, db: SQLite3Connection = Depends(get_db)):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
 
@@ -45,7 +45,7 @@ async def get_product_detail(request: Request, slug: str, db: SQLite3Connection 
 
 @router.get("/set/{slug}", response_class=HTMLResponse)
 async def get_set_detail(request: Request, slug: str, db: SQLite3Connection = Depends(get_db)):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
 

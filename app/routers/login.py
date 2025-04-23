@@ -9,7 +9,7 @@ from starlette.concurrency import run_in_threadpool
 
 @router.get("/login", response_class=HTMLResponse)
 async def admin_login(request: Request):
-    time_debug = "0.1.57"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
     return templates.TemplateResponse("/login.html", {"request": request, "time": time_debug})

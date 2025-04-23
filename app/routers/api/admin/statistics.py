@@ -53,7 +53,7 @@ async def count_order(
 
 
 @router.get('/api/admin/statistics/monthly_revenue_and_order_count')
-async def daily_revenue_and_order_count(db=Depends(get_db_for_new_thread)):
+async def monthly_revenue_and_order_count(db=Depends(get_db_for_new_thread)):
     statistics_model = StatisticsModel(db)
     statistics = await statistics_model.get_monthly_revenue_and_order_count()
     return statistics

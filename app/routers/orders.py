@@ -10,7 +10,7 @@ from app.models.orders import OrdersModel
 
 @router.get("/order", response_class=HTMLResponse)
 async def get_orders(request: Request):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
     return templates.TemplateResponse("order.html", {"request": request, "time": time_debug})

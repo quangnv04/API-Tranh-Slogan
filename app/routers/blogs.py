@@ -9,7 +9,7 @@ from starlette.concurrency import run_in_threadpool
 
 @router.get("/blogs", response_class=HTMLResponse)
 async def get_blogs(request: Request):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
     return templates.TemplateResponse("blogs.html", {"request": request, "time": time_debug})
@@ -17,7 +17,7 @@ async def get_blogs(request: Request):
 
 @router.get("/blog/{slug}", response_class=HTMLResponse)
 async def get_blog_detail(request: Request, slug: str, db: SQLite3Connection = Depends(get_db)):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
 

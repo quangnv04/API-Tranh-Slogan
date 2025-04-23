@@ -81,6 +81,16 @@ function getTypeFromUrl() {
 }
 
 const sizeOptionsByType = {
+    "tranh-phong-tre-em":[
+        { "id": "40x60", "label": "40x60cm" },
+        { "id": "50x70", "label": "50x70cm" },
+        { "id": "60x90", "label": "60x90cm" }
+    ],
+    "tranh-kinh-treo-tuong": [
+        {"id": "40x60", "label": "40x60cm" },
+        {"id": "50x70", "label": "50x70cm" },
+        {"id": "60x90", "label": "60x90cm" }
+    ],
     "tranh-thuan-buom-xuoi-gio": [
         { "id": "70x100", "label": "70x100cm" },
         { "id": "80x120", "label": "80x120cm" },
@@ -405,18 +415,17 @@ $(document).ready(function () {
     function fetchProducts() {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: `/api/products?page=1&limit=20`,
-                type: 'GET',
+                url: `/api/products?type=${encodeURIComponent(type.trim())}&page=2&limit=16`,
+                method: 'GET',
                 dataType: 'json',
-                success: data => {
-                    if (data && typeof data === 'object' && data.products && data.products.length > 0) {
-                        appendProducts(keysToCamelCase(data.products));
+                success: function (response) {
+                    if (response && typeof response === 'object' && response.products && response.products.length > 0) {
+                        appendProducts(keysToCamelCase(response.products));
                     }
                     resolve(); // Báo hoàn thành
-
                 },
-                error: error => {
-                    console.error("Error fetching products:", error);
+                error: function (error) {
+                    console.error("Không thể lấy sản phẩm liên quan:", error);
                     reject(error); // Báo lỗi
 
                 }
@@ -556,6 +565,8 @@ $(document).ready(function () {
         let selectedMaterial = $('input[name="material"]:checked').val();
         let selectedQuantity = parseInt($('#quantity').val());
         let price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+        console.log(selectedSize, selectedFrame, selectedMaterial, selectedQuantity, price);
+        
 
         let existingItem = cart.find(item =>
             item.title === productTitle &&
@@ -574,7 +585,7 @@ $(document).ready(function () {
                 frame: selectedFrame,
                 material: selectedMaterial,
                 quantity: selectedQuantity,
-                price: price
+                price: price/selectedQuantity
             });
         }
 
@@ -602,7 +613,7 @@ $(document).ready(function () {
             frame: selectedFrame,
             material: selectedMaterial,
             quantity: selectedQuantity,
-            price: price
+            price: price/selectedQuantity
         };
     
         // Lưu sản phẩm cần mua ngay vào localStorage

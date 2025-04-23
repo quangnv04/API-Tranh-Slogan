@@ -6,7 +6,7 @@ from app.dependencies import router, templates, DEBUG
 
 @router.get("/", response_class=HTMLResponse)
 async def get_home(request: Request):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
 
@@ -14,7 +14,7 @@ async def get_home(request: Request):
 
 @router.get("/sets", response_class=HTMLResponse)
 async def get_sets(request: Request):
-    time_debug = "0.3"
+    time_debug = "0.4"
     if DEBUG == 'True':
         time_debug = time.time()
 
