@@ -223,7 +223,6 @@ async function updateOrder(hash) {
 
 $(document).on('click', '.print-btn', async function () {
     const hash = $(this).data('hash');
-    
 
     try {
         const response = await fetch(`/api/admin/order/${hash}`);
@@ -354,10 +353,6 @@ $(document).on('click', '.print-btn', async function () {
     }
 });
 
-
-// function formatVND(number) {
-//     return new Intl.NumberFormat('vi-VN').format(number) + ' đ';
-// }
 function formatVND(amount) {
     if (amount === "" || amount === 0) return "";
     let result = parseInt(amount).toLocaleString('it-IT') + 'đ';
@@ -419,15 +414,59 @@ function readChunk(number) {
 }
 
 $('#btn-print-pdf').on('click', function () {
-    const element = document.getElementById('order-preview');
+    const source = document.getElementById('order-preview');
+    const printClone = document.getElementById('print-clone');
+
+    // Tạo vùng clone độc lập
+    printClone.innerHTML = `
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body, html {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .order-template {
+                font-family: "Arial", sans-serif;
+                font-size: 13px;
+                background: #fff;
+                color: #005bac;
+                padding: 30px;
+                width: 100%;
+            }
+            .order-template table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .order-template table th, .order-template table td {
+                border: 1px solid #005bac;
+                padding: 3px;
+                text-align: center;
+                vertical-align: middle;
+            }
+        </style>
+        ${source.innerHTML}
+    `;
+
+    printClone.style.display = 'block';
+
     const sdt = document.getElementById('print-phone').innerText.trim();
     const createdAt = document.getElementById('print-created-at').innerText.trim();
+
     const opt = {
-        margin:       0.5,
-        filename:     `order_${sdt}_${createdAt}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' }
+        margin: [0, 0, 0, 0],
+        filename: `order_${sdt}_${createdAt}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
     };
-    html2pdf().set(opt).from(element).save();
+
+    html2pdf().set(opt).from(printClone).save().then(() => {
+        printClone.style.display = 'none';
+    });
 });
+
+
