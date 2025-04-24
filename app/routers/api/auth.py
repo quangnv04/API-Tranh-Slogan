@@ -89,6 +89,9 @@ async def login(request: Request, response: Response, db=Depends(get_db_for_new_
     account = account_model.get_account_by_username(username)
     if not account or not bcrypt.checkpw(password.encode('utf-8'), account['password_hash'].encode('utf-8')):
         raise HTTPException(status_code=401, detail="Invalid email or password. Please try again.")
+    
+    if account['status'] != 'active':
+        raise HTTPException(status_code=403, detail="Tài khoản của bạn đã bị khóa, vui lòng liên hệ lại với quản lý.")
 
     account_role_model = AccountRolesModel(db)
     roles = account_role_model.get_roles_by_account_id(account['id'])

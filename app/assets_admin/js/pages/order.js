@@ -159,6 +159,7 @@ $('#datatable-search tbody').on('click', '.edit-btn', async function () {
         $('#input-address').val(order.address);
         $('#input-product').val(order.product);
         $('#input-price').val(order.price);
+        $('#input-discount').val(order.discount || 0);
         $('#input-notes').val(order.notes);
         $('#status-switch').prop('checked', order.status == 'active');
         $('#finished-switch').prop('checked', order.finished == 1);
@@ -175,6 +176,12 @@ async function updateOrder(hash) {
     const address = document.getElementById('input-address').value.trim();
     const product = document.getElementById('input-product').value.trim();
     const price = document.getElementById('input-price').value.trim();
+    
+    const discount = parseInt(document.getElementById('input-discount').value.trim()) || 0;
+    const priceValue = parseInt(price.replace(/[^\d]/g, '')) || 0;
+    const final_price = Math.max(priceValue - discount, 0);
+
+
     const notes = document.getElementById('input-notes').value.trim();
     const status = document.getElementById('status-switch').checked ? 'active' : 'inactive';
     const finished = document.getElementById('finished-switch').checked ? 1 : 0;
@@ -195,7 +202,7 @@ async function updateOrder(hash) {
                 phone: phone,
                 address: address,
                 product: product,
-                price: price,
+                price: formatVND(final_price),
                 notes: notes,
                 status: status,
                 finished: finished
@@ -216,6 +223,7 @@ async function updateOrder(hash) {
 
 $(document).on('click', '.print-btn', async function () {
     const hash = $(this).data('hash');
+    
 
     try {
         const response = await fetch(`/api/admin/order/${hash}`);
@@ -314,7 +322,7 @@ $(document).on('click', '.print-btn', async function () {
             <tr>
                 <td colspan="4">Chiết khấu (VNĐ):</td>
                 <td>
-                    <input  id="discount-manual" class="form-control" value="0" min="0" style="width: 150px; text-align: center; border-radius: 5px; border: none;">
+                    <input type="number" id="discount-manual" class="form-control" value="0" min="0" style="width: 150px; text-align: center; border-radius: 5px; border: none;">
                 </td>
             </tr>
             <tr>
@@ -347,8 +355,13 @@ $(document).on('click', '.print-btn', async function () {
 });
 
 
-function formatVND(number) {
-    return new Intl.NumberFormat('vi-VN').format(number) + ' đ';
+// function formatVND(number) {
+//     return new Intl.NumberFormat('vi-VN').format(number) + ' đ';
+// }
+function formatVND(amount) {
+    if (amount === "" || amount === 0) return "";
+    let result = parseInt(amount).toLocaleString('it-IT') + 'đ';
+    return result.replace(/\./g, ",").trim();
 }
 
 function convertNumberToWords(number) {
